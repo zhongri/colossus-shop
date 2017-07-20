@@ -4,9 +4,7 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven{
-            url 'http://localhost:8077/nexus/content/groups/public/'
-        }
+        mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
