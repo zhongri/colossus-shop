@@ -7,6 +7,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>xbin-store-cloud-parent</module>
         <module>xbin-store-common</module>
         <module>xbin-store-cloud-admin</module>
         <module>xbin-store-cloud-config</module>
@@ -29,78 +30,11 @@
         <module>xbin-store-cloud-web-search</module>
         <module>xbin-store-cloud-web-sso</module>
         <module>xbin-store-cloud-zuul</module>
+        <module>xbinstorecloudparent</module>
     </modules>
     <name>xbin-store</name>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <springCloudVersion>Dalston.RELEASE</springCloudVersion>
-        <springBootVersion>1.5.3.RELEASE</springBootVersion>
-        <springBootMyBatisVersion>1.2.0</springBootMyBatisVersion>
-        <springBootpagehelperVersion>1.1.0</springBootpagehelperVersion>
-        <springBootAdminVersion>1.5.0</springBootAdminVersion>
-        <springBootDruidVersion>0.0.1-SNAPSHOT</springBootDruidVersion>
-        <springBootRedisVersion>0.0.1-SNAPSHOT</springBootRedisVersion>
-        <junitVersion> 4.12</junitVersion>
-        <mysqlVersion>5.1.32</mysqlVersion>
-        <jacksonVersion> 2.8.7</jacksonVersion>
-        <httpclientVersion> 4.3.5</httpclientVersion>
-        <servletapiVersion>3.1.0</servletapiVersion>
-        <commonslangVersion> 2.6</commonslangVersion>
-        <commonslang3Version> 3.3.2</commonslang3Version>
-        <commonsioVersion> 1.3.2</commonsioVersion>
-        <commonsnetVersion>  3.3</commonsnetVersion>
-        <jsqlparserVersion> 4.12</jsqlparserVersion>
-        <slf4jVersion> 1.7.2</slf4jVersion>
-        <commonsfileuploadVersion>1.3.1</commonsfileuploadVersion>
-        <jedisVersion>2.7.2</jedisVersion>
-        <solrjVersion>5.4.0</solrjVersion>
-        <freemarkerVersion> 2.3.23 </freemarkerVersion>
-        <quartzVersion> 2.2.2</quartzVersion>
-        <fastjsonVersio>1.2.28</fastjsonVersio>
-        <swagger2Version> 2.6.1</swagger2Version>
-        <lombokVersion> 1.16.16</lombokVersion>
-        <fastdfsVersion>  1.24</fastdfsVersion>
-        <beetl_starterVersion> 0.0.3</beetl_starterVersion>
-        <hutoolVersion> 3.0.3</hutoolVersion>
-        <swagger2Version> 2.6.1</swagger2Version>
-        <logbackkafkaVersion> 0.1.0</logbackkafkaVersion>
-        <apolloclientVersion> 0.8.0</apolloclientVersion>
-    </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junitVersion}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>${apolloclientVersion}</version>
-        </dependency>
-    </dependencies>
 
 </project>
