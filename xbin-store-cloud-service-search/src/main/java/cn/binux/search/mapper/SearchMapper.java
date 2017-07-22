@@ -1,6 +1,7 @@
 package cn.binux.search.mapper;
 
 import cn.binux.pojo.SolrItem;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import java.util.List;
  * @author xubin.
  * @create 2017-02-04 下午4:46
  */
-
 public interface SearchMapper {
 
     List<SolrItem> getSolrItemList();
