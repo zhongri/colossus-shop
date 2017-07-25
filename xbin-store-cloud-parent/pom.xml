@@ -8,6 +8,11 @@
     <artifactId>xbin-store-cloud-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
+    </parent>
 
     <properties>
         <springCloudVersion>1.2.0.RELEASE</springCloudVersion>
@@ -82,6 +87,7 @@
             <artifactId>spring-cloud-config-server</artifactId>
             <version>${springCloudVersion}</version>
         </dependency>
+
     </dependencies>
 
     <repositories>

@@ -7,6 +7,8 @@ spring:
 
 eureka:
   client:
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8501/eureka/}
   instance:
