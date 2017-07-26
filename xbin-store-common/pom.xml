@@ -21,11 +21,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servletapiVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedisVersion}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -89,6 +85,7 @@
             <artifactId>spring-boot-starter-druid</artifactId>
             <version>${springBootDruidVersion}</version>
         </dependency>
+
     </dependencies>
 
     
