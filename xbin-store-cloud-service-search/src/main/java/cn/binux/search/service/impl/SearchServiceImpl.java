@@ -1,21 +1,18 @@
 package cn.binux.search.service.impl;
 
+import cn.binux.pojo.SearchItem;
 import cn.binux.pojo.SearchResult;
-import cn.binux.pojo.SolrItem;
 import cn.binux.pojo.XbinResult;
-import cn.binux.search.mapper.SearchMapper;
+import cn.binux.mapper.SearchMapper;
+import cn.binux.search.mapper.ItemMapper;
+import cn.binux.search.model.Item;
 import cn.binux.search.service.SearchService;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.*;
-import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +32,10 @@ import java.util.Map;
 public class SearchServiceImpl implements SearchService {
 
     @Autowired
-    private SearchMapper searchMapper;
+    private ItemMapper itemMapper;
 
     @Autowired
-    private SolrClient solrClient;
+    private SearchMapper searchMapper;
 
     private static Logger logger = LoggerFactory.getLogger(SearchServiceImpl.class);
 
@@ -55,32 +52,29 @@ public class SearchServiceImpl implements SearchService {
     )
     public XbinResult importAllItems() {
 
-        List<SolrItem> solrItemList = searchMapper.getSolrItemList();
+
+        List<SearchItem> searchItemList = searchMapper.getSolrItemList();
 
         try {
-            for (SolrItem solrItem : solrItemList) {
+            for (SearchItem searchItem : searchItemList) {
 
-                SolrInputDocument document = new SolrInputDocument();
+                Item item=new Item();
+                item.setId(searchItem.getId());
+                item.setCategoryName(searchItem.getCategory_name());
+                item.setPrice(searchItem.getPrice());
+                item.setDescription(searchItem.getItem_desc());
 
-                document.addField("id", solrItem.getId());
-                document.addField("item_category_name", solrItem.getCategory_name());
-                document.addField("item_title", solrItem.getTitle());
-
-                String image = solrItem.getImage();
+                String image = searchItem.getImage();
                 String[] split = image.split(",");
+                item.setImgUrl(split[0]);
+                item.setTitle(searchItem.getTitle());
+                item.setSellPoint(searchItem.getSell_point());
 
-                document.addField("item_image", split[0]);
-                document.addField("item_price", solrItem.getPrice());
-                document.addField("item_sell_point", solrItem.getSell_point());
-                document.addField("item_desc", solrItem.getItem_desc());
-
-                solrClient.add(document);
+                itemMapper.save(item);
 
             }
 
-            solrClient.commit();
-
-            logger.info("import success num {}",solrItemList.size());
+            logger.info("import success num {}", searchItemList.size());
         } catch (Exception e) {
             logger.error("import error", e);
         }
@@ -109,78 +103,32 @@ public class SearchServiceImpl implements SearchService {
     public SearchResult search(
             @RequestParam("q")                  String queryString,
             @RequestParam(defaultValue = "1")   Integer page,
-            @RequestParam(defaultValue = "0")   Integer rows
+            @RequestParam(defaultValue = "0")   Integer pageSize
     ) {
 
         SearchResult searchResult = new SearchResult();
 
-        SolrQuery query = new SolrQuery();
-
-        //设置查询条件
-        query.setQuery(queryString);
-
-        //设置分页
-        query.setStart((page - 1) * rows);
-
-        query.setRows(rows);
-
-        //设置默认搜素域
-        query.set("df", "item_keywords");
-
-        query.setHighlight(true);
-
-        query.addHighlightField("item_title");
-
-        query.setHighlightSimplePre("<em style=\"color:red\">");
-
-        query.setHighlightSimplePost("</em>");
-
-        QueryResponse response = null;
-        try {
-            response = solrClient.query(query);
-        } catch (SolrServerException e) {
-            logger.error("query solr error", e);
-        } catch (IOException e) {
-            logger.error("query error", e);
+       Iterable<Item> items=itemMapper.findAll(new PageRequest(page-1,pageSize));
+       List<SearchItem> searchItems= Lists.newArrayList();
+        for (Item item : items) {
+            SearchItem searchItem=new SearchItem();
+            searchItem.setCategory_name(item.getCategoryName());
+            searchItem.setId(item.getId());
+            searchItem.setImage(item.getImgUrl());
+            searchItem.setItem_desc(item.getDescription());
+            searchItem.setPrice((long)item.getPrice());
+            searchItem.setSell_point(item.getSellPoint());
+            searchItem.setTitle(item.getTitle());
+            searchItems.add(searchItem);
         }
 
-        SolrDocumentList results = response.getResults();
-
-        searchResult.setRecordCount(results.getNumFound());
-
-        List<SolrItem> solrItems = new ArrayList<SolrItem>();
-
-        Map<String, Map<String, List<String>>> highlighting = response.getHighlighting();
-
-        for (SolrDocument result : results) {
-
-            SolrItem solrItem = new SolrItem();
-
-            solrItem.setId((String) result.get("id"));
-
-            List<String> strings = highlighting.get(result.get("id")).get("item_title");
-            if (strings != null && strings.size() > 0) {
-                solrItem.setTitle(strings.get(0));
-            } else {
-                solrItem.setTitle((String) result.get("item_title"));
-            }
-            solrItem.setCategory_name((String) result.get("item_category_name"));
-            solrItem.setImage((String) result.get("item_image"));
-            solrItem.setSell_point((String) result.get("item_sell_point"));
-            solrItem.setItem_desc((String) result.get("item_desc"));
-            solrItem.setPrice((Long) result.get("item_price"));
-
-            solrItems.add(solrItem);
-
-        }
-
-        searchResult.setItemList(solrItems);
+        searchResult.setItemList(searchItems);
         searchResult.setCurPage(page);
 
         long recordCount = searchResult.getRecordCount();
-        long pageCount = recordCount / rows;
+        long pageCount = recordCount / pageSize;
 
-        if (recordCount % rows > 0) {
+        if (recordCount % pageSize > 0) {
             pageCount++;
         }
 

@@ -22,8 +22,4 @@ public class XbinStoreServiceSSOApplication {
 		SpringApplication.run(XbinStoreServiceSSOApplication.class, args);
 	}
 
-	@Bean
-	public JedisClient jedisClient() {
-		return new JedisClientSingle();
-	}
 }

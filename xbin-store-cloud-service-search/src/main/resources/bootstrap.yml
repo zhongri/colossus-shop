@@ -2,11 +2,11 @@ spring:
   application:
     name: xbin-store-cloud-service-search
   data:
-    solr:
-      host: http://192.168.125.131:8080/solr/#/collection1
-      #zkHost:
+    elasticsearch:
       repositories:
         enabled: false
+      cluster-nodes: http://192.168.0.50:9300,http://192.168.0.51:9300,http://192.168.0.52:9300
+      cluster-name: elasticsearch
 
 security.basic.enabled: false
 

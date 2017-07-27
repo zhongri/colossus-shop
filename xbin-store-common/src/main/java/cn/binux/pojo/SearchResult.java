@@ -16,7 +16,7 @@ import java.util.List;
 public class SearchResult implements Serializable {
 
     //商品集合
-    private List<SolrItem> itemList;
+    private List<SearchItem> itemList;
     //总记录数
     private long recordCount;
     //总页数

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.lang.annotation.Documented;
 import java.text.DecimalFormat;
 
 /**
@@ -15,7 +16,7 @@ import java.text.DecimalFormat;
  */
 
 @Data
-public class SolrItem implements Serializable {
+public class SearchItem implements Serializable {
 
     private String id;
     private String image;

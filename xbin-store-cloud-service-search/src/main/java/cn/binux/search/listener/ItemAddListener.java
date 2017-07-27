@@ -1,8 +1,7 @@
 package cn.binux.search.listener;
 
 
-import cn.binux.search.mapper.SearchMapper;
-import org.apache.solr.client.solrj.SolrClient;
+import cn.binux.mapper.SearchMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,7 @@ public class ItemAddListener {
     @Autowired
     private SearchMapper searchMapper;
 
-    @Autowired
-    private SolrClient solrClient;
+
 
     //public void onMessage(Message message) {
     //
@@ -37,7 +35,7 @@ public class ItemAddListener {
     //        // 休眠1秒 等待事务提交
     //        Thread.sleep(1000);
     //
-    //        SolrItem solrItem = searchMapper.getSolrItemByItemId(itemId);
+    //        SearchItem solrItem = searchMapper.getSolrItemByItemId(itemId);
     //
     //        logger.info("查询到商品名称:"+solrItem.getTitle());
     //
