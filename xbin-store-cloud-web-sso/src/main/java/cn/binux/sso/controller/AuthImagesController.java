@@ -1,7 +1,7 @@
 package cn.binux.sso.controller;
 
+import cn.binux.RedisService;
 import cn.binux.sso.utils.VerifyCodeUtils;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +32,7 @@ public class AuthImagesController {
     private static final Logger logger = LoggerFactory.getLogger(AuthImagesController.class);
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.verifycode}")
     private String VERIFYCODE;
@@ -54,9 +54,9 @@ public class AuthImagesController {
         //存入Redis
 
         String key = VERIFYCODE + uid;
-        jedisClient.set(key, verifyCode);
+        redisService.set(key, verifyCode);
 
-        jedisClient.expire(key, EXPIRE_TIME);
+        redisService.expire(key, EXPIRE_TIME);
 
         //生成图片
         int w = 100, h = 30;

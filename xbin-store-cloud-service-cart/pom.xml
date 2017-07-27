@@ -21,15 +21,16 @@
             <artifactId>xbin-store-cloud-service-cart-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>1.8.0.RELEASE</version>
-        </dependency>
+
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.binux</groupId>
+            <artifactId>xbin-store-cloud-service-redis-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

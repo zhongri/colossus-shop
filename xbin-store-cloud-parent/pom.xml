@@ -88,6 +88,17 @@
             <version>${springCloudVersion}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2Version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2Version}</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>

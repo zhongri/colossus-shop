@@ -1,11 +1,11 @@
 package cn.binux.portal.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.mapper.TbContentMapper;
 import cn.binux.pojo.TbContent;
 import cn.binux.pojo.TbContentExample;
 import cn.binux.portal.service.PortalContentService;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -31,7 +31,7 @@ public class PortalContentServiceImpl implements PortalContentService {
     private TbContentMapper contentMapper;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.index_ad}")
     private String INDEX_AD;
@@ -59,7 +59,7 @@ public class PortalContentServiceImpl implements PortalContentService {
 
         try {
             logger.info("=====>查询Redis");
-            String list = jedisClient.hget(INDEX_AD, bigAdIndex + "");
+            String list = redisService.hget(INDEX_AD, bigAdIndex + "");
 
             if (StringUtils.isNotBlank(list)) {
 
@@ -82,7 +82,7 @@ public class PortalContentServiceImpl implements PortalContentService {
         //添加缓存
         try {
             logger.info("=======>添加缓存");
-            jedisClient.hset(INDEX_AD, bigAdIndex + "", FastJsonConvert.convertObjectToJSON(list));
+            redisService.hset(INDEX_AD, bigAdIndex + "", FastJsonConvert.convertObjectToJSON(list));
         } catch (Exception e) {
             logger.error(e);
         }

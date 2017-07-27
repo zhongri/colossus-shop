@@ -1,16 +1,18 @@
-package cn.binux.utils.impl;
+package cn.binux.redis.service.impl;
 
-import cn.binux.utils.JedisClient;
+
+import cn.binux.RedisService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.JedisCluster;
 
 
-/**
- * @author 許彬.
- * @creater 2016-08-22 16:38
- */
-public class JedisClientCluster implements JedisClient {
-
+@Api(value = "API - RedisServiceImpl", description = "redis 服务")
+@RestController
+@RefreshScope
+public class RedisServiceImpl implements RedisService {
     @Autowired
     private JedisCluster jedisCluster;
 
@@ -21,49 +23,41 @@ public class JedisClientCluster implements JedisClient {
 
     @Override
     public String set(String key, String value) {
-
-        return jedisCluster.set(key, value);
+        return jedisCluster.set(key,value);
     }
 
     @Override
     public String hget(String hkey, String key) {
-
-        return jedisCluster.hget(key, key);
+        return jedisCluster.hget(hkey,key);
     }
 
     @Override
     public long hset(String hkey, String key, String value) {
-
-        return jedisCluster.hset(hkey, key, value);
+        return jedisCluster.hset(hkey,key,value);
     }
 
     @Override
     public long incr(String key) {
-
         return jedisCluster.incr(key);
     }
 
     @Override
     public long expire(String key, Integer second) {
-
-        return jedisCluster.expire(key, second);
+        return jedisCluster.expire(key,second);
     }
 
     @Override
     public long ttl(String key) {
-
         return jedisCluster.ttl(key);
     }
 
     @Override
     public long del(String key) {
-
         return jedisCluster.del(key);
     }
 
     @Override
     public long hdel(String hkey, String key) {
-
-        return jedisCluster.hdel(hkey, key);
+        return jedisCluster.hdel(hkey,key);
     }
 }

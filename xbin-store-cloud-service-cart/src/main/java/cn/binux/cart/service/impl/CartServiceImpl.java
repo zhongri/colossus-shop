@@ -1,5 +1,6 @@
 package cn.binux.cart.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.cart.service.CartService;
 import cn.binux.mapper.TbItemMapper;
 import cn.binux.pojo.CartInfo;
@@ -7,7 +8,6 @@ import cn.binux.pojo.TbItem;
 import cn.binux.pojo.TbItemExample;
 import cn.binux.pojo.XbinResult;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
     private String ITEM_INFO_BASE_SUFFIX;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Autowired
     private TbItemMapper itemMapper;
@@ -74,7 +74,7 @@ public class CartServiceImpl implements CartService {
         String key = CART_INFO_PROFIX + uuid;
         String cartInfoString = null;
         try {
-            cartInfoString = jedisClient.get(key);
+            cartInfoString = redisService.get(key);
         } catch (Exception e) {
             logger.error("Redis出错!", e);
         }
@@ -83,7 +83,7 @@ public class CartServiceImpl implements CartService {
 
         String redisItem = null;
         try {
-            redisItem = jedisClient.get(ITEM_INFO_PROFIX + pid + ITEM_INFO_BASE_SUFFIX);
+            redisItem = redisService.get(ITEM_INFO_PROFIX + pid + ITEM_INFO_BASE_SUFFIX);
         } catch (Exception e) {
             logger.error("Redis error", e);
         }
@@ -132,8 +132,8 @@ public class CartServiceImpl implements CartService {
             logger.debug("第一次保存商品到Redis uuid:" + uuid);
 
             try {
-                jedisClient.set(key, FastJsonConvert.convertObjectToJSON(cartInfos));
-                jedisClient.expire(key, REDIS_CART_EXPIRE_TIME);
+                redisService.set(key, FastJsonConvert.convertObjectToJSON(cartInfos));
+                redisService.expire(key, REDIS_CART_EXPIRE_TIME);
             } catch (Exception e) {
                 logger.error("Redis error", e);
             }
@@ -164,8 +164,8 @@ public class CartServiceImpl implements CartService {
             logger.debug("商品添加完成 购物车" + list.size() + "件商品 uuid:" + uuid);
 
             try {
-                jedisClient.set(key, FastJsonConvert.convertObjectToJSON(list));
-                jedisClient.expire(key, REDIS_CART_EXPIRE_TIME);
+                redisService.set(key, FastJsonConvert.convertObjectToJSON(list));
+                redisService.expire(key, REDIS_CART_EXPIRE_TIME);
             } catch (Exception e) {
                 logger.error("Redis出错!", e);
             }
@@ -192,7 +192,7 @@ public class CartServiceImpl implements CartService {
     )
     public List<CartInfo> getCartInfoListByCookiesId(String cookieUUID) {
 
-        String cartInfoString = jedisClient.get(CART_INFO_PROFIX + cookieUUID);
+        String cartInfoString = redisService.get(CART_INFO_PROFIX + cookieUUID);
 
         if (StringUtils.isNotBlank(cartInfoString)) {
             List<CartInfo> cartInfos = FastJsonConvert.convertJSONToArray(cartInfoString, CartInfo.class);
@@ -251,8 +251,8 @@ public class CartServiceImpl implements CartService {
         }
         //cartInfoList.remove(index);
         //cartInfoList.add(index, cartInfo);
-        jedisClient.set(key, FastJsonConvert.convertObjectToJSON(cartInfoList));
-        jedisClient.expire(key,REDIS_CART_EXPIRE_TIME);
+        redisService.set(key, FastJsonConvert.convertObjectToJSON(cartInfoList));
+        redisService.expire(key,REDIS_CART_EXPIRE_TIME);
 
         return XbinResult.ok();
     }

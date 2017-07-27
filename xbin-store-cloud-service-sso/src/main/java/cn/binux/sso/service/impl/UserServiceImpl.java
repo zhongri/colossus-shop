@@ -1,12 +1,12 @@
 package cn.binux.sso.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.mapper.TbUserMapper;
 import cn.binux.pojo.TbUser;
 import cn.binux.pojo.TbUserExample;
 import cn.binux.pojo.XbinResult;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     private TbUserMapper userMapper;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.user_session}")
     private String USER_SESSION;
@@ -130,9 +130,9 @@ public class UserServiceImpl implements UserService {
         String token = UUID.randomUUID().toString().replaceAll("-","");
 
         String key = USER_SESSION + token;
-        jedisClient.set(key, FastJsonConvert.convertObjectToJSON(result));
+        redisService.set(key, FastJsonConvert.convertObjectToJSON(result));
 
-        jedisClient.expire(key, EXPIRE_TIME);
+        redisService.expire(key, EXPIRE_TIME);
 
         return XbinResult.ok(token);
     }
@@ -173,7 +173,7 @@ public class UserServiceImpl implements UserService {
         }
 
         try {
-            String user = jedisClient.get(USER_SESSION + token);
+            String user = redisService.get(USER_SESSION + token);
 
             if (StringUtils.isNotBlank(user)) {
 
@@ -225,7 +225,7 @@ public class UserServiceImpl implements UserService {
         }
 
         try {
-            jedisClient.del(USER_SESSION + token);
+            redisService.del(USER_SESSION + token);
         } catch (Exception e) {
             logger.error("没有登录", e);
 
@@ -380,7 +380,7 @@ public class UserServiceImpl implements UserService {
         HashMap<String, Integer> map = new HashMap<>();
 
         try {
-            String redisAuthCode = jedisClient.get(VERIFYCODE + uuid);
+            String redisAuthCode = redisService.get(VERIFYCODE + uuid);
 
             if (StringUtils.isBlank(redisAuthCode)) {
 
@@ -468,7 +468,7 @@ public class UserServiceImpl implements UserService {
 
             String code = "";
             try {
-                code = jedisClient.get(VERIFYCODE + uuid);
+                code = redisService.get(VERIFYCODE + uuid);
             } catch (Exception e) {
 
                 logger.error("Redis服务出错", e);
@@ -498,7 +498,7 @@ public class UserServiceImpl implements UserService {
             String phone2 = phone.substring(5, phone.length());
             String phonecode = "";
             try {
-                phonecode = jedisClient.get(MOBILE_LOGIN_CODE + phone2);
+                phonecode = redisService.get(MOBILE_LOGIN_CODE + phone2);
             } catch (Exception e) {
                 logger.error("Redis服务出错");
             }

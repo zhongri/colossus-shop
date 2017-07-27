@@ -38,7 +38,8 @@
         <module>xbin-store-cloud-web-search</module>
         <module>xbin-store-cloud-web-sso</module>
         <module>xbin-store-cloud-zuul</module>
-        <module>xbin-store-service-redis</module>
+        <module>xbin-store-cloud-service-redis</module>
+        <module>xbin-store-cloud-service-redis-api</module>
     </modules>
     <name>xbin-store</name>
     <version>1.0-SNAPSHOT</version>

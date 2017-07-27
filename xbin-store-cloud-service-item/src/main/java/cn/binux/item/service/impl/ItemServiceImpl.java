@@ -1,12 +1,12 @@
 package cn.binux.item.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.item.service.ItemService;
 import cn.binux.mapper.TbItemDescMapper;
 import cn.binux.mapper.TbItemMapper;
 import cn.binux.pojo.TbItem;
 import cn.binux.pojo.TbItemDesc;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -36,9 +36,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper itemDescMapper;
-
+    
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.item_info_profix}")
     private String ITEM_INFO_PROFIX;
@@ -73,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_BASE_SUFFIX;
 
         try {
-            String jsonItem = jedisClient.get(key);
+            String jsonItem = redisService.get(key);
 
             if (StringUtils.isNotBlank(jsonItem)) {
 
@@ -92,9 +92,9 @@ public class ItemServiceImpl implements ItemService {
         TbItem item = itemMapper.selectByPrimaryKey(itemId);
 
         try {
-            jedisClient.set(key, FastJsonConvert.convertObjectToJSON(item));
+            redisService.set(key, FastJsonConvert.convertObjectToJSON(item));
 
-            jedisClient.expire(key, REDIS_EXPIRE_TIME);
+            redisService.expire(key, REDIS_EXPIRE_TIME);
 
             logger.info("Redis 缓存商品信息 key:" + key);
 
@@ -127,7 +127,7 @@ public class ItemServiceImpl implements ItemService {
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_DESC_SUFFIX;
 
         try {
-            String jsonItem = jedisClient.get(key);
+            String jsonItem = redisService.get(key);
 
             if (StringUtils.isNotBlank(jsonItem)) {
 
@@ -143,9 +143,9 @@ public class ItemServiceImpl implements ItemService {
         }
         TbItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(itemId);
         try {
-            jedisClient.set(key, FastJsonConvert.convertObjectToJSON(itemDesc));
+            redisService.set(key, FastJsonConvert.convertObjectToJSON(itemDesc));
 
-            jedisClient.expire(key, REDIS_EXPIRE_TIME);
+            redisService.expire(key, REDIS_EXPIRE_TIME);
 
             logger.info("Redis query fail key: {}" ,key);
 

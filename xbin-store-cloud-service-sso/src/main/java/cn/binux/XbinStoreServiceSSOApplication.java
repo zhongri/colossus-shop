@@ -1,7 +1,5 @@
 package cn.binux;
 
-import cn.binux.utils.JedisClient;
-import cn.binux.utils.impl.JedisClientSingle;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

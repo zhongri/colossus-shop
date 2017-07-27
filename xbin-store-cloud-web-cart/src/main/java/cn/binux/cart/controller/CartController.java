@@ -1,5 +1,6 @@
 package cn.binux.cart.controller;
 
+import cn.binux.RedisService;
 import cn.binux.cart.service.CartService;
 import cn.binux.constant.Const;
 import cn.binux.pojo.CartInfo;
@@ -7,7 +8,6 @@ import cn.binux.pojo.TbUser;
 import cn.binux.pojo.XbinResult;
 import cn.binux.utils.CookieUtils;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class CartController {
     private CartService cartService;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.user_session}")
     private String USER_SESSION;
@@ -60,7 +60,7 @@ public class CartController {
         if (StringUtils.isNoneEmpty(tokenLogin)) {
 
             try {
-                userJson = jedisClient.get(USER_SESSION + tokenLogin);
+                userJson = redisService.get(USER_SESSION + tokenLogin);
             } catch (Exception e) {
                 logger.error("Redis error", e);
             }

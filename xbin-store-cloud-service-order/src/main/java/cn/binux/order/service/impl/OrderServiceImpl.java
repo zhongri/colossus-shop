@@ -1,5 +1,6 @@
 package cn.binux.order.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.constant.Const;
 import cn.binux.mapper.TbOrderItemMapper;
 import cn.binux.mapper.TbOrderMapper;
@@ -8,7 +9,7 @@ import cn.binux.pojo.*;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.FastJsonConvert;
 import cn.binux.utils.IDUtils;
-import cn.binux.utils.JedisClient;
+import cn.binux.utils.redisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
     private UserService userService;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Autowired
     private TbOrderItemMapper orderItemMapper;
@@ -138,9 +139,9 @@ public class OrderServiceImpl implements OrderService {
 
         try {
 
-            String cartInfo = jedisClient.get(key1);
-            String cartIndex = jedisClient.get(key2);
-            String cartInfoListString = jedisClient.get(key3);
+            String cartInfo = redisService.get(key1);
+            String cartIndex = redisService.get(key2);
+            String cartInfoListString = redisService.get(key3);
 
             if (StringUtils.isBlank(cartInfo) || StringUtils.isBlank(cartIndex) || StringUtils.isBlank(cartInfoListString)) {
                 return XbinResult.build(400, "系统错误!");
@@ -199,7 +200,7 @@ public class OrderServiceImpl implements OrderService {
 
         try {
 
-            jedisClient.set(key3, FastJsonConvert.convertObjectToJSON(cartInfoAll));
+            redisService.set(key3, FastJsonConvert.convertObjectToJSON(cartInfoAll));
 
         } catch (Exception e) {
             logger.error("Redis 服务出错!", e);

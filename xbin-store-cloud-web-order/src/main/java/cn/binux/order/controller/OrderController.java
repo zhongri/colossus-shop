@@ -1,5 +1,6 @@
 package cn.binux.order.controller;
 
+import cn.binux.RedisService;
 import cn.binux.cart.service.CartService;
 import cn.binux.constant.Const;
 import cn.binux.order.service.OrderService;
@@ -8,7 +9,6 @@ import cn.binux.pojo.XbinResult;
 import cn.binux.utils.CookieUtils;
 import cn.binux.utils.FastJsonConvert;
 import cn.binux.utils.IDUtils;
-import cn.binux.utils.JedisClient;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +49,7 @@ public class OrderController {
     private CartService cartService;
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Autowired
     private OrderService orderService;
@@ -91,11 +91,11 @@ public class OrderController {
         String key = CART_ORDER_INFO_PROFIX + orderId;
         String key2 = CART_ORDER_INDEX_PROFIX + orderId;
         // 保存商品订单项
-        jedisClient.set(key, FastJsonConvert.convertObjectToJSON(cartInfoList));
+        redisService.set(key, FastJsonConvert.convertObjectToJSON(cartInfoList));
         // 保存商品Index --用于购物完成后删除购物车商品
-        jedisClient.set(key2, indexs);
-        jedisClient.expire(key, REDIS_ORDER_EXPIRE_TIME);
-        jedisClient.expire(key2, REDIS_ORDER_EXPIRE_TIME);
+        redisService.set(key2, indexs);
+        redisService.expire(key, REDIS_ORDER_EXPIRE_TIME);
+        redisService.expire(key2, REDIS_ORDER_EXPIRE_TIME);
 
         model.addAttribute("totalPrices", totalPrices);
         model.addAttribute("orderId", orderId);

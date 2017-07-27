@@ -1,8 +1,8 @@
 package cn.binux.notify.service.impl;
 
+import cn.binux.RedisService;
 import cn.binux.notify.service.NotifyUserService;
 import cn.binux.utils.FastJsonConvert;
-import cn.binux.utils.JedisClient;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class NotifyUserServiceImpl implements NotifyUserService {
     private static final Logger logger = LoggerFactory.getLogger(NotifyUserServiceImpl.class);
 
     @Autowired
-    private JedisClient jedisClient;
+    private RedisService redisService;
 
     @Value("${redisKey.prefix.mobile_login_code.key}")
     private String MOBILE_LOGIN_CODE;
@@ -90,7 +90,7 @@ public class NotifyUserServiceImpl implements NotifyUserService {
         try {
             String key = MOBILE_LOGIN_TIME + phone;
             String key1 = MOBILE_LOGIN_CODE + phone;
-            String time = jedisClient.get(key);
+            String time = redisService.get(key);
 
             //查询不到
             if (StringUtils.isBlank(time)) {
@@ -99,13 +99,13 @@ public class NotifyUserServiceImpl implements NotifyUserService {
 
                 //保存登录次数到Redis
                 //初始化次数为3次
-                jedisClient.set(key, MOBILE_NUMBER_CEILING + "");
+                redisService.set(key, MOBILE_NUMBER_CEILING + "");
                 //设置过期时间
-                jedisClient.expire(key, MOBILE_LOGIN_TIME_EXPIRE);
+                redisService.expire(key, MOBILE_LOGIN_TIME_EXPIRE);
                 //保存code到Redis
-                jedisClient.set(key1, code + "");
+                redisService.set(key1, code + "");
                 //设置过期时间
-                jedisClient.expire(key1, MOBILE_LOGIN_CODE_EXPIRE);
+                redisService.expire(key1, MOBILE_LOGIN_CODE_EXPIRE);
 
                 map.put("rs", 1);
 
@@ -115,7 +115,7 @@ public class NotifyUserServiceImpl implements NotifyUserService {
             //查询到 判断是否为0 次数减一
             int nub = Integer.parseInt(time);
             if (nub == 0) {
-                jedisClient.del(key1);
+                redisService.del(key1);
                 map.put("rs", -1);
 
                 return FastJsonConvert.convertObjectToJSONBracket(map);
@@ -124,18 +124,18 @@ public class NotifyUserServiceImpl implements NotifyUserService {
             // 发送短信==================
 
             if (nub == 1) {
-                jedisClient.set(key, --nub + "");
+                redisService.set(key, --nub + "");
                 map.put("rs", 1);
 
                 return FastJsonConvert.convertObjectToJSONBracket(map);
             }
 
-            jedisClient.set(key, --nub + "");
+            redisService.set(key, --nub + "");
 
             //保存code到Redis
-            jedisClient.set(key1, code + "");
+            redisService.set(key1, code + "");
             //设置过期时间
-            jedisClient.expire(key1, MOBILE_LOGIN_CODE_EXPIRE);
+            redisService.expire(key1, MOBILE_LOGIN_CODE_EXPIRE);
 
             String result = "该手机还可获取" + nub + "次验证码，请尽快完成验证 验证码:" + code;
             map.put("remain", result);
