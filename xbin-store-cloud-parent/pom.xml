@@ -41,7 +41,7 @@
         <fastjsonVersio>1.2.28</fastjsonVersio>
         <swagger2Version> 2.6.1</swagger2Version>
         <lombokVersion> 1.16.16</lombokVersion>
-        <fastdfsVersion>  1.24</fastdfsVersion>
+        <fastdfsVersion>1.27-SNAPSHOT</fastdfsVersion>
         <beetl_starterVersion> 0.0.3</beetl_starterVersion>
         <hutoolVersion> 3.0.3</hutoolVersion>
         <swagger2Version> 2.6.1</swagger2Version>

@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>org.csource</groupId>
-            <artifactId>fastdfs</artifactId>
+            <artifactId>fastdfs-client-java</artifactId>
             <version>${fastdfsVersion}</version>
         </dependency>
         <dependency>
