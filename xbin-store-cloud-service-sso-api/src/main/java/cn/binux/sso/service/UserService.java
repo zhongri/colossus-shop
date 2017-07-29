@@ -1,7 +1,7 @@
 package cn.binux.sso.service;
 
-import cn.binux.pojo.TbUser;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbUser;
+import cn.binux.model.XbinResult;
 import cn.binux.sso.service.hystrix.UserServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;

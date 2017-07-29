@@ -1,7 +1,7 @@
 package cn.binux.sso.service.hystrix;
 
-import cn.binux.pojo.TbUser;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbUser;
+import cn.binux.model.XbinResult;
 import cn.binux.sso.service.UserService;
 import org.springframework.stereotype.Component;
 

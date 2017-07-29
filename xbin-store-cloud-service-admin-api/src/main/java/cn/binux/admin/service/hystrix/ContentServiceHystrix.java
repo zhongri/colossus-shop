@@ -1,8 +1,8 @@
 package cn.binux.admin.service.hystrix;
 
 import cn.binux.admin.service.ContentService;
-import cn.binux.pojo.TbCategorySecondary;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbCategorySecondary;
+import cn.binux.model.XbinResult;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

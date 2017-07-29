@@ -1,8 +1,8 @@
 package cn.binux.item.service;
 
 import cn.binux.item.service.hystrix.ItemServiceHystrix;
-import cn.binux.pojo.TbItem;
-import cn.binux.pojo.TbItemDesc;
+import cn.binux.model.TbItem;
+import cn.binux.model.TbItemDesc;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

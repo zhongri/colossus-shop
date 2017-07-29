@@ -11,12 +11,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>2.0.0.M3</version>
     </parent>
 
     <properties>
-        <springCloudVersion>1.2.0.RELEASE</springCloudVersion>
-        <springBootVersion>1.5.3.RELEASE</springBootVersion>
+        <springCloudVersion>2.0.0.M1</springCloudVersion>
+        <springBootVersion>2.0.0.M3</springBootVersion>
         <springBootMyBatisVersion>1.2.0</springBootMyBatisVersion>
         <springBootpagehelperVersion>1.1.0</springBootpagehelperVersion>
         <springBootAdminVersion>1.5.0</springBootAdminVersion>
@@ -34,7 +34,7 @@
         <jsqlparserVersion> 4.12</jsqlparserVersion>
         <slf4jVersion> 1.7.2</slf4jVersion>
         <commonsfileuploadVersion>1.3.1</commonsfileuploadVersion>
-        <jedisVersion>2.7.2</jedisVersion>
+        <jedisVersion>2.9.0</jedisVersion>
         <solrjVersion>5.4.0</solrjVersion>
         <freemarkerVersion> 2.3.23 </freemarkerVersion>
         <quartzVersion> 2.2.2</quartzVersion>
@@ -47,9 +47,21 @@
         <swagger2Version> 2.6.1</swagger2Version>
         <logbackkafkaVersion> 0.1.0</logbackkafkaVersion>
         <apolloclientVersion> 0.8.0</apolloclientVersion>
+        <elasticsearchVersion>5.5.0</elasticsearchVersion>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commonslang3Version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commonslangVersion}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -98,8 +110,38 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger2Version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>4.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>4.1.4</version>
+        </dependency>
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/generated-sources/java</outputDirectory>
+                            <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
@@ -133,6 +175,55 @@
                 <updatePolicy>daily</updatePolicy>
                 <checksumPolicy>ignore</checksumPolicy>
             </releases>
+        </repository>
+        <repository>
+            <id>elasticsearch-releases</id>
+            <url>https://maven.elasticsearch.org/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>elasticsearch-releases</id>
+            <url>https://artifacts.elastic.co/maven</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.spring.io/milestone</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>http://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>spring-libs-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>http://repo.spring.io/libs-snapshot</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -169,6 +260,8 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
+
+
 
     <distributionManagement>
 

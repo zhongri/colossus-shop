@@ -1,8 +1,8 @@
 package cn.binux.cart.service.hystrix;
 
 import cn.binux.cart.service.CartService;
-import cn.binux.pojo.CartInfo;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.CartInfo;
+import cn.binux.model.XbinResult;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

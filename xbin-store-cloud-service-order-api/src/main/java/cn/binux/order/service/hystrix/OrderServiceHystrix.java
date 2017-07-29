@@ -1,7 +1,7 @@
 package cn.binux.order.service.hystrix;
 
 import cn.binux.order.service.OrderService;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.XbinResult;
 import org.springframework.stereotype.Component;
 
 /**

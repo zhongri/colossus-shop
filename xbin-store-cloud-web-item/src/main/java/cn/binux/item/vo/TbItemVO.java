@@ -1,6 +1,6 @@
 package cn.binux.item.vo;
 
-import cn.binux.pojo.TbItem;
+import cn.binux.model.TbItem;
 import org.apache.commons.lang3.StringUtils;
 
 /**

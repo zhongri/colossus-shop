@@ -2,8 +2,8 @@ package cn.binux.cart.service;
 
 
 import cn.binux.cart.service.hystrix.CartServiceHystrix;
-import cn.binux.pojo.CartInfo;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.CartInfo;
+import cn.binux.model.XbinResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

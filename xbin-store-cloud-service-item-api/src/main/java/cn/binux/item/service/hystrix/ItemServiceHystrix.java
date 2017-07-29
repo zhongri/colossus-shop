@@ -1,8 +1,8 @@
 package cn.binux.item.service.hystrix;
 
 import cn.binux.item.service.ItemService;
-import cn.binux.pojo.TbItem;
-import cn.binux.pojo.TbItemDesc;
+import cn.binux.model.TbItem;
+import cn.binux.model.TbItemDesc;
 import org.springframework.stereotype.Component;
 
 /**

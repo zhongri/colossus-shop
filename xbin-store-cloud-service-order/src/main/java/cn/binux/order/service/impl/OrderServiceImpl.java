@@ -2,10 +2,10 @@ package cn.binux.order.service.impl;
 
 import cn.binux.RedisService;
 import cn.binux.constant.Const;
-import cn.binux.mapper.TbOrderItemMapper;
-import cn.binux.mapper.TbOrderMapper;
+import cn.binux.dao.TbOrderItemMapper;
+import cn.binux.dao.TbOrderMapper;
 import cn.binux.order.service.OrderService;
-import cn.binux.pojo.*;
+import cn.binux.model.*;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.FastJsonConvert;
 import cn.binux.utils.IDUtils;

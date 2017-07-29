@@ -2,8 +2,8 @@ package cn.binux.sso.controller;
 
 import cn.binux.constant.Const;
 import cn.binux.notify.service.NotifyUserService;
-import cn.binux.pojo.TbUser;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbUser;
+import cn.binux.model.XbinResult;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.CookieUtils;
 import io.swagger.annotations.Api;

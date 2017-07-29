@@ -1,9 +1,9 @@
 package cn.binux.search.service.impl;
 
-import cn.binux.pojo.SearchItem;
-import cn.binux.pojo.SearchResult;
-import cn.binux.pojo.XbinResult;
-import cn.binux.mapper.SearchMapper;
+import cn.binux.model.SearchItem;
+import cn.binux.model.SearchResult;
+import cn.binux.model.XbinResult;
+import cn.binux.dao.SearchMapper;
 import cn.binux.search.mapper.ItemMapper;
 import cn.binux.search.model.Item;
 import cn.binux.search.service.SearchService;
@@ -16,10 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Solr Service 实现类

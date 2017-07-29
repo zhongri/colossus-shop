@@ -1,10 +1,10 @@
 package cn.binux.admin.generate;
 
 
-import cn.binux.mapper.TbCategoryImageMapper;
-import cn.binux.mapper.TbCategorySecondaryMapper;
-import cn.binux.pojo.TbCategoryImage;
-import cn.binux.pojo.TbCategorySecondary;
+import cn.binux.dao.TbCategoryImageMapper;
+import cn.binux.dao.TbCategorySecondaryMapper;
+import cn.binux.model.TbCategoryImage;
+import cn.binux.model.TbCategorySecondary;
 import cn.binux.utils.FastDFSClientUtils;
 import cn.binux.utils.FastJsonConvert;
 import org.springframework.beans.factory.annotation.Autowired;

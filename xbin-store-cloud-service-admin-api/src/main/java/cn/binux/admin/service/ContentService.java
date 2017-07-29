@@ -2,8 +2,8 @@ package cn.binux.admin.service;
 
 
 import cn.binux.admin.service.hystrix.ContentServiceHystrix;
-import cn.binux.pojo.TbCategorySecondary;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbCategorySecondary;
+import cn.binux.model.XbinResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

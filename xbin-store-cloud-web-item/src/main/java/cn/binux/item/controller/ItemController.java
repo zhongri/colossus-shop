@@ -2,7 +2,7 @@ package cn.binux.item.controller;
 
 import cn.binux.item.service.ItemService;
 import cn.binux.item.vo.TbItemVO;
-import cn.binux.pojo.TbItemDesc;
+import cn.binux.model.TbItemDesc;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

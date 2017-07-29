@@ -1,10 +1,10 @@
 package cn.binux.sso.service.impl;
 
 import cn.binux.RedisService;
-import cn.binux.mapper.TbUserMapper;
-import cn.binux.pojo.TbUser;
-import cn.binux.pojo.TbUserExample;
-import cn.binux.pojo.XbinResult;
+import cn.binux.dao.TbUserMapper;
+import cn.binux.model.TbUser;
+import cn.binux.model.TbUserExample;
+import cn.binux.model.XbinResult;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.FastJsonConvert;
 import io.swagger.annotations.*;

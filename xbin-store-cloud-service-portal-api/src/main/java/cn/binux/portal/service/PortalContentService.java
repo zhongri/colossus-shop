@@ -1,7 +1,7 @@
 package cn.binux.portal.service;
 
 
-import cn.binux.pojo.TbContent;
+import cn.binux.model.TbContent;
 import cn.binux.portal.service.hystrix.PortalContentServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;

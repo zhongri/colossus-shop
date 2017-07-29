@@ -23,17 +23,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commonslang3Version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commonslangVersion}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjsonVersio}</version>
@@ -64,16 +53,13 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${springBootMyBatisVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${springBootpagehelperVersion}</version>
-        </dependency>
+
         <dependency>
             <groupId>cn.binux</groupId>
             <artifactId>spring-boot-starter-druid</artifactId>
             <version>${springBootDruidVersion}</version>
         </dependency>
+
 
     </dependencies>
 

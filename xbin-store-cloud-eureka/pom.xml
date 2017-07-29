@@ -26,6 +26,8 @@
             <artifactId>logback-kafka-appender</artifactId>
             <version>${logbackkafkaVersion}</version>
         </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>
@@ -33,7 +35,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.RELEASE</version>
+                <version>Finchley.M1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -1,12 +1,3 @@
 
-
 # swagger2
 swagger2.package: cn.binux.redis.service
-
-# Redis
-redisKey:
-  # 缓存时间 默认半小时
-  expire_time: 1800
-  prefix:
-    # 首页大广告
-    index_ad: INDEX_AD

@@ -1,6 +1,6 @@
 package cn.binux.portal.service.hystrix;
 
-import cn.binux.pojo.TbContent;
+import cn.binux.model.TbContent;
 import cn.binux.portal.service.PortalContentService;
 import org.springframework.stereotype.Component;
 

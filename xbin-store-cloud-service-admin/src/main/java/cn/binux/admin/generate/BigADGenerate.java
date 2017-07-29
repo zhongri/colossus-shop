@@ -1,8 +1,8 @@
 package cn.binux.admin.generate;
 
 
-import cn.binux.mapper.TbIndexSlideAdMapper;
-import cn.binux.pojo.TbIndexSlideAd;
+import cn.binux.dao.TbIndexSlideAdMapper;
+import cn.binux.model.TbIndexSlideAd;
 import cn.binux.utils.FastDFSClientUtils;
 import cn.binux.utils.FastJsonConvert;
 import org.springframework.beans.factory.annotation.Autowired;

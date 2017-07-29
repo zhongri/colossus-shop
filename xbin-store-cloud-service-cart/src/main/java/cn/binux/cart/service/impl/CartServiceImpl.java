@@ -2,11 +2,11 @@ package cn.binux.cart.service.impl;
 
 import cn.binux.RedisService;
 import cn.binux.cart.service.CartService;
-import cn.binux.mapper.TbItemMapper;
-import cn.binux.pojo.CartInfo;
-import cn.binux.pojo.TbItem;
-import cn.binux.pojo.TbItemExample;
-import cn.binux.pojo.XbinResult;
+import cn.binux.dao.TbItemMapper;
+import cn.binux.model.CartInfo;
+import cn.binux.model.TbItem;
+import cn.binux.model.TbItemExample;
+import cn.binux.model.XbinResult;
 import cn.binux.utils.FastJsonConvert;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;

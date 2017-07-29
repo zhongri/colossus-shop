@@ -2,7 +2,7 @@ package cn.binux.order.service;
 
 
 import cn.binux.order.service.hystrix.OrderServiceHystrix;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.XbinResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

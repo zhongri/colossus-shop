@@ -4,9 +4,11 @@ spring:
   data:
     elasticsearch:
       repositories:
-        enabled: false
-      cluster-nodes: http://192.168.0.50:9300,http://192.168.0.51:9300,http://192.168.0.52:9300
+        enabled: true
+      cluster-nodes: 192.168.0.50:9300,192.168.0.51:9300,192.168.0.52:9300
       cluster-name: elasticsearch
+
+
 
 security.basic.enabled: false
 

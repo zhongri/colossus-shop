@@ -1,6 +1,6 @@
 package cn.binux.search.controller;
 
-import cn.binux.pojo.SearchResult;
+import cn.binux.model.SearchResult;
 import cn.binux.search.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

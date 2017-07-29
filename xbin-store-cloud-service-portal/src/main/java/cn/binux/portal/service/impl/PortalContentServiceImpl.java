@@ -1,9 +1,9 @@
 package cn.binux.portal.service.impl;
 
 import cn.binux.RedisService;
-import cn.binux.mapper.TbContentMapper;
-import cn.binux.pojo.TbContent;
-import cn.binux.pojo.TbContentExample;
+import cn.binux.dao.TbContentMapper;
+import cn.binux.model.TbContent;
+import cn.binux.model.TbContentExample;
 import cn.binux.portal.service.PortalContentService;
 import cn.binux.utils.FastJsonConvert;
 import io.swagger.annotations.*;

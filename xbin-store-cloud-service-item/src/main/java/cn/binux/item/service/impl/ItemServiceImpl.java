@@ -2,10 +2,10 @@ package cn.binux.item.service.impl;
 
 import cn.binux.RedisService;
 import cn.binux.item.service.ItemService;
-import cn.binux.mapper.TbItemDescMapper;
-import cn.binux.mapper.TbItemMapper;
-import cn.binux.pojo.TbItem;
-import cn.binux.pojo.TbItemDesc;
+import cn.binux.dao.TbItemDescMapper;
+import cn.binux.dao.TbItemMapper;
+import cn.binux.model.TbItem;
+import cn.binux.model.TbItemDesc;
 import cn.binux.utils.FastJsonConvert;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;

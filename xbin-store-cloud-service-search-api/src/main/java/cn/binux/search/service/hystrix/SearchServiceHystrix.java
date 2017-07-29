@@ -1,7 +1,7 @@
 package cn.binux.search.service.hystrix;
 
-import cn.binux.pojo.SearchResult;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.SearchResult;
+import cn.binux.model.XbinResult;
 import cn.binux.search.service.SearchService;
 import org.springframework.stereotype.Component;
 

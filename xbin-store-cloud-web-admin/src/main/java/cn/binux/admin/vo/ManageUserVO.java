@@ -1,7 +1,7 @@
 package cn.binux.admin.vo;
 
 
-import cn.binux.pojo.TbManageUser;
+import cn.binux.model.TbManageUser;
 
 import java.text.SimpleDateFormat;
 

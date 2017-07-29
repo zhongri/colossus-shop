@@ -1,9 +1,9 @@
 package cn.binux.admin.service.impl;
 
 import cn.binux.admin.service.ContentService;
-import cn.binux.mapper.TbCategoryMapper;
-import cn.binux.mapper.TbCategorySecondaryMapper;
-import cn.binux.pojo.*;
+import cn.binux.dao.TbCategoryMapper;
+import cn.binux.dao.TbCategorySecondaryMapper;
+import cn.binux.model.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;

@@ -2,8 +2,8 @@ package cn.binux.admin.controller;
 
 import cn.binux.admin.service.ContentService;
 import cn.binux.admin.vo.ManageUserVO;
-import cn.binux.pojo.TbCategorySecondary;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.TbCategorySecondary;
+import cn.binux.model.XbinResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

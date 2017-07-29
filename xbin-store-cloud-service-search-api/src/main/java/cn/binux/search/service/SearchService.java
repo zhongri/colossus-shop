@@ -1,8 +1,8 @@
 package cn.binux.search.service;
 
 
-import cn.binux.pojo.SearchResult;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.SearchResult;
+import cn.binux.model.XbinResult;
 import cn.binux.search.service.hystrix.SearchServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;

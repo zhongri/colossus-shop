@@ -1,7 +1,7 @@
 package cn.binux.order.interceptor;
 
 import cn.binux.constant.Const;
-import cn.binux.pojo.XbinResult;
+import cn.binux.model.XbinResult;
 import cn.binux.sso.service.UserService;
 import cn.binux.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
