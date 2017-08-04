@@ -1,4 +1,4 @@
-package cn.binux;
+package com.colosuss;
 
 import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
