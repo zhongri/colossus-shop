@@ -1,12 +1,10 @@
 
 
-## xbin-store-cloud
-[![License](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/xubinux/xbin-store-cloud.svg?style=social&label=Stars)](https://github.com/xubinux/xbin-store-cloud)[![GitHub forks](https://img.shields.io/github/forks/xubinux/xbin-store-cloud.svg?style=social&label=Fork)](https://github.com/xubinux/xbin-store-cloud)
+## colossus-shop
 
 模仿国内知名B2C网站,实现的一个分布式B2C商城
 
-进群讨论 群 626068936
+[参考项目github地址](https://github.com/xubinux/xbin-store-cloud)
 
 ### 涉及技术
 * Spring Cloud Hystrix
