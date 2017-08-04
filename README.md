@@ -8,24 +8,12 @@
 
 进群讨论 群 626068936
 
-### Spring Cloud 版本:
-
-* GitHub 地址 : https://github.com/xubinux/xbin-store-cloud
-* OSChina 地址 : http://git.oschina.net/binu/xbin-store-cloud
-
-此项目使用Spring Cloud 重构
-
-### Dubbox 版本:
-
-* GitHub 地址 : https://github.com/xubinux/xbin-store
-* OSChina 地址 : http://git.oschina.net/binu/xbin-store
-
 ### 涉及技术
 * Spring Cloud Hystrix
 * Spring Cloud Turbine
 * Spring Cloud Eureka
 * Spring Cloud Sleuth
-* ~~Spring Cloud Config~~(Apollo)
+* Spring Cloud Config
 * Spring Cloud Feign
 * Spring Cloud Zuul
 * Spring Cloud Bus
@@ -37,7 +25,7 @@
 * MyBatis
 * MySQL
 * Redis
-* Solr
+* ElasticSearch
 * MyBatis
 * ZipKin
 * Docker
@@ -110,8 +98,6 @@
 
 本项目最终实现的目标 [点我查看最后完成效果](https://www.jd.com)
 
-### 运行教程  <----我是教程
-[点我查看运行教程](https://github.com/xubinux/xbin-store-cloud/wiki/Tutorial)
 
 
 

@@ -18,7 +18,7 @@
         <springCloudVersion>2.0.0.M1</springCloudVersion>
         <springBootVersion>2.0.0.M3</springBootVersion>
         <springBootMyBatisVersion>1.2.0</springBootMyBatisVersion>
-        <springBootpagehelperVersion>1.1.0</springBootpagehelperVersion>
+        <springBootpagehelperVersion>1.1.2</springBootpagehelperVersion>
         <springBootAdminVersion>1.5.0</springBootAdminVersion>
         <springBootDruidVersion>0.0.1-SNAPSHOT</springBootDruidVersion>
         <springBootRedisVersion>0.0.1-SNAPSHOT</springBootRedisVersion>
