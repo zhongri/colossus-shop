@@ -15,9 +15,10 @@ import java.text.DecimalFormat;
  */
 
 @Data
-public class SearchItem implements Serializable {
+public class SearchItem extends BaseModel {
 
-    private String id;
+
+    private static final long serialVersionUID = -3461246422606985968L;
     private String image;
     private Long price;
     private String sell_point;

@@ -2,12 +2,10 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class ManageUser {
-    private Long id;
+public class ManageUser extends BaseModel{
 
+    private static final long serialVersionUID = -4098051476089779134L;
     private String username;
 
     private String name;
@@ -20,8 +18,5 @@ public class ManageUser {
 
     private String job;
 
-    private Date created;
-
-    private Date updated;
 
 }

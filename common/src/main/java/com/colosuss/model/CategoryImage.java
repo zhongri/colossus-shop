@@ -2,12 +2,11 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class CategoryImage {
-    private Long id;
+public class CategoryImage extends BaseModel{
 
+
+    private static final long serialVersionUID = -1252316518340391158L;
     private String cid;
 
     private String name;
@@ -22,8 +21,5 @@ public class CategoryImage {
 
     private Integer sortOrder;
 
-    private Date created;
-
-    private Date updated;
 
 }

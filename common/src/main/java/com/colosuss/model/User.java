@@ -2,13 +2,12 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class User implements Serializable {
-    private Long id;
+public class User extends BaseModel {
 
+    private static final long serialVersionUID = -5924747963109643500L;
     private String username;
 
     private String password;
@@ -17,8 +16,5 @@ public class User implements Serializable {
 
     private String email;
 
-    private Date created;
-
-    private Date updated;
 
 }

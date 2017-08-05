@@ -2,19 +2,15 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Category implements Serializable {
-    private String id;
+public class Category extends BaseModel {
 
+    private static final long serialVersionUID = 8861413691836158565L;
     private String name;
 
     private Integer sortOrder;
 
-    private Date created;
-
-    private Date updated;
 
 }

@@ -2,13 +2,10 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.Date;
-
 @Data
-public class CategorySecondary implements Serializable {
-    private Long id;
+public class CategorySecondary extends BaseModel {
 
+    private static final long serialVersionUID = -8837306796627727500L;
     private String cid;
 
     private Long parentId;
@@ -22,9 +19,5 @@ public class CategorySecondary implements Serializable {
     private Integer sortOrder;
 
     private Boolean isParent;
-
-    private Date created;
-
-    private Date updated;
 
 }

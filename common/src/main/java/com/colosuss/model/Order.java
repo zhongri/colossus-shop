@@ -2,16 +2,16 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Order implements Serializable {
+public class Order extends BaseModel {
+    private static final long serialVersionUID = 8920730126737108046L;
     private String orderId;
 
-    private Long userId;
+    private String userId;
 
-    private Long addrId;
+    private String addrId;
 
     private String payment;
 
@@ -42,10 +42,6 @@ public class Order implements Serializable {
     private Date paymentTime;
 
     private Date consignTime;
-
-    private Date createTime;
-
-    private Date updateTime;
 
 
 }

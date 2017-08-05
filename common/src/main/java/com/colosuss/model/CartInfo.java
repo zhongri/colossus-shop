@@ -4,8 +4,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * 购物车 pojo
  *
@@ -14,9 +12,10 @@ import java.io.Serializable;
  */
 
 @Data
-public class CartInfo implements Serializable{
+public class CartInfo extends BaseModel{
 
-    private Long id;
+
+    private static final long serialVersionUID = -3450873656562591148L;
     private String name;
     private String imageUrl;
     private String colour;

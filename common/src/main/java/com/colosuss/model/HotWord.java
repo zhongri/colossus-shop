@@ -5,9 +5,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class HotWord {
-    private Long id;
+public class HotWord extends BaseModel{
 
+
+    private static final long serialVersionUID = -3894156191979865672L;
     private String category;
 
     private String name;
@@ -16,8 +17,5 @@ public class HotWord {
 
     private Byte search;
 
-    private Date created;
-
-    private Date updated;
 
 }

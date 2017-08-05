@@ -2,13 +2,9 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.Date;
-
 @Data
-public class ContentCategory implements Serializable {
-    private Long id;
-
+public class ContentCategory extends BaseModel{
+    private static final long serialVersionUID = -6962257606034140940L;
     private Long parentId;
 
     private String name;
@@ -19,8 +15,5 @@ public class ContentCategory implements Serializable {
 
     private Boolean isParent;
 
-    private Date created;
-
-    private Date updated;
 
 }

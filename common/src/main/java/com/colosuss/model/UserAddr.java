@@ -2,10 +2,9 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class UserAddr {
+public class UserAddr extends BaseModel{
+    private static final long serialVersionUID = -4404020534997682710L;
     private String addrId;
 
     private String userId;
@@ -26,8 +25,5 @@ public class UserAddr {
 
     private String receiverZip;
 
-    private Date created;
-
-    private Date updated;
 
 }

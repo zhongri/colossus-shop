@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class TransactionMessage implements Serializable {
-    private String id;
+public class TransactionMessage extends BaseModel {
 
+    private static final long serialVersionUID = 8773441116136609868L;
     private Integer version;
 
     private String editor;
@@ -19,8 +18,6 @@ public class TransactionMessage implements Serializable {
     private String creater;
 
     private Date editTime;
-
-    private Date createTime;
 
     private String messageId;
 

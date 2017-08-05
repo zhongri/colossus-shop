@@ -2,12 +2,11 @@ package com.colosuss.model;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class IndexSlideAd {
-    private Long id;
+public class IndexSlideAd extends BaseModel{
 
+
+    private static final long serialVersionUID = 3841219171744197197L;
     private String alt;
 
     private String clog;
@@ -28,8 +27,5 @@ public class IndexSlideAd {
 
     private String logdomain;
 
-    private Date created;
-
-    private Date updated;
 
 }
