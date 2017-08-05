@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableDiscoveryClient
 //@EnableApolloConfig
 @EnableTransactionManagement
-@MapperScan(basePackages = "cn.binux.mapper")
+@MapperScan(basePackages = "com.colossus.common.dao")
 public class ServiceCartApplication {
 
 	public static void main(String[] args) {

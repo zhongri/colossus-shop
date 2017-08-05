@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @Configuration
 //@EnableApolloConfig
-@MapperScan(basePackages = "cn.binux.mapper")
+@MapperScan(basePackages = "com.colossus.common.dao")
 public class ServiceAdminApplication {
 
 	public static void main(String[] args) {

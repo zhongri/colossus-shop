@@ -1,12 +1,12 @@
 package com.colossus.item.service.impl;
 
 import com.colossus.RedisService;
-import com.colossus.item.service.ItemService;
-import com.colossus.common.dao.TbItemDescMapper;
-import com.colossus.common.dao.TbItemMapper;
+import com.colossus.common.dao.ItemDescMapper;
+import com.colossus.common.dao.ItemMapper;
 import com.colossus.common.model.Item;
 import com.colossus.common.model.ItemDesc;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.item.service.ItemService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,10 +32,10 @@ public class ItemServiceImpl implements ItemService {
     private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 
     @Autowired
-    private TbItemMapper itemMapper;
+    private ItemMapper itemMapper;
 
     @Autowired
-    private TbItemDescMapper itemDescMapper;
+    private ItemDescMapper itemDescMapper;
     
     @Autowired
     private RedisService redisService;
@@ -56,7 +56,7 @@ public class ItemServiceImpl implements ItemService {
     @ApiOperation("获取商品信息")
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "itemId", value = "", required = true, dataType = "Long"),
+                    @ApiImplicitParam(name = "itemId", value = "", required = true, dataType = "String"),
             }
     )
     @ApiResponses(
@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public Item getItemById(@PathVariable("id") Long itemId) {
+    public Item getItemById(@PathVariable("id") String itemId) {
 
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_BASE_SUFFIX;
 
@@ -110,7 +110,7 @@ public class ItemServiceImpl implements ItemService {
     @ApiOperation("获取商品描述")
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "itemId", value = "", required = true, dataType = "Long"),
+                    @ApiImplicitParam(name = "itemId", value = "", required = true, dataType = "String"),
             }
     )
     @ApiResponses(
@@ -122,7 +122,7 @@ public class ItemServiceImpl implements ItemService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public ItemDesc getItemDescById(@PathVariable("id") Long itemId) {
+    public ItemDesc getItemDescById(@PathVariable("id") String itemId) {
 
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_DESC_SUFFIX;
 

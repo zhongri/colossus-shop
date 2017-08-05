@@ -20,7 +20,7 @@ import java.net.UnknownHostException;
 //@EnableApolloConfig
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = {"cn.binux.search.mapper","cn.binux.mapper"})
+@MapperScan(basePackages = {"com.colossus.search.mapper","com.colossus.common.dao"})
 public class ServiceSearchApplication {
 
 	public static void main(String[] args) {

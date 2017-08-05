@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface ItemService {
 
     @RequestMapping(value = "/getItemById/{id}",method = RequestMethod.POST)
-    Item getItemById(@PathVariable("id") Long itemId);
+    Item getItemById(@PathVariable("id") String itemId);
 
     @RequestMapping(value = "/getItemDescById/{id}",method = RequestMethod.POST)
-    ItemDesc getItemDescById(@PathVariable("id") Long itemId);
+    ItemDesc getItemDescById(@PathVariable("id") String itemId);
 
 
 }
