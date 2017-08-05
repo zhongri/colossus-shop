@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-service-order
+    name: service-order
 
 security.basic.enabled: false
 
@@ -19,8 +19,4 @@ eureka:
       defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8503/eureka/}
 
 # REDIS (RedisProperties)
-redis:
-  cluster: false
-  single-host: 219.230.50.94
-  single-port: 6379
-  password:
+

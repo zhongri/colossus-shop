@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-service-search
+    name: service-search
   data:
     elasticsearch:
       repositories:

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-web-admin
+    name: web-admin
 
 security.basic.enabled: false
 

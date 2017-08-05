@@ -1,6 +1,6 @@
 spring:
   application:
-    name: admin-dashboard
+    name: cloud-admin
 
 server:
   port: ${port:8505}
@@ -17,7 +17,7 @@ eureka:
 spring:
   profiles: docker
   application:
-    name: admin-dashboard
+    name: cloud-admin
 
 server:
   port: ${port:8505}

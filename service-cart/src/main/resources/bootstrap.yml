@@ -1,15 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-service-cart
-  redis:
-    cluster:
-       nodes:
-         - 192.168.0.50:7000
-         - 192.168.0.50:7001
-         - 192.168.0.50:7002
-         - 192.168.0.53:7003
-         - 192.168.0.53:7004
-         - 192.168.0.53:7005
+    name: service-cart
 
 security.basic.enabled: false
 

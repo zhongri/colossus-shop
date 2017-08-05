@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-web-item
+    name: web-item
 
 security.basic.enabled: false
 

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-web-search
+    name: web-search
 
 security.basic.enabled: false
 

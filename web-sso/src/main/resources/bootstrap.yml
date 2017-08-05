@@ -1,6 +1,6 @@
 spring:
   application:
-    name: xbin-store-cloud-web-sso
+    name: web-sso
 
 security.basic.enabled: false
 
@@ -16,7 +16,7 @@ eureka:
     status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
   client:
     serviceUrl:
-      defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8503/eureka/}
+      defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8501/eureka/}
 
 feign:
   hystrix:
@@ -25,8 +25,3 @@ feign:
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
 
 # REDIS (RedisProperties)
-redis:
-  cluster: false
-  single-host: 219.230.50.94
-  single-port: 6379
-  password:

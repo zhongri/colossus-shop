@@ -16,5 +16,5 @@ spring:
         git:
           uri: ${https://github.com/Tlsy/config-server.git}
           username: ${git.username:Tlsy}
-          password: ${git.password:lsy4170937}
+          password: ${git.password:lsy417937}
           search-paths: ${git.paths:*}
