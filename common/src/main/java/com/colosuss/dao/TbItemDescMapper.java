@@ -1,37 +1,37 @@
 package com.colosuss.dao;
 
+import com.colosuss.model.ItemDesc;
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbItemDesc;
-import com.colosuss.model.TbItemDescExample;
+import com.colosuss.model.ItemDescExample;
 
 import java.util.List;
 
 public interface TbItemDescMapper {
-    int countByExample(TbItemDescExample example);
+    int countByExample(ItemDescExample example);
 
-    int deleteByExample(TbItemDescExample example);
+    int deleteByExample(ItemDescExample example);
 
     int deleteByPrimaryKey(Long itemId);
 
-    int insert(TbItemDesc record);
+    int insert(ItemDesc record);
 
-    int insertSelective(TbItemDesc record);
+    int insertSelective(ItemDesc record);
 
-    List<TbItemDesc> selectByExampleWithBLOBs(TbItemDescExample example);
+    List<ItemDesc> selectByExampleWithBLOBs(ItemDescExample example);
 
-    List<TbItemDesc> selectByExample(TbItemDescExample example);
+    List<ItemDesc> selectByExample(ItemDescExample example);
 
-    TbItemDesc selectByPrimaryKey(Long itemId);
+    ItemDesc selectByPrimaryKey(Long itemId);
 
-    int updateByExampleSelective(@Param("record") TbItemDesc record, @Param("example") TbItemDescExample example);
+    int updateByExampleSelective(@Param("record") ItemDesc record, @Param("example") ItemDescExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbItemDesc record, @Param("example") TbItemDescExample example);
+    int updateByExampleWithBLOBs(@Param("record") ItemDesc record, @Param("example") ItemDescExample example);
 
-    int updateByExample(@Param("record") TbItemDesc record, @Param("example") TbItemDescExample example);
+    int updateByExample(@Param("record") ItemDesc record, @Param("example") ItemDescExample example);
 
-    int updateByPrimaryKeySelective(TbItemDesc record);
+    int updateByPrimaryKeySelective(ItemDesc record);
 
-    int updateByPrimaryKeyWithBLOBs(TbItemDesc record);
+    int updateByPrimaryKeyWithBLOBs(ItemDesc record);
 
-    int updateByPrimaryKey(TbItemDesc record);
+    int updateByPrimaryKey(ItemDesc record);
 }

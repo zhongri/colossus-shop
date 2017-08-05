@@ -1,7 +1,7 @@
 package com.colosuss.order.service.impl;
 
 import com.colosuss.RedisService;
-import com.colosuss.constant.Const;
+import com.colosuss.utils.AppConfig;
 import com.colosuss.dao.TbOrderItemMapper;
 import com.colosuss.dao.TbOrderMapper;
 import com.colosuss.order.service.OrderService;
@@ -85,17 +85,17 @@ public class OrderServiceImpl implements OrderService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult generateOrder(String userCookieValue, String cartCookieValue, Integer addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
+    public BaseResult generateOrder(String userCookieValue, String cartCookieValue, Integer addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
 
 
-        XbinResult result = userService.token(userCookieValue, "");
+        BaseResult result = userService.token(userCookieValue, "");
         if (result.getData() == null) {
             logger.error("用户没有登录!");
-            return XbinResult.build(400, "系统错误!");
+            return BaseResult.build(400, "系统错误!");
         }
 
         String data = (String) result.getData();
-        TbUser user = FastJsonConvert.convertJSONToObject(data, TbUser.class);
+        User user = FastJsonConvert.convertJSONToObject(data, User.class);
 
         String userId = user.getId() + "";
         userId = "0000" + userId;
@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
 
         orderId = paymentType.toString() + orderId + userId;
 
-        final TbOrder order = new TbOrder();
+        final Order order = new Order();
         //设置订单id
         order.setOrderId(orderId);
         //设置用户id
@@ -119,7 +119,7 @@ public class OrderServiceImpl implements OrderService {
         //设置邮费
         order.setPostFee("0");
         //设置状态
-        order.setStatus(Const.NON_PAYMENT);
+        order.setStatus(AppConfig.NON_PAYMENT);
         //设置物流名称
         order.setShippingName(shippingName);
         //设置退换无忧
@@ -129,7 +129,7 @@ public class OrderServiceImpl implements OrderService {
         //设置返现
         order.setReturnPrice("0");
         //设置没有评价
-        order.setBuyerRate(Const.EVALUATE_NO);
+        order.setBuyerRate(AppConfig.EVALUATE_NO);
         //设置订单创建时间
         order.setCreateTime(new Date());
         order.setUpdateTime(new Date());
@@ -146,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
             String cartInfoListString = redisService.get(key3);
 
             if (StringUtils.isBlank(cartInfo) || StringUtils.isBlank(cartIndex) || StringUtils.isBlank(cartInfoListString)) {
-                return XbinResult.build(400, "系统错误!");
+                return BaseResult.build(400, "系统错误!");
             }
 
             cartInfos = FastJsonConvert.convertJSONToArray(cartInfo, CartInfo.class);
@@ -163,7 +163,7 @@ public class OrderServiceImpl implements OrderService {
                 CartInfo cartInfo = cartInfos.get(i);
 
                 String orderItemId = IDUtils.genOrderItemId();
-                TbOrderItem orderItem = new TbOrderItem();
+                OrderItem orderItem = new OrderItem();
                 orderItem.setId(orderItemId);
                 orderItem.setOrderId(orderId);
                 orderItem.setItemId(cartInfo.getId() + "");
@@ -197,7 +197,7 @@ public class OrderServiceImpl implements OrderService {
             logger.debug("移除购物车购买商品！数量:" + split.length);
         } else {
             logger.error("订单项数量小于和index数量");
-            return XbinResult.build(400, "系统错误!");
+            return BaseResult.build(400, "系统错误!");
         }
 
         try {

@@ -2,7 +2,7 @@ package com.colosuss.search.service;
 
 
 import com.colosuss.model.SearchResult;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import com.colosuss.search.service.hystrix.SearchServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public interface SearchService {
      * @return
      */
     @RequestMapping(value = "/importAllItems",method = RequestMethod.POST)
-    XbinResult importAllItems();
+    BaseResult importAllItems();
 
     //http://localhost:8512/search/SolrService/search/查询条件/1/60
     /**

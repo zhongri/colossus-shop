@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbCategory;
-import com.colosuss.model.TbCategoryExample;
+import com.colosuss.model.Category;
+import com.colosuss.model.CategoryExample;
 
 import java.util.List;
 
 public interface TbCategoryMapper {
-    int countByExample(TbCategoryExample example);
+    int countByExample(CategoryExample example);
 
-    int deleteByExample(TbCategoryExample example);
+    int deleteByExample(CategoryExample example);
 
     int deleteByPrimaryKey(String id);
 
-    int insert(TbCategory record);
+    int insert(Category record);
 
-    int insertSelective(TbCategory record);
+    int insertSelective(Category record);
 
-    List<TbCategory> selectByExample(TbCategoryExample example);
+    List<Category> selectByExample(CategoryExample example);
 
-    TbCategory selectByPrimaryKey(String id);
+    Category selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") TbCategory record, @Param("example") TbCategoryExample example);
+    int updateByExampleSelective(@Param("record") Category record, @Param("example") CategoryExample example);
 
-    int updateByExample(@Param("record") TbCategory record, @Param("example") TbCategoryExample example);
+    int updateByExample(@Param("record") Category record, @Param("example") CategoryExample example);
 
-    int updateByPrimaryKeySelective(TbCategory record);
+    int updateByPrimaryKeySelective(Category record);
 
-    int updateByPrimaryKey(TbCategory record);
+    int updateByPrimaryKey(Category record);
 }

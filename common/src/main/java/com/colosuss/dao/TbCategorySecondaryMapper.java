@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
+import com.colosuss.model.CategorySecondary;
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbCategorySecondary;
-import com.colosuss.model.TbCategorySecondaryExample;
+import com.colosuss.model.CategorySecondaryExample;
 
 import java.util.List;
 
 public interface TbCategorySecondaryMapper {
-    int countByExample(TbCategorySecondaryExample example);
+    int countByExample(CategorySecondaryExample example);
 
-    int deleteByExample(TbCategorySecondaryExample example);
+    int deleteByExample(CategorySecondaryExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbCategorySecondary record);
+    int insert(CategorySecondary record);
 
-    int insertSelective(TbCategorySecondary record);
+    int insertSelective(CategorySecondary record);
 
-    List<TbCategorySecondary> selectByExample(TbCategorySecondaryExample example);
+    List<CategorySecondary> selectByExample(CategorySecondaryExample example);
 
-    TbCategorySecondary selectByPrimaryKey(Long id);
+    CategorySecondary selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbCategorySecondary record, @Param("example") TbCategorySecondaryExample example);
+    int updateByExampleSelective(@Param("record") CategorySecondary record, @Param("example") CategorySecondaryExample example);
 
-    int updateByExample(@Param("record") TbCategorySecondary record, @Param("example") TbCategorySecondaryExample example);
+    int updateByExample(@Param("record") CategorySecondary record, @Param("example") CategorySecondaryExample example);
 
-    int updateByPrimaryKeySelective(TbCategorySecondary record);
+    int updateByPrimaryKeySelective(CategorySecondary record);
 
-    int updateByPrimaryKey(TbCategorySecondary record);
+    int updateByPrimaryKey(CategorySecondary record);
 }

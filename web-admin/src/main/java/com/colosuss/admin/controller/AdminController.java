@@ -2,8 +2,8 @@ package com.colosuss.admin.controller;
 
 import com.colosuss.admin.service.ContentService;
 import com.colosuss.admin.vo.ManageUserVO;
-import com.colosuss.model.TbCategorySecondary;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.CategorySecondary;
+import com.colosuss.model.BaseResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -126,13 +126,14 @@ public class AdminController {
 
     @RequestMapping("/save/category")
     public @ResponseBody
-    XbinResult saveCategory(String id, String name, Integer sort_order) {
+    BaseResult saveCategory(String id, String name, Integer sort_order) {
 
 
         return contentService.saveCategory(id, name, sort_order);
     }
     @RequestMapping("/save/category/secondary")
-    public @ResponseBody XbinResult saveCategorySecondary(TbCategorySecondary categorySecondary) {
+    public @ResponseBody
+    BaseResult saveCategorySecondary(CategorySecondary categorySecondary) {
 
 
         return contentService.saveCategorySecondary(categorySecondary);

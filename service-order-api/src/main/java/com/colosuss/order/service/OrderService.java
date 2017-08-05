@@ -2,7 +2,7 @@ package com.colosuss.order.service;
 
 
 import com.colosuss.order.service.hystrix.OrderServiceHystrix;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +27,7 @@ public interface OrderService {
      * @return
      */
     @RequestMapping(value = "/generateOrder",method = RequestMethod.POST)
-    XbinResult generateOrder(
+    BaseResult generateOrder(
             @RequestParam("userCookieValue")    String userCookieValue,
             @RequestParam("cartCookieValue")    String cartCookieValue,
             @RequestParam("addrId")             Integer addrId,

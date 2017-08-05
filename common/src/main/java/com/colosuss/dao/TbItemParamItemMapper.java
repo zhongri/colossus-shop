@@ -1,37 +1,37 @@
 package com.colosuss.dao;
 
-import com.colosuss.model.TbItemParamItem;
-import com.colosuss.model.TbItemParamItemExample;
+import com.colosuss.model.ItemParamItem;
+import com.colosuss.model.ItemParamItemExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface TbItemParamItemMapper {
-    int countByExample(TbItemParamItemExample example);
+    int countByExample(ItemParamItemExample example);
 
-    int deleteByExample(TbItemParamItemExample example);
+    int deleteByExample(ItemParamItemExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbItemParamItem record);
+    int insert(ItemParamItem record);
 
-    int insertSelective(TbItemParamItem record);
+    int insertSelective(ItemParamItem record);
 
-    List<TbItemParamItem> selectByExampleWithBLOBs(TbItemParamItemExample example);
+    List<ItemParamItem> selectByExampleWithBLOBs(ItemParamItemExample example);
 
-    List<TbItemParamItem> selectByExample(TbItemParamItemExample example);
+    List<ItemParamItem> selectByExample(ItemParamItemExample example);
 
-    TbItemParamItem selectByPrimaryKey(Long id);
+    ItemParamItem selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbItemParamItem record, @Param("example") TbItemParamItemExample example);
+    int updateByExampleSelective(@Param("record") ItemParamItem record, @Param("example") ItemParamItemExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbItemParamItem record, @Param("example") TbItemParamItemExample example);
+    int updateByExampleWithBLOBs(@Param("record") ItemParamItem record, @Param("example") ItemParamItemExample example);
 
-    int updateByExample(@Param("record") TbItemParamItem record, @Param("example") TbItemParamItemExample example);
+    int updateByExample(@Param("record") ItemParamItem record, @Param("example") ItemParamItemExample example);
 
-    int updateByPrimaryKeySelective(TbItemParamItem record);
+    int updateByPrimaryKeySelective(ItemParamItem record);
 
-    int updateByPrimaryKeyWithBLOBs(TbItemParamItem record);
+    int updateByPrimaryKeyWithBLOBs(ItemParamItem record);
 
-    int updateByPrimaryKey(TbItemParamItem record);
+    int updateByPrimaryKey(ItemParamItem record);
 }

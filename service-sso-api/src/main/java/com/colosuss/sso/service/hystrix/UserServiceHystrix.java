@@ -1,7 +1,7 @@
 package com.colosuss.sso.service.hystrix;
 
-import com.colosuss.model.TbUser;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.User;
+import com.colosuss.model.BaseResult;
 import com.colosuss.sso.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ public class UserServiceHystrix implements UserService {
      * }
      */
     @Override
-    public XbinResult login(TbUser user) {
+    public BaseResult login(User user) {
         return null;
     }
 
@@ -44,7 +44,7 @@ public class UserServiceHystrix implements UserService {
      * }
      */
     @Override
-    public XbinResult token(String token, String callback) {
+    public BaseResult token(String token, String callback) {
         return null;
     }
 
@@ -61,7 +61,7 @@ public class UserServiceHystrix implements UserService {
      * }
      */
     @Override
-    public XbinResult logout(String token, String callback) {
+    public BaseResult logout(String token, String callback) {
         return null;
     }
 

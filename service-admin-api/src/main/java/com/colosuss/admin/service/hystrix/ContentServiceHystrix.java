@@ -1,8 +1,8 @@
 package com.colosuss.admin.service.hystrix;
 
 import com.colosuss.admin.service.ContentService;
-import com.colosuss.model.TbCategorySecondary;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.CategorySecondary;
+import com.colosuss.model.BaseResult;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -24,7 +24,7 @@ public class ContentServiceHystrix implements ContentService {
     }
 
     @Override
-    public XbinResult saveCategory(String id, String name, Integer sort_order) {
+    public BaseResult saveCategory(String id, String name, Integer sort_order) {
         return null;
     }
 
@@ -39,7 +39,7 @@ public class ContentServiceHystrix implements ContentService {
     }
 
     @Override
-    public XbinResult saveCategorySecondary(TbCategorySecondary categorySecondary) {
+    public BaseResult saveCategorySecondary(CategorySecondary categorySecondary) {
         return null;
     }
 }

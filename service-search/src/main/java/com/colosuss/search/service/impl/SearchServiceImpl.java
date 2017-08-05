@@ -2,7 +2,7 @@ package com.colosuss.search.service.impl;
 
 import com.colosuss.model.SearchItem;
 import com.colosuss.model.SearchResult;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import com.colosuss.dao.SearchMapper;
 import com.colosuss.search.mapper.ItemMapper;
 import com.colosuss.search.model.Item;
@@ -47,7 +47,7 @@ public class SearchServiceImpl implements SearchService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult importAllItems() {
+    public BaseResult importAllItems() {
 
 
         List<SearchItem> searchItemList = searchMapper.getSolrItemList();
@@ -76,7 +76,7 @@ public class SearchServiceImpl implements SearchService {
             logger.error("import error", e);
         }
 
-        return XbinResult.ok();
+        return BaseResult.ok();
     }
 
     @Override

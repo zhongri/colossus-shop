@@ -2,7 +2,7 @@ package com.colosuss.cart.service.hystrix;
 
 import com.colosuss.cart.service.CartService;
 import com.colosuss.model.CartInfo;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class CartServiceHystrix implements CartService {
 
 
     @Override
-    public XbinResult addCart(Long pid, Integer pcount, String uuid) {
+    public BaseResult addCart(Long pid, Integer pcount, String uuid) {
         return null;
     }
 
@@ -29,7 +29,7 @@ public class CartServiceHystrix implements CartService {
     }
 
     @Override
-    public XbinResult decreOrIncre(Long pid, Integer pcount, Integer type, Integer index, String cookieUUID) {
+    public BaseResult decreOrIncre(Long pid, Integer pcount, Integer type, Integer index, String cookieUUID) {
         return null;
     }
 }

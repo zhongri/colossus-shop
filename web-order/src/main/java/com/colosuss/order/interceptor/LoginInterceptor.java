@@ -1,7 +1,7 @@
 package com.colosuss.order.interceptor;
 
-import com.colosuss.constant.Const;
-import com.colosuss.model.XbinResult;
+import com.colosuss.utils.AppConfig;
+import com.colosuss.model.BaseResult;
 import com.colosuss.sso.service.UserService;
 import com.colosuss.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //执行handler之前执行此方法 true 放行 false 拦截
-        String cookieValue = CookieUtils.getCookieValue(httpServletRequest, Const.TOKEN_LOGIN);
+        String cookieValue = CookieUtils.getCookieValue(httpServletRequest, AppConfig.TOKEN_LOGIN);
         //获取访问URL
         String url = httpServletRequest.getRequestURL().toString();
 
@@ -50,7 +50,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        XbinResult result = userService.token(cookieValue, "");
+        BaseResult result = userService.token(cookieValue, "");
 
         if (result.getStatus() != 200) {
             //跳转登录页面

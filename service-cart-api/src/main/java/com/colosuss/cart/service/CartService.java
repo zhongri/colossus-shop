@@ -3,7 +3,7 @@ package com.colosuss.cart.service;
 
 import com.colosuss.cart.service.hystrix.CartServiceHystrix;
 import com.colosuss.model.CartInfo;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +22,7 @@ import java.util.List;
 public interface CartService {
 
     @RequestMapping(value = "/addCart",method = RequestMethod.POST)
-    XbinResult addCart(
+    BaseResult addCart(
             @RequestParam("pid")        Long pid,
             @RequestParam("pcount")     Integer pcount,
             @RequestParam("uuid")       String uuid
@@ -42,7 +42,7 @@ public interface CartService {
      * @return
      */
     @RequestMapping(value = "/decreOrIncre",method = RequestMethod.POST)
-    XbinResult decreOrIncre(
+    BaseResult decreOrIncre(
             @RequestParam("pid")        Long pid,
             @RequestParam("pcount")     Integer pcount,
             @RequestParam("type")       Integer type,

@@ -1,7 +1,7 @@
 package com.colosuss.search.service.hystrix;
 
 import com.colosuss.model.SearchResult;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import com.colosuss.search.service.SearchService;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class SearchServiceHystrix implements SearchService {
      * @return
      */
     @Override
-    public XbinResult importAllItems() {
+    public BaseResult importAllItems() {
         return null;
     }
 

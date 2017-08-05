@@ -2,10 +2,10 @@ package com.colosuss.order.controller;
 
 import com.colosuss.RedisService;
 import com.colosuss.cart.service.CartService;
-import com.colosuss.constant.Const;
+import com.colosuss.utils.AppConfig;
 import com.colosuss.order.service.OrderService;
 import com.colosuss.model.CartInfo;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import com.colosuss.utils.CookieUtils;
 import com.colosuss.utils.FastJsonConvert;
 import com.colosuss.utils.IDUtils;
@@ -58,8 +58,8 @@ public class OrderController {
     @RequestMapping(value = "/order/getOrderInfo",method = RequestMethod.POST)
     public String showOrder(String ids,String indexs,String nums, Model model, HttpServletResponse response, HttpServletRequest request) {
 
-        String cookieValue = CookieUtils.getCookieValue(request, Const.CART_KEY);
-        String userCookieValue = CookieUtils.getCookieValue(request, Const.TOKEN_LOGIN);
+        String cookieValue = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
+        String userCookieValue = CookieUtils.getCookieValue(request, AppConfig.TOKEN_LOGIN);
 
         List<CartInfo> cartInfoList = new ArrayList<>();
         List<CartInfo> cartInfos = null;
@@ -126,10 +126,10 @@ public class OrderController {
     @RequestMapping(value = "/order/getPay",method = RequestMethod.POST)
     public String getPay(Integer addrId, Integer noAnnoyance, Integer paymentType,String orderId, String shippingName, HttpServletResponse response, HttpServletRequest request) {
 
-        String cartCookieValue = CookieUtils.getCookieValue(request, Const.CART_KEY);
-        String userCookieValue = CookieUtils.getCookieValue(request, Const.TOKEN_LOGIN);
+        String cartCookieValue = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
+        String userCookieValue = CookieUtils.getCookieValue(request, AppConfig.TOKEN_LOGIN);
 
-        XbinResult result = orderService.generateOrder(userCookieValue,cartCookieValue,addrId, noAnnoyance, paymentType,orderId, shippingName);
+        BaseResult result = orderService.generateOrder(userCookieValue,cartCookieValue,addrId, noAnnoyance, paymentType,orderId, shippingName);
 
 
         return "success";

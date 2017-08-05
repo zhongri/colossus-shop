@@ -1,8 +1,8 @@
 package com.colosuss.item.controller;
 
 import com.colosuss.item.service.ItemService;
-import com.colosuss.item.vo.TbItemVO;
-import com.colosuss.model.TbItemDesc;
+import com.colosuss.item.vo.ItemVO;
+import com.colosuss.model.ItemDesc;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +33,9 @@ public class ItemController {
     @RequestMapping(value = "/item/{id}",method = RequestMethod.GET)
     public String  getItemByItemId(@PathVariable("id") Long itemId, Model model) {
 
-        TbItemVO item = new TbItemVO(itemService.getItemById(itemId));
+        ItemVO item = new ItemVO(itemService.getItemById(itemId));
 
-        TbItemDesc itemDesc = itemService.getItemDescById(itemId);
+        ItemDesc itemDesc = itemService.getItemDescById(itemId);
 
         model.addAttribute("item", item);
         model.addAttribute("itemDesc", itemDesc);

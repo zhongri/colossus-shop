@@ -3,7 +3,7 @@ package com.colosuss.admin.controller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.colosuss.utils.StorageFactory;
+import com.colosuss.service.StorageFactory;
 
 @Configuration
 public class Config {

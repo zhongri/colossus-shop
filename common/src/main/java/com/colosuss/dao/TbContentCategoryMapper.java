@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbContentCategory;
-import com.colosuss.model.TbContentCategoryExample;
+import com.colosuss.model.ContentCategory;
+import com.colosuss.model.ContentCategoryExample;
 
 import java.util.List;
 
 public interface TbContentCategoryMapper {
-    int countByExample(TbContentCategoryExample example);
+    int countByExample(ContentCategoryExample example);
 
-    int deleteByExample(TbContentCategoryExample example);
+    int deleteByExample(ContentCategoryExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbContentCategory record);
+    int insert(ContentCategory record);
 
-    int insertSelective(TbContentCategory record);
+    int insertSelective(ContentCategory record);
 
-    List<TbContentCategory> selectByExample(TbContentCategoryExample example);
+    List<ContentCategory> selectByExample(ContentCategoryExample example);
 
-    TbContentCategory selectByPrimaryKey(Long id);
+    ContentCategory selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbContentCategory record, @Param("example") TbContentCategoryExample example);
+    int updateByExampleSelective(@Param("record") ContentCategory record, @Param("example") ContentCategoryExample example);
 
-    int updateByExample(@Param("record") TbContentCategory record, @Param("example") TbContentCategoryExample example);
+    int updateByExample(@Param("record") ContentCategory record, @Param("example") ContentCategoryExample example);
 
-    int updateByPrimaryKeySelective(TbContentCategory record);
+    int updateByPrimaryKeySelective(ContentCategory record);
 
-    int updateByPrimaryKey(TbContentCategory record);
+    int updateByPrimaryKey(ContentCategory record);
 }

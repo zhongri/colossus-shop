@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
-import com.colosuss.model.TbUser;
+import com.colosuss.model.User;
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbUserExample;
+import com.colosuss.model.UserExample;
 
 import java.util.List;
 
 public interface TbUserMapper {
-    int countByExample(TbUserExample example);
+    int countByExample(UserExample example);
 
-    int deleteByExample(TbUserExample example);
+    int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbUser record);
+    int insert(User record);
 
-    int insertSelective(TbUser record);
+    int insertSelective(User record);
 
-    List<TbUser> selectByExample(TbUserExample example);
+    List<User> selectByExample(UserExample example);
 
-    TbUser selectByPrimaryKey(Long id);
+    User selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbUser record, @Param("example") TbUserExample example);
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
-    int updateByExample(@Param("record") TbUser record, @Param("example") TbUserExample example);
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
-    int updateByPrimaryKeySelective(TbUser record);
+    int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(TbUser record);
+    int updateByPrimaryKey(User record);
 }

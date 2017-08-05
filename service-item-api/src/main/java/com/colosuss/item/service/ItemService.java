@@ -1,8 +1,8 @@
 package com.colosuss.item.service;
 
 import com.colosuss.item.service.hystrix.ItemServiceHystrix;
-import com.colosuss.model.TbItem;
-import com.colosuss.model.TbItemDesc;
+import com.colosuss.model.Item;
+import com.colosuss.model.ItemDesc;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface ItemService {
 
     @RequestMapping(value = "/getItemById/{id}",method = RequestMethod.POST)
-    TbItem getItemById(@PathVariable("id") Long itemId);
+    Item getItemById(@PathVariable("id") Long itemId);
 
     @RequestMapping(value = "/getItemDescById/{id}",method = RequestMethod.POST)
-    TbItemDesc getItemDescById(@PathVariable("id") Long itemId);
+    ItemDesc getItemDescById(@PathVariable("id") Long itemId);
 
 
 }

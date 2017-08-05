@@ -41,9 +41,9 @@ public class ItemAddListener {
     //        // 休眠1秒 等待事务提交
     //        Thread.sleep(1000);
     //        //根据商品id查询商品信息及商品描述
-    //        TbItem tbItem = itemService.getItemById(itemId);
+    //        Item tbItem = itemService.getItemById(itemId);
     //        Item item = new Item(tbItem);
-    //        TbItemDesc itemDesc = itemService.getItemDescById(itemId);
+    //        ItemDesc itemDesc = itemService.getItemDescById(itemId);
     //        //使用freemarker生成静态页面
     //        Configuration configuration = freeMarkerConfigurer.getConfiguration();
     //        //1.创建模板

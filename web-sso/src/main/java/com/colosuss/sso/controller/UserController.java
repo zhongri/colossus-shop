@@ -1,9 +1,9 @@
 package com.colosuss.sso.controller;
 
-import com.colosuss.constant.Const;
+import com.colosuss.utils.AppConfig;
+import com.colosuss.model.User;
 import com.colosuss.notify.service.NotifyUserService;
-import com.colosuss.model.TbUser;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import com.colosuss.sso.service.UserService;
 import com.colosuss.utils.CookieUtils;
 import io.swagger.annotations.Api;
@@ -73,13 +73,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public @ResponseBody String login(TbUser user, String returnUrl, HttpServletResponse response, HttpServletRequest request) {
+    public @ResponseBody String login(User user, String returnUrl, HttpServletResponse response, HttpServletRequest request) {
 
-        XbinResult result = userService.login(user);
+        BaseResult result = userService.login(user);
 
         if (result.getStatus() == 200) {
 
-            CookieUtils.setCookie(request, response, Const.TOKEN_LOGIN, result.getData().toString());
+            CookieUtils.setCookie(request, response, AppConfig.TOKEN_LOGIN, result.getData().toString());
             //有返回URL 跳转
             if (StringUtils.isNotBlank(returnUrl)) {
                 return "({'success':'" + returnUrl + "'})";

@@ -1,7 +1,7 @@
 package com.colosuss.admin.controller;
 
 import com.colosuss.utils.FastJsonConvert;
-import com.colosuss.utils.StorageService;
+import com.colosuss.service.StorageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

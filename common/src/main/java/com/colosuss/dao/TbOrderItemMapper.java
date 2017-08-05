@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbOrderItem;
-import com.colosuss.model.TbOrderItemExample;
+import com.colosuss.model.OrderItem;
+import com.colosuss.model.OrderItemExample;
 
 import java.util.List;
 
 public interface TbOrderItemMapper {
-    int countByExample(TbOrderItemExample example);
+    int countByExample(OrderItemExample example);
 
-    int deleteByExample(TbOrderItemExample example);
+    int deleteByExample(OrderItemExample example);
 
     int deleteByPrimaryKey(String id);
 
-    int insert(TbOrderItem record);
+    int insert(OrderItem record);
 
-    int insertSelective(TbOrderItem record);
+    int insertSelective(OrderItem record);
 
-    List<TbOrderItem> selectByExample(TbOrderItemExample example);
+    List<OrderItem> selectByExample(OrderItemExample example);
 
-    TbOrderItem selectByPrimaryKey(String id);
+    OrderItem selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") TbOrderItem record, @Param("example") TbOrderItemExample example);
+    int updateByExampleSelective(@Param("record") OrderItem record, @Param("example") OrderItemExample example);
 
-    int updateByExample(@Param("record") TbOrderItem record, @Param("example") TbOrderItemExample example);
+    int updateByExample(@Param("record") OrderItem record, @Param("example") OrderItemExample example);
 
-    int updateByPrimaryKeySelective(TbOrderItem record);
+    int updateByPrimaryKeySelective(OrderItem record);
 
-    int updateByPrimaryKey(TbOrderItem record);
+    int updateByPrimaryKey(OrderItem record);
 }

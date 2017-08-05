@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbIndexSlideAd;
-import com.colosuss.model.TbIndexSlideAdExample;
+import com.colosuss.model.IndexSlideAd;
+import com.colosuss.model.IndexSlideAdExample;
 
 import java.util.List;
 
 public interface TbIndexSlideAdMapper {
-    int countByExample(TbIndexSlideAdExample example);
+    int countByExample(IndexSlideAdExample example);
 
-    int deleteByExample(TbIndexSlideAdExample example);
+    int deleteByExample(IndexSlideAdExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbIndexSlideAd record);
+    int insert(IndexSlideAd record);
 
-    int insertSelective(TbIndexSlideAd record);
+    int insertSelective(IndexSlideAd record);
 
-    List<TbIndexSlideAd> selectByExample(TbIndexSlideAdExample example);
+    List<IndexSlideAd> selectByExample(IndexSlideAdExample example);
 
-    TbIndexSlideAd selectByPrimaryKey(Long id);
+    IndexSlideAd selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbIndexSlideAd record, @Param("example") TbIndexSlideAdExample example);
+    int updateByExampleSelective(@Param("record") IndexSlideAd record, @Param("example") IndexSlideAdExample example);
 
-    int updateByExample(@Param("record") TbIndexSlideAd record, @Param("example") TbIndexSlideAdExample example);
+    int updateByExample(@Param("record") IndexSlideAd record, @Param("example") IndexSlideAdExample example);
 
-    int updateByPrimaryKeySelective(TbIndexSlideAd record);
+    int updateByPrimaryKeySelective(IndexSlideAd record);
 
-    int updateByPrimaryKey(TbIndexSlideAd record);
+    int updateByPrimaryKey(IndexSlideAd record);
 }

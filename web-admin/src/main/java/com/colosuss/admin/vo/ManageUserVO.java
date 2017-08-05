@@ -1,7 +1,7 @@
 package com.colosuss.admin.vo;
 
 
-import com.colosuss.model.TbManageUser;
+import com.colosuss.model.ManageUser;
 
 import java.text.SimpleDateFormat;
 
@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  */
 
 
-public class ManageUserVO extends TbManageUser {
+public class ManageUserVO extends ManageUser {
 
     private String joinus;
 

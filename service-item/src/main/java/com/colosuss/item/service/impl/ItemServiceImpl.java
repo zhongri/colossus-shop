@@ -4,8 +4,8 @@ import com.colosuss.RedisService;
 import com.colosuss.item.service.ItemService;
 import com.colosuss.dao.TbItemDescMapper;
 import com.colosuss.dao.TbItemMapper;
-import com.colosuss.model.TbItem;
-import com.colosuss.model.TbItemDesc;
+import com.colosuss.model.Item;
+import com.colosuss.model.ItemDesc;
 import com.colosuss.utils.FastJsonConvert;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public TbItem getItemById(@PathVariable("id") Long itemId) {
+    public Item getItemById(@PathVariable("id") Long itemId) {
 
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_BASE_SUFFIX;
 
@@ -79,7 +79,7 @@ public class ItemServiceImpl implements ItemService {
 
                 logger.info("Redis 查询 商品信息 商品ID:" + itemId);
 
-                return FastJsonConvert.convertJSONToObject(jsonItem, TbItem.class);
+                return FastJsonConvert.convertJSONToObject(jsonItem, Item.class);
 
             } else {
                 logger.error("Redis 查询不到 key:" + key);
@@ -89,7 +89,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         logger.info("根据商品ID"+itemId+"查询商品！");
-        TbItem item = itemMapper.selectByPrimaryKey(itemId);
+        Item item = itemMapper.selectByPrimaryKey(itemId);
 
         try {
             redisService.set(key, FastJsonConvert.convertObjectToJSON(item));
@@ -122,7 +122,7 @@ public class ItemServiceImpl implements ItemService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public TbItemDesc getItemDescById(@PathVariable("id") Long itemId) {
+    public ItemDesc getItemDescById(@PathVariable("id") Long itemId) {
 
         String key = ITEM_INFO_PROFIX + itemId + ITEM_INFO_DESC_SUFFIX;
 
@@ -133,7 +133,7 @@ public class ItemServiceImpl implements ItemService {
 
                 logger.info("Redis query item ID: {}" , itemId);
 
-                return FastJsonConvert.convertJSONToObject(jsonItem, TbItemDesc.class);
+                return FastJsonConvert.convertJSONToObject(jsonItem, ItemDesc.class);
 
             } else {
                 logger.error("Redis query fail key: {}" ,key);
@@ -141,7 +141,7 @@ public class ItemServiceImpl implements ItemService {
         } catch (Exception e) {
             logger.error("Redis error", e);
         }
-        TbItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(itemId);
+        ItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(itemId);
         try {
             redisService.set(key, FastJsonConvert.convertObjectToJSON(itemDesc));
 

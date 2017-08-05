@@ -1,8 +1,8 @@
 package com.colosuss.item.service.hystrix;
 
 import com.colosuss.item.service.ItemService;
-import com.colosuss.model.TbItem;
-import com.colosuss.model.TbItemDesc;
+import com.colosuss.model.Item;
+import com.colosuss.model.ItemDesc;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 public class ItemServiceHystrix implements ItemService {
 
     @Override
-    public TbItem getItemById(Long itemId) {
+    public Item getItemById(Long itemId) {
         return null;
     }
 
     @Override
-    public TbItemDesc getItemDescById(Long itemId) {
+    public ItemDesc getItemDescById(Long itemId) {
         return null;
     }
 }

@@ -1,7 +1,7 @@
 package com.colosuss.order.service.hystrix;
 
 import com.colosuss.order.service.OrderService;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.BaseResult;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,7 +27,7 @@ public class OrderServiceHystrix implements OrderService {
      * @param shippingName    快递名称 固定顺丰速运  @return
      */
     @Override
-    public XbinResult generateOrder(String userCookieValue, String cartCookieValue, Integer addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
+    public BaseResult generateOrder(String userCookieValue, String cartCookieValue, Integer addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
         return null;
     }
 }

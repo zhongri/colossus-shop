@@ -1,37 +1,37 @@
 package com.colosuss.dao;
 
-import com.colosuss.model.TbTransactionMessageExample;
+import com.colosuss.model.TransactionMessageExample;
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbTransactionMessage;
+import com.colosuss.model.TransactionMessage;
 
 import java.util.List;
 
 public interface TbTransactionMessageMapper {
-    int countByExample(TbTransactionMessageExample example);
+    int countByExample(TransactionMessageExample example);
 
-    int deleteByExample(TbTransactionMessageExample example);
+    int deleteByExample(TransactionMessageExample example);
 
     int deleteByPrimaryKey(String id);
 
-    int insert(TbTransactionMessage record);
+    int insert(TransactionMessage record);
 
-    int insertSelective(TbTransactionMessage record);
+    int insertSelective(TransactionMessage record);
 
-    List<TbTransactionMessage> selectByExampleWithBLOBs(TbTransactionMessageExample example);
+    List<TransactionMessage> selectByExampleWithBLOBs(TransactionMessageExample example);
 
-    List<TbTransactionMessage> selectByExample(TbTransactionMessageExample example);
+    List<TransactionMessage> selectByExample(TransactionMessageExample example);
 
-    TbTransactionMessage selectByPrimaryKey(String id);
+    TransactionMessage selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") TbTransactionMessage record, @Param("example") TbTransactionMessageExample example);
+    int updateByExampleSelective(@Param("record") TransactionMessage record, @Param("example") TransactionMessageExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbTransactionMessage record, @Param("example") TbTransactionMessageExample example);
+    int updateByExampleWithBLOBs(@Param("record") TransactionMessage record, @Param("example") TransactionMessageExample example);
 
-    int updateByExample(@Param("record") TbTransactionMessage record, @Param("example") TbTransactionMessageExample example);
+    int updateByExample(@Param("record") TransactionMessage record, @Param("example") TransactionMessageExample example);
 
-    int updateByPrimaryKeySelective(TbTransactionMessage record);
+    int updateByPrimaryKeySelective(TransactionMessage record);
 
-    int updateByPrimaryKeyWithBLOBs(TbTransactionMessage record);
+    int updateByPrimaryKeyWithBLOBs(TransactionMessage record);
 
-    int updateByPrimaryKey(TbTransactionMessage record);
+    int updateByPrimaryKey(TransactionMessage record);
 }

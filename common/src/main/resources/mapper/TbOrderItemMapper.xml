@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.colosuss.dao.TbOrderItemMapper" >
-  <resultMap id="BaseResultMap" type="com.colosuss.model.TbOrderItem" >
+  <resultMap id="BaseResultMap" type="com.colosuss.model.OrderItem" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="item_id" property="itemId" jdbcType="VARCHAR" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List" >
     id, item_id, order_id, num, title, price, total_fee, pic_path, weights
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.colosuss.model.TbOrderItemExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.colosuss.model.OrderItemExample" >
     select
     <if test="distinct" >
       distinct
@@ -97,13 +97,13 @@
     delete from tb_order_item
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.colosuss.model.TbOrderItemExample" >
+  <delete id="deleteByExample" parameterType="com.colosuss.model.OrderItemExample" >
     delete from tb_order_item
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.colosuss.model.TbOrderItem" >
+  <insert id="insert" parameterType="com.colosuss.model.OrderItem" >
     insert into tb_order_item (id, item_id, order_id, 
       num, title, price, total_fee, 
       pic_path, weights)
@@ -111,7 +111,7 @@
       #{num,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{totalFee,jdbcType=BIGINT}, 
       #{picPath,jdbcType=VARCHAR}, #{weights,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.colosuss.model.TbOrderItem" >
+  <insert id="insertSelective" parameterType="com.colosuss.model.OrderItem" >
     insert into tb_order_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -172,7 +172,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.colosuss.model.TbOrderItemExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.colosuss.model.OrderItemExample" resultType="java.lang.Integer" >
     select count(*) from tb_order_item
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -228,7 +228,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.colosuss.model.TbOrderItem" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.colosuss.model.OrderItem" >
     update tb_order_item
     <set >
       <if test="itemId != null" >
@@ -258,7 +258,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.colosuss.model.TbOrderItem" >
+  <update id="updateByPrimaryKey" parameterType="com.colosuss.model.OrderItem" >
     update tb_order_item
     set item_id = #{itemId,jdbcType=VARCHAR},
       order_id = #{orderId,jdbcType=VARCHAR},

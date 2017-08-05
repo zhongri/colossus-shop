@@ -1,7 +1,7 @@
 package com.colosuss.portal.service;
 
 
-import com.colosuss.model.TbContent;
+import com.colosuss.model.Content;
 import com.colosuss.portal.service.hystrix.PortalContentServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +20,5 @@ import java.util.List;
 public interface PortalContentService {
 
     @RequestMapping(value = "/getContentByCid",method = RequestMethod.POST)
-    List<TbContent> getContentByCid(@RequestParam("bigAdIndex") Long bigAdIndex);
+    List<Content> getContentByCid(@RequestParam("bigAdIndex") Long bigAdIndex);
 }

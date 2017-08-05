@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
+import com.colosuss.model.Item;
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbItem;
-import com.colosuss.model.TbItemExample;
+import com.colosuss.model.ItemExample;
 
 import java.util.List;
 
 public interface TbItemMapper {
-    int countByExample(TbItemExample example);
+    int countByExample(ItemExample example);
 
-    int deleteByExample(TbItemExample example);
+    int deleteByExample(ItemExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbItem record);
+    int insert(Item record);
 
-    int insertSelective(TbItem record);
+    int insertSelective(Item record);
 
-    List<TbItem> selectByExample(TbItemExample example);
+    List<Item> selectByExample(ItemExample example);
 
-    TbItem selectByPrimaryKey(Long id);
+    Item selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbItem record, @Param("example") TbItemExample example);
+    int updateByExampleSelective(@Param("record") Item record, @Param("example") ItemExample example);
 
-    int updateByExample(@Param("record") TbItem record, @Param("example") TbItemExample example);
+    int updateByExample(@Param("record") Item record, @Param("example") ItemExample example);
 
-    int updateByPrimaryKeySelective(TbItem record);
+    int updateByPrimaryKeySelective(Item record);
 
-    int updateByPrimaryKey(TbItem record);
+    int updateByPrimaryKey(Item record);
 }

@@ -1,37 +1,37 @@
 package com.colosuss.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.colosuss.model.TbContent;
-import com.colosuss.model.TbContentExample;
+import com.colosuss.model.Content;
+import com.colosuss.model.ContentExample;
 
 import java.util.List;
 
 public interface TbContentMapper {
-    int countByExample(TbContentExample example);
+    int countByExample(ContentExample example);
 
-    int deleteByExample(TbContentExample example);
+    int deleteByExample(ContentExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbContent record);
+    int insert(Content record);
 
-    int insertSelective(TbContent record);
+    int insertSelective(Content record);
 
-    List<TbContent> selectByExampleWithBLOBs(TbContentExample example);
+    List<Content> selectByExampleWithBLOBs(ContentExample example);
 
-    List<TbContent> selectByExample(TbContentExample example);
+    List<Content> selectByExample(ContentExample example);
 
-    TbContent selectByPrimaryKey(Long id);
+    Content selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbContent record, @Param("example") TbContentExample example);
+    int updateByExampleSelective(@Param("record") Content record, @Param("example") ContentExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbContent record, @Param("example") TbContentExample example);
+    int updateByExampleWithBLOBs(@Param("record") Content record, @Param("example") ContentExample example);
 
-    int updateByExample(@Param("record") TbContent record, @Param("example") TbContentExample example);
+    int updateByExample(@Param("record") Content record, @Param("example") ContentExample example);
 
-    int updateByPrimaryKeySelective(TbContent record);
+    int updateByPrimaryKeySelective(Content record);
 
-    int updateByPrimaryKeyWithBLOBs(TbContent record);
+    int updateByPrimaryKeyWithBLOBs(Content record);
 
-    int updateByPrimaryKey(TbContent record);
+    int updateByPrimaryKey(Content record);
 }

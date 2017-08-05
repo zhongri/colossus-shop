@@ -2,8 +2,8 @@ package com.colosuss.admin.service;
 
 
 import com.colosuss.admin.service.hystrix.ContentServiceHystrix;
-import com.colosuss.model.TbCategorySecondary;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.CategorySecondary;
+import com.colosuss.model.BaseResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +29,7 @@ public interface ContentService {
     );
 
     @RequestMapping(value = "/save/category",method = RequestMethod.POST)
-    XbinResult saveCategory(
+    BaseResult saveCategory(
             @RequestParam("id")             String id, 
             @RequestParam("name")           String name, 
             @RequestParam("sort_order")     Integer sort_order
@@ -51,5 +51,5 @@ public interface ContentService {
     );
 
     @RequestMapping(value = "/saveCategorySecondary",method = RequestMethod.POST)
-    XbinResult saveCategorySecondary(TbCategorySecondary categorySecondary);
+    BaseResult saveCategorySecondary(CategorySecondary categorySecondary);
 }

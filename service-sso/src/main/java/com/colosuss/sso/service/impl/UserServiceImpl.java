@@ -2,9 +2,9 @@ package com.colosuss.sso.service.impl;
 
 import com.colosuss.RedisService;
 import com.colosuss.dao.TbUserMapper;
-import com.colosuss.model.TbUser;
-import com.colosuss.model.TbUserExample;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.User;
+import com.colosuss.model.UserExample;
+import com.colosuss.model.BaseResult;
 import com.colosuss.sso.service.UserService;
 import com.colosuss.utils.FastJsonConvert;
 import io.swagger.annotations.*;
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
     @ApiOperation("用户登录")
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "user", value = "", required = true, dataType = "TbUser"),
+                    @ApiImplicitParam(name = "user", value = "", required = true, dataType = "User"),
             }
     )
     @ApiResponses(
@@ -97,32 +97,32 @@ public class UserServiceImpl implements UserService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult login(@RequestBody TbUser user) {
+    public BaseResult login(@RequestBody User user) {
 
         if (user == null) {
-            return XbinResult.build(400, "error", "数据为空");
+            return BaseResult.build(400, "error", "数据为空");
         }
 
-        TbUserExample example = new TbUserExample();
+        UserExample example = new UserExample();
 
-        TbUserExample.Criteria criteria = example.createCriteria();
+        UserExample.Criteria criteria = example.createCriteria();
 
         criteria.andUsernameEqualTo(user.getUsername());
         //criteria.andPasswordEqualTo(DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes()));
 
-        List<TbUser> list = userMapper.selectByExample(example);
+        List<User> list = userMapper.selectByExample(example);
 
         if (list == null || list.size() == 0) {
-            return XbinResult.build(400, "用户名不存在");
+            return BaseResult.build(400, "用户名不存在");
         }
 
-        TbUser check = list.get(0);
+        User check = list.get(0);
 
         if (!check.getPassword().equals(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()))) {
-            return XbinResult.build(401, "用户名或密码错误");
+            return BaseResult.build(401, "用户名或密码错误");
         }
 
-        TbUser result = new TbUser();
+        User result = new User();
 
         result.setUsername(check.getUsername());
         result.setId(check.getId());
@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
 
         redisService.expire(key, EXPIRE_TIME);
 
-        return XbinResult.ok(token);
+        return BaseResult.ok(token);
     }
 
     /**
@@ -166,10 +166,10 @@ public class UserServiceImpl implements UserService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult token(String token, String callback) {
+    public BaseResult token(String token, String callback) {
 
         if (StringUtils.isNotBlank(callback)) {
-            return XbinResult.ok(callback); // 未处理
+            return BaseResult.ok(callback); // 未处理
         }
 
         try {
@@ -177,7 +177,7 @@ public class UserServiceImpl implements UserService {
 
             if (StringUtils.isNotBlank(user)) {
 
-                return XbinResult.ok(user);
+                return BaseResult.ok(user);
             }
 
         } catch (Exception e) {
@@ -186,7 +186,7 @@ public class UserServiceImpl implements UserService {
 
         }
 
-        return XbinResult.build(400, "没有此用户");
+        return BaseResult.build(400, "没有此用户");
     }
 
     /**
@@ -218,10 +218,10 @@ public class UserServiceImpl implements UserService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult logout(String token, String callback) {
+    public BaseResult logout(String token, String callback) {
 
         if (StringUtils.isNotBlank(callback)) {
-            return XbinResult.ok(callback); // 未处理
+            return BaseResult.ok(callback); // 未处理
         }
 
         try {
@@ -229,10 +229,10 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             logger.error("没有登录", e);
 
-            return XbinResult.build(400, "没有登录");
+            return BaseResult.build(400, "没有登录");
         }
 
-        return XbinResult.ok();
+        return BaseResult.ok();
     }
 
     /**
@@ -270,9 +270,9 @@ public class UserServiceImpl implements UserService {
 
         HashMap<String, Object> map = new HashMap<>();
 
-        TbUserExample example = new TbUserExample();
+        UserExample example = new UserExample();
 
-        TbUserExample.Criteria criteria = example.createCriteria();
+        UserExample.Criteria criteria = example.createCriteria();
 
         if (StringUtils.isNotBlank(isEngaged)) {
 
@@ -280,7 +280,7 @@ public class UserServiceImpl implements UserService {
 
                 criteria.andUsernameEqualTo(regName);
 
-                List<TbUser> users = userMapper.selectByExample(example);
+                List<User> users = userMapper.selectByExample(example);
 
                 if (users == null || users.size() == 0) {
                     //用户名 可用
@@ -305,7 +305,7 @@ public class UserServiceImpl implements UserService {
 
                     criteria.andEmailEqualTo(email);
 
-                    List<TbUser> users = userMapper.selectByExample(example);
+                    List<User> users = userMapper.selectByExample(example);
 
                     if (users == null || users.size() == 0) {
                         //email 可用
@@ -323,7 +323,7 @@ public class UserServiceImpl implements UserService {
 
                     criteria.andPhoneEqualTo(phone);
 
-                    List<TbUser> users = userMapper.selectByExample(example);
+                    List<User> users = userMapper.selectByExample(example);
 
                     if (users == null || users.size() == 0) {
                         //phone 可用
@@ -516,7 +516,7 @@ public class UserServiceImpl implements UserService {
 
         if (StringUtils.isNotBlank(regName)) {
 
-            TbUser user = new TbUser();
+            User user = new User();
             user.setUsername(regName);
             user.setPassword(DigestUtils.md5DigestAsHex(pwd.getBytes()));
             user.setPhone(phone);

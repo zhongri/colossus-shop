@@ -2,10 +2,10 @@ package com.colosuss.cart.controller;
 
 import com.colosuss.RedisService;
 import com.colosuss.cart.service.CartService;
-import com.colosuss.constant.Const;
+import com.colosuss.utils.AppConfig;
 import com.colosuss.model.CartInfo;
-import com.colosuss.model.TbUser;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.User;
+import com.colosuss.model.BaseResult;
 import com.colosuss.utils.CookieUtils;
 import com.colosuss.utils.FastJsonConvert;
 import io.swagger.annotations.Api;
@@ -52,10 +52,10 @@ public class CartController {
     @RequestMapping("/cart")
     public String showCart( HttpServletRequest request, HttpServletResponse response,Model model) {
 
-        String cookieUUID = CookieUtils.getCookieValue(request, Const.CART_KEY);
-        String tokenLogin = CookieUtils.getCookieValue(request, Const.TOKEN_LOGIN);
+        String cookieUUID = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
+        String tokenLogin = CookieUtils.getCookieValue(request, AppConfig.TOKEN_LOGIN);
 
-        TbUser user = null;
+        User user = null;
         String userJson = null;
         if (StringUtils.isNoneEmpty(tokenLogin)) {
 
@@ -66,7 +66,7 @@ public class CartController {
             }
 
             if (StringUtils.isNoneEmpty(userJson)) {
-                user = FastJsonConvert.convertJSONToObject(userJson, TbUser.class);
+                user = FastJsonConvert.convertJSONToObject(userJson, User.class);
             }
             model.addAttribute("user", user);
         } else {
@@ -125,21 +125,21 @@ public class CartController {
 
     @RequestMapping("/add")
     public String addCart(Long pid, Integer pcount, HttpServletRequest request, HttpServletResponse response, Model model) {
-        String cookieUUID = CookieUtils.getCookieValue(request, Const.CART_KEY);
+        String cookieUUID = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
         if (StringUtils.isBlank(cookieUUID)) {
 
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
-            CookieUtils.setCookie(request, response, Const.CART_KEY, uuid);
+            CookieUtils.setCookie(request, response, AppConfig.CART_KEY, uuid);
 
-            XbinResult result = cartService.addCart(pid, pcount, uuid);
+            BaseResult result = cartService.addCart(pid, pcount, uuid);
 
             model.addAttribute("cartInfo", result.getData());
 
             return "success";
 
         } else {
-            XbinResult result = cartService.addCart(pid, pcount, cookieUUID);
+            BaseResult result = cartService.addCart(pid, pcount, cookieUUID);
 
             model.addAttribute("cartInfo", result.getData());
 
@@ -162,13 +162,14 @@ public class CartController {
      * @return
      */
     @RequestMapping("/decreOrIncre")
-    public @ResponseBody XbinResult decreOrIncre(Long pid, Integer pcount,Integer type,Integer index, HttpServletRequest request, HttpServletResponse response, Model model) {
-        String cookieUUID = CookieUtils.getCookieValue(request, Const.CART_KEY);
+    public @ResponseBody
+    BaseResult decreOrIncre(Long pid, Integer pcount, Integer type, Integer index, HttpServletRequest request, HttpServletResponse response, Model model) {
+        String cookieUUID = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
         if (StringUtils.isBlank(cookieUUID)) {
 
             model.addAttribute("msg","没有此Cookie!");
 
-            return XbinResult.build(400,"请先去购物!");
+            return BaseResult.build(400,"请先去购物!");
 
         } else {
             return cartService.decreOrIncre(pid, pcount,type,index, cookieUUID);

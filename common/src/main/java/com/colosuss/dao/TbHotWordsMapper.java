@@ -1,31 +1,31 @@
 package com.colosuss.dao;
 
-import com.colosuss.model.TbHotWords;
-import com.colosuss.model.TbHotWordsExample;
+import com.colosuss.model.HotWord;
+import com.colosuss.model.HotWordExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface TbHotWordsMapper {
-    int countByExample(TbHotWordsExample example);
+    int countByExample(HotWordExample example);
 
-    int deleteByExample(TbHotWordsExample example);
+    int deleteByExample(HotWordExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(TbHotWords record);
+    int insert(HotWord record);
 
-    int insertSelective(TbHotWords record);
+    int insertSelective(HotWord record);
 
-    List<TbHotWords> selectByExample(TbHotWordsExample example);
+    List<HotWord> selectByExample(HotWordExample example);
 
-    TbHotWords selectByPrimaryKey(Long id);
+    HotWord selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") TbHotWords record, @Param("example") TbHotWordsExample example);
+    int updateByExampleSelective(@Param("record") HotWord record, @Param("example") HotWordExample example);
 
-    int updateByExample(@Param("record") TbHotWords record, @Param("example") TbHotWordsExample example);
+    int updateByExample(@Param("record") HotWord record, @Param("example") HotWordExample example);
 
-    int updateByPrimaryKeySelective(TbHotWords record);
+    int updateByPrimaryKeySelective(HotWord record);
 
-    int updateByPrimaryKey(TbHotWords record);
+    int updateByPrimaryKey(HotWord record);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.colosuss.dao.TbIndexSlideAdMapper" >
-  <resultMap id="BaseResultMap" type="com.colosuss.model.TbIndexSlideAd" >
+  <resultMap id="BaseResultMap" type="com.colosuss.model.IndexSlideAd" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="alt" property="alt" jdbcType="VARCHAR" />
     <result column="clog" property="clog" jdbcType="VARCHAR" />
@@ -78,7 +78,7 @@
     id, alt, clog, ext1, href, logV, src, srcB, status, sort_order, logDomain, created, 
     updated
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.colosuss.model.TbIndexSlideAdExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.colosuss.model.IndexSlideAdExample" >
     select
     <if test="distinct" >
       distinct
@@ -102,13 +102,13 @@
     delete from tb_index_slide_ad
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.colosuss.model.TbIndexSlideAdExample" >
+  <delete id="deleteByExample" parameterType="com.colosuss.model.IndexSlideAdExample" >
     delete from tb_index_slide_ad
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.colosuss.model.TbIndexSlideAd" >
+  <insert id="insert" parameterType="com.colosuss.model.IndexSlideAd" >
     insert into tb_index_slide_ad (id, alt, clog, 
       ext1, href, logV, src, 
       srcB, status, sort_order, 
@@ -120,7 +120,7 @@
       #{logdomain,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.colosuss.model.TbIndexSlideAd" >
+  <insert id="insertSelective" parameterType="com.colosuss.model.IndexSlideAd" >
     insert into tb_index_slide_ad
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.colosuss.model.TbIndexSlideAdExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.colosuss.model.IndexSlideAdExample" resultType="java.lang.Integer" >
     select count(*) from tb_index_slide_ad
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -277,7 +277,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.colosuss.model.TbIndexSlideAd" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.colosuss.model.IndexSlideAd" >
     update tb_index_slide_ad
     <set >
       <if test="alt != null" >
@@ -319,7 +319,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.colosuss.model.TbIndexSlideAd" >
+  <update id="updateByPrimaryKey" parameterType="com.colosuss.model.IndexSlideAd" >
     update tb_index_slide_ad
     set alt = #{alt,jdbcType=VARCHAR},
       clog = #{clog,jdbcType=VARCHAR},

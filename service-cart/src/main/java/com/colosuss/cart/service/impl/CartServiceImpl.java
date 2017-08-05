@@ -4,9 +4,9 @@ import com.colosuss.RedisService;
 import com.colosuss.cart.service.CartService;
 import com.colosuss.dao.TbItemMapper;
 import com.colosuss.model.CartInfo;
-import com.colosuss.model.TbItem;
-import com.colosuss.model.TbItemExample;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.Item;
+import com.colosuss.model.ItemExample;
+import com.colosuss.model.BaseResult;
 import com.colosuss.utils.FastJsonConvert;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
@@ -69,7 +69,7 @@ public class CartServiceImpl implements CartService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult addCart(Long pid, Integer pcount, String uuid) {
+    public BaseResult addCart(Long pid, Integer pcount, String uuid) {
 
         String key = CART_INFO_PROFIX + uuid;
         String cartInfoString = null;
@@ -79,7 +79,7 @@ public class CartServiceImpl implements CartService {
             logger.error("Redis出错!", e);
         }
 
-        TbItem item = null;
+        Item item = null;
 
         String redisItem = null;
         try {
@@ -89,15 +89,15 @@ public class CartServiceImpl implements CartService {
         }
 
         if (StringUtils.isNotBlank(redisItem)) {
-            item = FastJsonConvert.convertJSONToObject(redisItem, TbItem.class);
+            item = FastJsonConvert.convertJSONToObject(redisItem, Item.class);
 
         } else {
-            TbItemExample example = new TbItemExample();
-            TbItemExample.Criteria criteria = example.createCriteria();
+            ItemExample example = new ItemExample();
+            ItemExample.Criteria criteria = example.createCriteria();
 
             criteria.andIdEqualTo(pid);
 
-            List<TbItem> itemList = null;
+            List<Item> itemList = null;
 
             try {
                 itemList = itemMapper.selectByExample(example);
@@ -108,7 +108,7 @@ public class CartServiceImpl implements CartService {
             if (itemList != null && itemList.size() > 0) {
                 item = itemList.get(0);
             } else {
-                return XbinResult.build(500, "商品查询不到!");
+                return BaseResult.build(500, "商品查询不到!");
             }
         }
 
@@ -138,7 +138,7 @@ public class CartServiceImpl implements CartService {
                 logger.error("Redis error", e);
             }
 
-            return XbinResult.build(200, "ok", cartInfo);
+            return BaseResult.build(200, "ok", cartInfo);
 
         } else {
             List<CartInfo> list = FastJsonConvert.convertJSONToArray(cartInfoString, CartInfo.class);
@@ -170,7 +170,7 @@ public class CartServiceImpl implements CartService {
                 logger.error("Redis出错!", e);
             }
 
-            return XbinResult.build(200, "ok", cartInfo);
+            return BaseResult.build(200, "ok", cartInfo);
         }
     }
 
@@ -233,13 +233,13 @@ public class CartServiceImpl implements CartService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public XbinResult decreOrIncre(Long pid, Integer pcount, Integer type, Integer index, String cookieUUID) {
+    public BaseResult decreOrIncre(Long pid, Integer pcount, Integer type, Integer index, String cookieUUID) {
 
         String key = CART_INFO_PROFIX + cookieUUID;
 
         List<CartInfo> cartInfoList = getCartInfoListByCookiesId(cookieUUID);
         if (cartInfoList == null || cartInfoList.size() == 0) {
-            return XbinResult.build(400, "购物车没有此商品 请不要非法操作!");
+            return BaseResult.build(400, "购物车没有此商品 请不要非法操作!");
         }
 
         CartInfo cartInfo = cartInfoList.get(index);
@@ -254,7 +254,7 @@ public class CartServiceImpl implements CartService {
         redisService.set(key, FastJsonConvert.convertObjectToJSON(cartInfoList));
         redisService.expire(key,REDIS_CART_EXPIRE_TIME);
 
-        return XbinResult.ok();
+        return BaseResult.ok();
     }
 
 

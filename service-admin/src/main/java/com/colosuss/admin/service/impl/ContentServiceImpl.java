@@ -196,7 +196,7 @@ public class ContentServiceImpl implements ContentService {
     @ApiOperation("保存二级分类")
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "TbCategorySecondary", value = "", required = true, dataType = "TbCategorySecondary"),
+                    @ApiImplicitParam(name = "CategorySecondary", value = "", required = true, dataType = "CategorySecondary"),
             }
     )
     @ApiResponses(

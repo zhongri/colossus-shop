@@ -2,8 +2,8 @@ package com.colosuss.portal.service.impl;
 
 import com.colosuss.RedisService;
 import com.colosuss.dao.TbContentMapper;
-import com.colosuss.model.TbContent;
-import com.colosuss.model.TbContentExample;
+import com.colosuss.model.Content;
+import com.colosuss.model.ContentExample;
 import com.colosuss.portal.service.PortalContentService;
 import com.colosuss.utils.FastJsonConvert;
 import io.swagger.annotations.*;
@@ -53,7 +53,7 @@ public class PortalContentServiceImpl implements PortalContentService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public List<TbContent> getContentByCid(Long bigAdIndex) {
+    public List<Content> getContentByCid(Long bigAdIndex) {
 
         //先查询缓存
 
@@ -64,7 +64,7 @@ public class PortalContentServiceImpl implements PortalContentService {
             if (StringUtils.isNotBlank(list)) {
 
                 logger.info("=======>查询Redis 返回结果");
-                return FastJsonConvert.convertJSONToArray(list, TbContent.class);
+                return FastJsonConvert.convertJSONToArray(list, Content.class);
             }
 
         } catch (Exception e) {
@@ -72,12 +72,12 @@ public class PortalContentServiceImpl implements PortalContentService {
         }
 
 
-        TbContentExample example = new TbContentExample();
-        TbContentExample.Criteria criteria = example.createCriteria();
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
         criteria.andCategoryIdEqualTo(bigAdIndex);
 
         logger.info("=======>查询数据库");
-        List<TbContent> list = contentMapper.selectByExample(example);
+        List<Content> list = contentMapper.selectByExample(example);
 
         //添加缓存
         try {

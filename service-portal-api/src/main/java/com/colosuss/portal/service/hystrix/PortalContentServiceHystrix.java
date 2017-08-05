@@ -1,6 +1,6 @@
 package com.colosuss.portal.service.hystrix;
 
-import com.colosuss.model.TbContent;
+import com.colosuss.model.Content;
 import com.colosuss.portal.service.PortalContentService;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class PortalContentServiceHystrix implements PortalContentService {
 
 
     @Override
-    public List<TbContent> getContentByCid(Long bigAdIndex) {
+    public List<Content> getContentByCid(Long bigAdIndex) {
         return null;
     }
 }

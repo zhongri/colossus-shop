@@ -1,7 +1,7 @@
 package com.colosuss.sso.service;
 
-import com.colosuss.model.TbUser;
-import com.colosuss.model.XbinResult;
+import com.colosuss.model.User;
+import com.colosuss.model.BaseResult;
 import com.colosuss.sso.service.hystrix.UserServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +32,7 @@ public interface UserService {
      *         }
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    XbinResult login(@RequestBody TbUser user);
+    BaseResult login(@RequestBody User user);
 
     /**
      * 请求格式 GET
@@ -47,7 +47,7 @@ public interface UserService {
      *         }
      */
     @RequestMapping(value = "/token",method = RequestMethod.POST)
-    XbinResult token(
+    BaseResult token(
             @RequestParam("token")      String token,
             @RequestParam("callback")   String callback
     );
@@ -65,7 +65,7 @@ public interface UserService {
      *         }
      */
     @RequestMapping(value = "/logout",method = RequestMethod.POST)
-    XbinResult logout(
+    BaseResult logout(
             @RequestParam("token")      String token,
             @RequestParam("callback")   String callback
     );

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
- * Solr搜索Item POJO
+ * 搜索Item POJO
  *
  * @author 許彬.
  * @creater 2016-08-23 20:59
