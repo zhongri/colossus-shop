@@ -30,7 +30,7 @@ public interface OrderService {
     BaseResult generateOrder(
             @RequestParam("userCookieValue")    String userCookieValue,
             @RequestParam("cartCookieValue")    String cartCookieValue,
-            @RequestParam("addrId")             Integer addrId,
+            @RequestParam("addrId")             String addrId,
             @RequestParam("noAnnoyance")        Integer noAnnoyance,
             @RequestParam("paymentType")        Integer paymentType,
             @RequestParam("orderId")            String orderId,

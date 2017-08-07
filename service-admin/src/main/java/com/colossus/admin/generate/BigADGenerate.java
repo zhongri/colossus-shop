@@ -1,12 +1,12 @@
 package com.colossus.admin.generate;
 
-
-import cn.binux.dao.TbIndexSlideAdMapper;
-import cn.binux.model.TbIndexSlideAd;
-import cn.binux.utils.FastDFSClientUtils;
-import cn.binux.utils.FastJsonConvert;
+import com.colossus.common.dao.IndexSlideAdMapper;
+import com.colossus.common.model.IndexSlideAd;
+import com.colossus.common.service.impl.FastdfsStorageService;
+import com.colossus.common.utils.FastJsonConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -27,12 +27,18 @@ import java.util.Map;
 
 //@SpringBootApplication
 //@MapperScan(basePackages = "cn.binux.mapper")
+@Component
 public class BigADGenerate {
 
-    private static TbIndexSlideAdMapper tbIndexSlideAdMapper;
+
+
+    private static IndexSlideAdMapper tbIndexSlideAdMapper;
 
     @Autowired
-    public void setTbIndexSlideAdMapper(TbIndexSlideAdMapper tbIndexSlideAdMapper) {
+    private FastdfsStorageService fastdfsStorageService;
+
+    @Autowired
+    public void setTbIndexSlideAdMapper(IndexSlideAdMapper tbIndexSlideAdMapper) {
         this.tbIndexSlideAdMapper = tbIndexSlideAdMapper;
     }
 
@@ -73,7 +79,7 @@ public class BigADGenerate {
         for (Object o : data) {
             List list = (List) o;
             for (int j = 0; j < list.size(); j++) {
-                TbIndexSlideAd indexSlideAd = new TbIndexSlideAd();
+                IndexSlideAd indexSlideAd = new IndexSlideAd();
                 Map map1 = (Map) list.get(j);
                 indexSlideAd.setClog((String) map1.get("clog"));
                 indexSlideAd.setHref((String) map1.get("href"));
@@ -86,8 +92,8 @@ public class BigADGenerate {
                 String fastDFSB = saveToFastDFS("http:" + srcB);
                 indexSlideAd.setSrc(fastDFS);
                 indexSlideAd.setSrcb(fastDFSB);
-                indexSlideAd.setCreated(new Date());
-                indexSlideAd.setUpdated(new Date());
+                indexSlideAd.setCreateTime(new Date());
+                indexSlideAd.setUpdateTime(new Date());
                 indexSlideAd.setStatus(1);
 
                 tbIndexSlideAdMapper.insert(indexSlideAd);
@@ -97,7 +103,7 @@ public class BigADGenerate {
         }
     }
 
-    public static String  saveToFastDFS(String destUrl) {
+    public String  saveToFastDFS(String destUrl) {
         String saveurl = "http://192.168.125.132/";
         ByteArrayOutputStream baos = null;
         try {
@@ -109,7 +115,7 @@ public class BigADGenerate {
             ImageIO.write(image, "jpg", baos);
             baos.flush();
 
-            return FastDFSClientUtils.upload(baos.toByteArray(), "jpg");
+            return fastdfsStorageService.upload(baos.toByteArray(), "jpg");
         } catch (Exception e) {
         } finally {
             if (baos != null) {

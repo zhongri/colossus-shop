@@ -2,11 +2,11 @@ package com.colossus.cart.service.impl;
 
 import com.colossus.RedisService;
 import com.colossus.cart.service.CartService;
-import com.colossus.common.dao.TbItemMapper;
+import com.colossus.common.dao.ItemMapper;
+import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.CartInfo;
 import com.colossus.common.model.Item;
 import com.colossus.common.model.ItemExample;
-import com.colossus.common.model.BaseResult;
 import com.colossus.common.utils.FastJsonConvert;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
@@ -49,7 +49,7 @@ public class CartServiceImpl implements CartService {
     private RedisService redisService;
 
     @Autowired
-    private TbItemMapper itemMapper;
+    private ItemMapper itemMapper;
 
     @Override
     @ApiOperation("购物车添加商品")
@@ -69,7 +69,7 @@ public class CartServiceImpl implements CartService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public BaseResult addCart(Long pid, Integer pcount, String uuid) {
+    public BaseResult addCart(String pid, Integer pcount, String uuid) {
 
         String key = CART_INFO_PROFIX + uuid;
         String cartInfoString = null;

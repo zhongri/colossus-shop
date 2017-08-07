@@ -124,7 +124,7 @@ public class CartController {
     }
 
     @RequestMapping("/add")
-    public String addCart(Long pid, Integer pcount, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String addCart(String  pid, Integer pcount, HttpServletRequest request, HttpServletResponse response, Model model) {
         String cookieUUID = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
         if (StringUtils.isBlank(cookieUUID)) {
 

@@ -20,5 +20,5 @@ import java.util.List;
 public interface PortalContentService {
 
     @RequestMapping(value = "/getContentByCid",method = RequestMethod.POST)
-    List<Content> getContentByCid(@RequestParam("bigAdIndex") Long bigAdIndex);
+    List<Content> getContentByCid(@RequestParam("bigAdIndex") String bigAdIndex);
 }

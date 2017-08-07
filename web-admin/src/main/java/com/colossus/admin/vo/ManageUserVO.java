@@ -15,13 +15,15 @@ import java.text.SimpleDateFormat;
 
 public class ManageUserVO extends ManageUser {
 
+    private static final long serialVersionUID = -4590381219897771467L;
+
     private String joinus;
 
     public String getJoinus() {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy MM");
 
-        return format.format(this.getCreated()).toString() + "加入公司";
+        return format.format(this.getCreateTime()).toString() + "加入公司";
     }
 
 

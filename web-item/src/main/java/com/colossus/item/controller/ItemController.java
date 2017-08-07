@@ -31,7 +31,7 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping(value = "/item/{id}",method = RequestMethod.GET)
-    public String  getItemByItemId(@PathVariable("id") Long itemId, Model model) {
+    public String  getItemByItemId(@PathVariable("id") String  itemId, Model model) {
 
         ItemVO item = new ItemVO(itemService.getItemById(itemId));
 

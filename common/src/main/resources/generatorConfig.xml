@@ -52,18 +52,19 @@
                         password="417937" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="com.colossus.common.model" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
+        <javaModelGenerator targetPackage="com.colossus.commone.model" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="com.colossus.common.mapper" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
+        <sqlMapGenerator targetPackage="com.colossus.commone.mapper" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="com.colossus.common.dao" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.colossus.commone.dao" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
                                     <table tableName="category" domainObjectName="Category"></table>
                                                 <table tableName="category_image" domainObjectName="CategoryImage"></table>
                                                 <table tableName="category_secondary" domainObjectName="CategorySecondary"></table>
+                                                <table tableName="content" domainObjectName="Content"></table>
                                                 <table tableName="hot_words" domainObjectName="HotWords"></table>
                                                 <table tableName="index_slide_ad" domainObjectName="IndexSlideAd"></table>
                                                 <table tableName="item" domainObjectName="Item"></table>

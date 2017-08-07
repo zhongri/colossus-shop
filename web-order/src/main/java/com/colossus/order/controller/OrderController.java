@@ -124,7 +124,7 @@ public class OrderController {
      *        错误 跳转 错误页面
      */
     @RequestMapping(value = "/order/getPay",method = RequestMethod.POST)
-    public String getPay(Integer addrId, Integer noAnnoyance, Integer paymentType,String orderId, String shippingName, HttpServletResponse response, HttpServletRequest request) {
+    public String getPay(String  addrId, Integer noAnnoyance, Integer paymentType,String orderId, String shippingName, HttpServletResponse response, HttpServletRequest request) {
 
         String cartCookieValue = CookieUtils.getCookieValue(request, AppConfig.CART_KEY);
         String userCookieValue = CookieUtils.getCookieValue(request, AppConfig.TOKEN_LOGIN);

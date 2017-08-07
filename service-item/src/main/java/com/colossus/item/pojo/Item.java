@@ -26,8 +26,8 @@ public class Item extends com.colossus.common.model.Item {
         this.setImage(item.getImage());
         this.setCid(item.getCid());
         this.setStatus(item.getStatus());
-        this.setCreated(item.getCreated());
-        this.setUpdated(item.getUpdated());
+        this.setCreateTime(item.getCreateTime());
+        this.setUpdateTime(item.getUpdateTime());
     }
 
     public String[] getImages() {

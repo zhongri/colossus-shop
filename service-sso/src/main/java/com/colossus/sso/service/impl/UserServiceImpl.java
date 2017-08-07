@@ -1,12 +1,12 @@
 package com.colossus.sso.service.impl;
 
 import com.colossus.RedisService;
-import com.colossus.common.dao.TbUserMapper;
+import com.colossus.common.dao.UserMapper;
+import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.User;
 import com.colossus.common.model.UserExample;
-import com.colossus.common.model.BaseResult;
-import com.colossus.sso.service.UserService;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.sso.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public static final int SUCCESS = 0;
 
     @Autowired
-    private TbUserMapper userMapper;
+    private UserMapper userMapper;
 
     @Autowired
     private RedisService redisService;
@@ -521,8 +521,8 @@ public class UserServiceImpl implements UserService {
             user.setPassword(DigestUtils.md5DigestAsHex(pwd.getBytes()));
             user.setPhone(phone);
 
-            user.setCreated(new Date());
-            user.setUpdated(new Date());
+            user.setCreateTime(new Date());
+            user.setUpdateTime(new Date());
 
             if (StringUtils.isNotBlank(email)) {
                 user.setEmail(email);

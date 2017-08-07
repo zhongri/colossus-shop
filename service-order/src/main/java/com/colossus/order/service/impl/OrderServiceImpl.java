@@ -1,18 +1,14 @@
 package com.colossus.order.service.impl;
 
 import com.colossus.RedisService;
+import com.colossus.common.dao.OrderItemMapper;
+import com.colossus.common.dao.OrderMapper;
 import com.colossus.common.model.*;
 import com.colossus.common.utils.AppConfig;
-import com.colossus.common.dao.TbOrderItemMapper;
-import com.colossus.common.dao.TbOrderMapper;
-import com.colossus.order.service.OrderService;
-import cn.binux.model.*;
-import com.colossus.sso.service.UserService;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.common.utils.IDUtils;
-import cn.binux.utils.redisService;
-import cn.colosuss.model.*;
-import com.colossus.model.*;
+import com.colossus.order.service.OrderService;
+import com.colossus.sso.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -47,10 +43,10 @@ public class OrderServiceImpl implements OrderService {
     private RedisService redisService;
 
     @Autowired
-    private TbOrderItemMapper orderItemMapper;
+    private OrderItemMapper orderItemMapper;
 
     @Autowired
-    private TbOrderMapper orderMapper;
+    private OrderMapper orderMapper;
 
     //@Autowired
     //private JmsTemplate jmsTemplate;
@@ -86,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public BaseResult generateOrder(String userCookieValue, String cartCookieValue, Integer addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
+    public BaseResult generateOrder(String userCookieValue, String cartCookieValue, String addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
 
 
         BaseResult result = userService.token(userCookieValue, "");
@@ -110,11 +106,11 @@ public class OrderServiceImpl implements OrderService {
 
         final Order order = new Order();
         //设置订单id
-        order.setOrderId(orderId);
+        order.setId(orderId);
         //设置用户id
         order.setUserId(user.getId());
         //设置地址id
-        order.setAddrId(Long.valueOf(addrId));
+        order.setAddrId(addrId);
         //设置支付类型
         order.setPaymentType(paymentType);
         //设置邮费

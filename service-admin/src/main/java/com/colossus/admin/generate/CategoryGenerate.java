@@ -1,12 +1,11 @@
 package com.colossus.admin.generate;
 
 
-import cn.binux.dao.TbCategoryImageMapper;
-import cn.binux.dao.TbCategorySecondaryMapper;
-import cn.binux.model.TbCategoryImage;
-import cn.binux.model.TbCategorySecondary;
-import cn.binux.utils.FastDFSClientUtils;
-import cn.binux.utils.FastJsonConvert;
+import com.colossus.common.dao.CategoryImageMapper;
+import com.colossus.common.dao.CategorySecondaryMapper;
+import com.colossus.common.model.CategoryImage;
+import com.colossus.common.model.CategorySecondary;
+import com.colossus.common.utils.FastJsonConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 
@@ -32,17 +31,17 @@ import java.util.Map;
 //@MapperScan(basePackages = "cn.binux.mapper")
 public class CategoryGenerate {
 
-    private static TbCategoryImageMapper tbCategoryImageMapper;
+    private static CategoryImageMapper tbCategoryImageMapper;
 
-    private static TbCategorySecondaryMapper tbCategorySecondaryMapper;
+    private static CategorySecondaryMapper tbCategorySecondaryMapper;
 
     @Autowired
-    public void setTbCategoryImageMapper(TbCategoryImageMapper tbCategoryImageMapper) {
+    public void setTbCategoryImageMapper(CategoryImageMapper tbCategoryImageMapper) {
         this.tbCategoryImageMapper = tbCategoryImageMapper;
     }
 
     @Autowired
-    public void setTbCategorySecondaryMapper(TbCategorySecondaryMapper tbCategorySecondaryMapper) {
+    public void setTbCategorySecondaryMapper(CategorySecondaryMapper tbCategorySecondaryMapper) {
         this.tbCategorySecondaryMapper = tbCategorySecondaryMapper;
     }
 
@@ -87,7 +86,7 @@ public class CategoryGenerate {
             List mapb = (List) mapo.get("b");
             for (int d = 0; d < mapb.size(); d++) {
                 String mapbstring = (String) mapb.get(d);
-                TbCategoryImage categoryImage = new TbCategoryImage();
+                CategoryImage categoryImage = new CategoryImage();
                 String[] strings = mapbstring.split("\\|");
                 categoryImage.setUrl(strings[0]);
                 categoryImage.setCid(id);
@@ -97,14 +96,14 @@ public class CategoryGenerate {
                 categoryImage.setSortOrder(1);
                 String s = saveToFastDFS("http://img10.360buyimg.com/" + strings[2]);
                 categoryImage.setImageUrl(s);
-                categoryImage.setCreated(new Date());
-                categoryImage.setUpdated(new Date());
+                categoryImage.setCreateTime(new Date());
+                categoryImage.setUpdateTime(new Date());
                 tbCategoryImageMapper.insert(categoryImage);
             }
 
             List listp = (List) mapo.get("p");
                 for (int i = 0; i < listp.size(); i++) {
-                    TbCategoryImage categoryImage = new TbCategoryImage();
+                    CategoryImage categoryImage = new CategoryImage();
                     String simage = (String) listp.get(i);
                     String[] strings = simage.split("\\|");
                     categoryImage.setUrl(strings[0]);
@@ -115,15 +114,15 @@ public class CategoryGenerate {
                     categoryImage.setSortOrder(1);
                     String s = saveToFastDFS("http://img10.360buyimg.com/" + strings[2]);
                     categoryImage.setImageUrl(s);
-                    categoryImage.setCreated(new Date());
-                    categoryImage.setUpdated(new Date());
+                    categoryImage.setCreateTime(new Date());
+                    categoryImage.setUpdateTime(new Date());
 
                     tbCategoryImageMapper.insert(categoryImage);
                 }
 
             List map0 = (List) mapo.get("s");
             for (int i = 0; i < map0.size(); i++) {
-                TbCategorySecondary categorySecondary = new TbCategorySecondary();
+                CategorySecondary categorySecondary = new CategorySecondary();
                 Map map1 = (Map) map0.get(i);
                 List map2 = (List) map1.get("s");
                 String s = (String) map1.get("n");
@@ -135,15 +134,15 @@ public class CategoryGenerate {
                 categorySecondary.setIsParent(map2 != null && map2.size() > 0 ? true : false);
                 categorySecondary.setStatus(1);
                 categorySecondary.setSortOrder(1);
-                categorySecondary.setCreated(new Date());
-                categorySecondary.setUpdated(new Date());
+                categorySecondary.setCreateTime(new Date());
+                categorySecondary.setUpdateTime(new Date());
 
                 tbCategorySecondaryMapper.insert(categorySecondary);
 
 
                 if (map2 != null && map2.size() > 0) {
                     for (int j = 0; j < map2.size(); j++) {
-                        TbCategorySecondary categorySecondary3 = new TbCategorySecondary();
+                        CategorySecondary categorySecondary3 = new CategorySecondary();
                         Map map3 = (Map) map2.get(j);
                         List map4 = (List) map3.get("s");
                         String s3 = (String) map3.get("n");
@@ -155,14 +154,14 @@ public class CategoryGenerate {
                         categorySecondary3.setIsParent(map4 != null && map4.size() > 0 ? true : false);
                         categorySecondary3.setStatus(1);
                         categorySecondary3.setSortOrder(1);
-                        categorySecondary3.setCreated(new Date());
-                        categorySecondary3.setUpdated(new Date());
+                        categorySecondary3.setCreateTime(new Date());
+                        categorySecondary3.setUpdateTime(new Date());
 
                         tbCategorySecondaryMapper.insert(categorySecondary3);
 
                         if (map4 != null && map4.size() > 0) {
                             for (int k = 0; k < map4.size(); k++) {
-                                TbCategorySecondary categorySecondary4 = new TbCategorySecondary();
+                                CategorySecondary categorySecondary4 = new CategorySecondary();
                                 Map map5 = (Map) map4.get(k);
                                 List map6 = (List) map5.get("s");
                                 String s5 = (String) map5.get("n");
@@ -174,8 +173,8 @@ public class CategoryGenerate {
                                 categorySecondary4.setIsParent(map6 != null && map6.size() > 0 ? true : false);
                                 categorySecondary4.setStatus(1);
                                 categorySecondary4.setSortOrder(1);
-                                categorySecondary4.setCreated(new Date());
-                                categorySecondary4.setUpdated(new Date());
+                                categorySecondary4.setCreateTime(new Date());
+                                categorySecondary4.setUpdateTime(new Date());
 
                                 tbCategorySecondaryMapper.insert(categorySecondary4);
 
@@ -191,7 +190,7 @@ public class CategoryGenerate {
 
             List listt = (List) mapo.get("t");
                 for (int i = 0; i < listt.size(); i++) {
-                    TbCategorySecondary categorySecondary = new TbCategorySecondary();
+                    CategorySecondary categorySecondary = new CategorySecondary();
                     String s = (String) listt.get(i);
                     String[] strings = s.split("\\|");
                     categorySecondary.setCid(id);
@@ -201,8 +200,8 @@ public class CategoryGenerate {
                     categorySecondary.setIsParent(true);
                     categorySecondary.setSortOrder(1);
                     categorySecondary.setStatus(1);
-                    categorySecondary.setCreated(new Date());
-                    categorySecondary.setUpdated(new Date());
+                    categorySecondary.setCreateTime(new Date());
+                    categorySecondary.setUpdateTime(new Date());
 
                     tbCategorySecondaryMapper.insert(categorySecondary);
                 }

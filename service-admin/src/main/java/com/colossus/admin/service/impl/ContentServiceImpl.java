@@ -1,9 +1,10 @@
 package com.colossus.admin.service.impl;
 
-import cn.binux.admin.service.ContentService;
-import cn.binux.dao.TbCategoryMapper;
-import cn.binux.dao.TbCategorySecondaryMapper;
-import cn.binux.model.*;
+
+import com.colossus.admin.service.ContentService;
+import com.colossus.common.dao.CategoryMapper;
+import com.colossus.common.dao.CategorySecondaryMapper;
+import com.colossus.common.model.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
@@ -32,9 +33,9 @@ public class ContentServiceImpl implements ContentService {
     private static final Logger logger = LoggerFactory.getLogger(ContentServiceImpl.class);
 
     @Autowired
-    private TbCategoryMapper categoryMapper;
+    private CategoryMapper categoryMapper;
     @Autowired
-    private TbCategorySecondaryMapper categorySecondaryMapper;
+    private CategorySecondaryMapper categorySecondaryMapper;
 
 
     @Override
@@ -61,13 +62,13 @@ public class ContentServiceImpl implements ContentService {
         //System.out.println(pageNum);
         PageHelper.startPage(pageNum, iDisplayLength);
 
-        TbCategoryExample example = new TbCategoryExample();
-        TbCategoryExample.Criteria criteria = example.createCriteria();
+        CategoryExample example = new CategoryExample();
+        CategoryExample.Criteria criteria = example.createCriteria();
         criteria.andSortOrderEqualTo(1);
 
-        List<TbCategory> list = categoryMapper.selectByExample(example);
+        List<Category> list = categoryMapper.selectByExample(example);
         //System.out.println(list.size());
-        PageInfo<TbCategory> pageInfo = new PageInfo<>(list);
+        PageInfo<Category> pageInfo = new PageInfo<>(list);
 
         map.put("sEcho", sEcho + 1);
         map.put("iTotalRecords", pageInfo.getTotal());//数据总条数
@@ -96,17 +97,17 @@ public class ContentServiceImpl implements ContentService {
             }
     )
     //@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
-    public XbinResult saveCategory(String id, String name, Integer sort_order) {
+    public BaseResult saveCategory(String id, String name, Integer sort_order) {
 
-        TbCategory category = new TbCategory();
+        Category category = new Category();
         category.setId(id);
         category.setName(name);
         category.setSortOrder(sort_order);
-        category.setUpdated(new Date());
+        category.setUpdateTime(new Date());
 
         int i = categoryMapper.updateByPrimaryKey(category);
 
-        return i > 0 ? XbinResult.ok() : XbinResult.build(400, "更新失败！");
+        return i > 0 ? BaseResult.ok() : BaseResult.build(400, "更新失败！");
     }
 
     @Override
@@ -134,13 +135,13 @@ public class ContentServiceImpl implements ContentService {
         //System.out.println(pageNum);
         PageHelper.startPage(pageNum, iDisplayLength);
 
-        TbCategorySecondaryExample example = new TbCategorySecondaryExample();
-        TbCategorySecondaryExample.Criteria criteria = example.createCriteria();
+        CategorySecondaryExample example = new CategorySecondaryExample();
+        CategorySecondaryExample.Criteria criteria = example.createCriteria();
         criteria.andParentIdEqualTo(0L);
 
-        List<TbCategorySecondary> list = categorySecondaryMapper.selectByExample(example);
+        List<CategorySecondary> list = categorySecondaryMapper.selectByExample(example);
         //System.out.println(list.size());
-        PageInfo<TbCategorySecondary> pageInfo = new PageInfo<>(list);
+        PageInfo<CategorySecondary> pageInfo = new PageInfo<>(list);
 
         map.put("sEcho", sEcho + 1);
         map.put("iTotalRecords", pageInfo.getTotal());//数据总条数
@@ -176,13 +177,13 @@ public class ContentServiceImpl implements ContentService {
         //System.out.println(pageNum);
         PageHelper.startPage(pageNum, iDisplayLength);
 
-        TbCategorySecondaryExample example = new TbCategorySecondaryExample();
-        TbCategorySecondaryExample.Criteria criteria = example.createCriteria();
+        CategorySecondaryExample example = new CategorySecondaryExample();
+        CategorySecondaryExample.Criteria criteria = example.createCriteria();
         criteria.andNameLike("%" + sSearch + "%");
 
-        List<TbCategorySecondary> list = categorySecondaryMapper.selectByExample(example);
+        List<CategorySecondary> list = categorySecondaryMapper.selectByExample(example);
         //System.out.println(list.size());
-        PageInfo<TbCategorySecondary> pageInfo = new PageInfo<>(list);
+        PageInfo<CategorySecondary> pageInfo = new PageInfo<>(list);
 
         map.put("sEcho", sEcho + 1);
         map.put("iTotalRecords", pageInfo.getTotal());//数据总条数
@@ -209,12 +210,12 @@ public class ContentServiceImpl implements ContentService {
             }
     )
     //@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
-    public XbinResult saveCategorySecondary(@RequestBody TbCategorySecondary categorySecondary) {
+    public BaseResult saveCategorySecondary(@RequestBody CategorySecondary categorySecondary) {
 
-        categorySecondary.setUpdated(new Date());
+        categorySecondary.setUpdateTime(new Date());
 
         int i = categorySecondaryMapper.updateByPrimaryKeySelective(categorySecondary);
 
-        return i > 0 ? XbinResult.ok() : XbinResult.build(400, "服务器出错!");
+        return i > 0 ? BaseResult.ok() : BaseResult.build(400, "服务器出错!");
     }
 }

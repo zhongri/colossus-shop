@@ -1,11 +1,11 @@
 package com.colossus.portal.service.impl;
 
 import com.colossus.RedisService;
-import com.colossus.common.dao.TbContentMapper;
+import com.colossus.common.dao.ContentMapper;
 import com.colossus.common.model.Content;
 import com.colossus.common.model.ContentExample;
-import com.colossus.portal.service.PortalContentService;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.portal.service.PortalContentService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -28,7 +28,7 @@ public class PortalContentServiceImpl implements PortalContentService {
     private static Logger logger = Logger.getLogger(PortalContentServiceImpl.class);
 
     @Autowired
-    private TbContentMapper contentMapper;
+    private ContentMapper contentMapper;
 
     @Autowired
     private RedisService redisService;
@@ -53,7 +53,7 @@ public class PortalContentServiceImpl implements PortalContentService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public List<Content> getContentByCid(Long bigAdIndex) {
+    public List<Content> getContentByCid(String bigAdIndex) {
 
         //先查询缓存
 

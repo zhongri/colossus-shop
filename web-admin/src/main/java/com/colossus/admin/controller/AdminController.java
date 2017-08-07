@@ -36,7 +36,7 @@ public class AdminController {
     public String showIndex(Model model) {
 
         ManageUserVO userVO = new ManageUserVO();
-        userVO.setCreated(new Date());
+        userVO.setCreateTime(new Date());
         userVO.setName("許彬");
         userVO.setJob("CEO");
 
@@ -48,7 +48,7 @@ public class AdminController {
     public String showAdmin(Model model) {
 
         ManageUserVO userVO = new ManageUserVO();
-        userVO.setCreated(new Date());
+        userVO.setCreateTime(new Date());
         userVO.setName("許彬");
         userVO.setJob("CEO");
 

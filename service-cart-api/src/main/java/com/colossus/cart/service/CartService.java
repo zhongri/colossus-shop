@@ -23,7 +23,7 @@ public interface CartService {
 
     @RequestMapping(value = "/addCart",method = RequestMethod.POST)
     BaseResult addCart(
-            @RequestParam("pid")        Long pid,
+            @RequestParam("pid")        String pid,
             @RequestParam("pcount")     Integer pcount,
             @RequestParam("uuid")       String uuid
     );
