@@ -17,9 +17,9 @@
     <properties>
         <springCloudVersion>2.0.0.M1</springCloudVersion>
         <springBootVersion>2.0.0.M3</springBootVersion>
-        <springBootMyBatisVersion>1.2.0</springBootMyBatisVersion>
-        <springBootpagehelperVersion>1.1.2</springBootpagehelperVersion>
-        <springBootAdminVersion>1.5.0</springBootAdminVersion>
+        <springBootMyBatisVersion>1.3.0</springBootMyBatisVersion>
+        <springBootpagehelperVersion>1.1.3</springBootpagehelperVersion>
+        <springBootAdminVersion>1.5.3</springBootAdminVersion>
         <springBootDruidVersion>0.0.1-SNAPSHOT</springBootDruidVersion>
         <springBootRedisVersion>0.0.1-SNAPSHOT</springBootRedisVersion>
         <junitVersion> 4.12</junitVersion>
@@ -104,6 +104,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+            <version>${springCloudVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
             <version>${springCloudVersion}</version>
         </dependency>
@@ -111,6 +116,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
             <version>${springCloudVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${springBootVersion}</version>
         </dependency>
 
         <dependency>

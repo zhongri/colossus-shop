@@ -231,5 +231,5 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where item_id = #{itemId,jdbcType=VARCHAR}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
 </mapper>

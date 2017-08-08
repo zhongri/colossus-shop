@@ -1,8 +1,8 @@
 package com.colossus.item.service.hystrix;
 
-import com.colossus.item.service.ItemService;
 import com.colossus.common.model.Item;
 import com.colossus.common.model.ItemDesc;
+import com.colossus.item.service.ItemService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
  * @author xubin.
  * @create 2017-05-04
  */
-
 @Component
 public class ItemServiceHystrix implements ItemService {
 
     @Override
-    public Item getItemById(Long itemId) {
+    public Item getItemById(String itemId) {
+        System.out.println("hahahhahahah=======================================");
         return null;
     }
 
     @Override
-    public ItemDesc getItemDescById(Long itemId) {
+    public ItemDesc getItemDescById(String itemId) {
         return null;
     }
 }

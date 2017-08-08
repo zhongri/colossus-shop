@@ -74,7 +74,7 @@
   <sql id="Base_Column_List">
     id, category_id, title, sub_title, url, pic, pic2, content, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.colossus.commone.model.ContentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.colossus.common.model.ContentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -98,13 +98,13 @@
     delete from content
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.colossus.commone.model.ContentExample">
+  <delete id="deleteByExample" parameterType="com.colossus.common.model.ContentExample">
     delete from content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.colossus.commone.model.Content">
+  <insert id="insert" parameterType="com.colossus.common.model.Content">
     insert into content (id, category_id, title, 
       sub_title, url, pic, 
       pic2, content, create_time, 
@@ -114,7 +114,7 @@
       #{pic2,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.colossus.commone.model.Content">
+  <insert id="insertSelective" parameterType="com.colossus.common.model.Content">
     insert into content
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -181,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.colossus.commone.model.ContentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.colossus.common.model.ContentExample" resultType="java.lang.Long">
     select count(*) from content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -241,7 +241,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.colossus.commone.model.Content">
+  <update id="updateByPrimaryKeySelective" parameterType="com.colossus.common.model.Content">
     update content
     <set>
       <if test="categoryId != null">
@@ -274,7 +274,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.colossus.commone.model.Content">
+  <update id="updateByPrimaryKey" parameterType="com.colossus.common.model.Content">
     update content
     set category_id = #{categoryId,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
@@ -287,5 +287,5 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
 </mapper>

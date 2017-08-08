@@ -1,10 +1,13 @@
 server:
-  port: ${port:8502}
-
+  port: 8502
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8501/eureka/}
+      defaultZone: http://127.0.0.1:8501/eureka
+  instance:
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+
 
 spring:
   application:
@@ -14,7 +17,8 @@ spring:
       label: master
       server:
         git:
-          uri: ${https://github.com/Tlsy/config-server.git}
-          username: ${git.username:Tlsy}
-          password: ${git.password:lsy417937}
-          search-paths: ${git.paths:*}
+          uri: https://github.com/Tlsy/config-server.git
+          username: Tlsy
+          password: lsy417937
+management:
+  context-path: /

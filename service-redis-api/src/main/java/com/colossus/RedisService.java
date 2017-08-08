@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(value = "xbin-store-service-redis",fallback = RedisServiceHistrix.class)
+@FeignClient(value = "service-redis",fallback = RedisServiceHistrix.class)
 public interface RedisService {
 
     @GetMapping(value = "get")

@@ -137,7 +137,7 @@ public class MybatisGeneratorUtil {
 				"common",
 				"colossus_shop",
 				"",
-				"com.colossus.commone",
+				"com.colossus.common",
 				new HashMap<>());
 	}
 

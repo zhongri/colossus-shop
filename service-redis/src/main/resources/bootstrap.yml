@@ -15,14 +15,23 @@ security.basic.enabled: false
 
 server:
   port: ${service.server.port:8517}
+hystrix:
+  config:
+    stream:
+      maxConcurrentConnections: 50
 
 management:
   security:
     enabled: false
+  context-path: /
 
 eureka:
   instance:
     status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+    health-check-url-path: ${management.context-path}/health
+    metadata-map:
+      management.port: ${management.port:8517}
+    home-page-url-path: ${management.context-path}
   client:
     serviceUrl:
-      defaultZone: ${eureka.serviceUrl:http://127.0.0.1:8501/eureka/}
+      defaultZone: http://127.0.0.1:8501/eureka/

@@ -1,5 +1,5 @@
 druid:
-    url: jdbc:mysql://localhost:3306/xbin_store?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/colossus_shop?characterEncoding=utf-8
     driver-class: com.mysql.jdbc.Driver
     username: root
     password: 417937
@@ -28,7 +28,7 @@ druid:
           exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
           reset-enable: false
 mybatis:
-    type-aliases-package: cn.binux.pojo
+    type-aliases-package: com.colossus.common.model
     mapper-locations: classpath:mapper/*.xml
 
 
