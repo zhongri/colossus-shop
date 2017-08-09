@@ -10,6 +10,7 @@ server:
 management:
   security:
     enabled: false
+  context-path: /
 
 eureka:
   instance:

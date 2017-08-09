@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @create 2017-05-05
  */
 
-@FeignClient(value = "xbin-store-cloud-service-notify",fallback = NotifyUserServiceHystrix.class)
+@FeignClient(value = "service-notify",fallback = NotifyUserServiceHystrix.class)
 public interface NotifyUserService {
     /**
      * 发送短信

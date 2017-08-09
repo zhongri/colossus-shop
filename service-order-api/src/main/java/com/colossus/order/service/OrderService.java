@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017-02-28 下午9:04
  */
 
-@FeignClient(value = "xbin-store-cloud-service-order",fallback = OrderServiceHystrix.class)
+@FeignClient(value = "service-order",fallback = OrderServiceHystrix.class)
 public interface OrderService {
     /**
      * 提交订单

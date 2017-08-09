@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017-05-03
  */
 
-@FeignClient(value = "xbin-store-cloud-service-search",fallback = SearchServiceHystrix.class)
+@FeignClient(value = "service-search",fallback = SearchServiceHystrix.class)
 public interface SearchService {
 
     //http://localhost:8512/search/SolrService/importAllItems/TztyomXxDyi92

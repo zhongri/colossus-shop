@@ -2,9 +2,10 @@ package com.colossus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = RabbitAutoConfiguration.class)
 @EnableEurekaServer
 public class EurekaApplication {
 

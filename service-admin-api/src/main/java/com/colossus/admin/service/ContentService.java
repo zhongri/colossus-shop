@@ -18,7 +18,7 @@ import java.util.Map;
  * @create 2017-04-27
  */
 
-@FeignClient(value = "xbin-store-cloud-service-admin",fallback = ContentServiceHystrix.class)
+@FeignClient(value = "service-admin",fallback = ContentServiceHystrix.class)
 public interface ContentService {
 
     @RequestMapping(value = "/getCategoryList",method = RequestMethod.POST)

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @create 2017-05-04
  */
 
-@FeignClient(value = "xbin-store-cloud-service-item",fallback = ItemServiceHystrix.class)
+@FeignClient(value = "service-item",fallback = ItemServiceHystrix.class)
 public interface ItemService {
 
     @RequestMapping(value = "/getItemById/{id}",method = RequestMethod.POST)

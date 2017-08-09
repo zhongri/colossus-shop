@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017-05-05
  */
 
-@FeignClient(value = "xbin-store-cloud-service-sso",fallback = UserServiceHystrix.class)
+@FeignClient(value = "service-sso",fallback = UserServiceHystrix.class)
 public interface UserService {
 
     /**

@@ -18,7 +18,7 @@ import java.util.List;
  * @create 2017-05-04
  */
 
-@FeignClient(value = "xbin-store-cloud-service-cart",fallback = CartServiceHystrix.class)
+@FeignClient(value = "service-cart",fallback = CartServiceHystrix.class)
 public interface CartService {
 
     @RequestMapping(value = "/addCart",method = RequestMethod.POST)
