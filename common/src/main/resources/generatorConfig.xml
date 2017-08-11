@@ -52,16 +52,27 @@
                         password="417937" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="com.colossus.common.model" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
+        <javaModelGenerator targetPackage="com.colossus.commone.model" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="com.colossus.common.mapper" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
+        <sqlMapGenerator targetPackage="com.colossus.commone.mapper" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="com.colossus.common.dao" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.colossus.commone.dao" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-                                    <table tableName="category" domainObjectName="Category"></table>
+                                    <table tableName="auth_log" domainObjectName="AuthLog"></table>
+                                                <table tableName="auth_organization" domainObjectName="AuthOrganization"></table>
+                                                <table tableName="auth_permission" domainObjectName="AuthPermission"></table>
+                                                <table tableName="auth_role" domainObjectName="AuthRole"></table>
+                                                <table tableName="auth_role_permission" domainObjectName="AuthRolePermission"></table>
+                                                <table tableName="auth_system" domainObjectName="AuthSystem"></table>
+                                                <table tableName="auth_user" domainObjectName="AuthUser"></table>
+                                                <table tableName="auth_user_addr" domainObjectName="AuthUserAddr"></table>
+                                                <table tableName="auth_user_organization" domainObjectName="AuthUserOrganization"></table>
+                                                <table tableName="auth_user_permission" domainObjectName="AuthUserPermission"></table>
+                                                <table tableName="auth_user_role" domainObjectName="AuthUserRole"></table>
+                                                <table tableName="category" domainObjectName="Category"></table>
                                                 <table tableName="category_image" domainObjectName="CategoryImage"></table>
                                                 <table tableName="category_secondary" domainObjectName="CategorySecondary"></table>
                                                 <table tableName="content" domainObjectName="Content"></table>
@@ -75,7 +86,5 @@
                                                 <table tableName="order" domainObjectName="Order"></table>
                                                 <table tableName="order_item" domainObjectName="OrderItem"></table>
                                                 <table tableName="transaction_message" domainObjectName="TransactionMessage"></table>
-                                                <table tableName="user" domainObjectName="User"></table>
-                                                <table tableName="user_addr" domainObjectName="UserAddr"></table>
                         </context>
 </generatorConfiguration>
