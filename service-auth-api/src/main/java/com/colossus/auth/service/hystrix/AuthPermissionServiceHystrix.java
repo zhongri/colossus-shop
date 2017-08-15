@@ -9,12 +9,12 @@ import com.colossus.auth.service.AuthPermissionService;
 
 public class AuthPermissionServiceHystrix extends BaseServiceHystrix<AuthPermissionMapper,AuthPermission,AuthPermissionExample> implements AuthPermissionService {
     @Override
-    public JSONArray getTreeByRoleId(Integer roleId) {
+    public JSONArray getTreeByRoleId(String roleId) {
         return null;
     }
 
     @Override
-    public JSONArray getTreeByUserId(Integer usereId, Byte type) {
+    public JSONArray getTreeByUserId(String userId, Byte type) {
         return null;
     }
 }

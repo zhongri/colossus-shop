@@ -1,8 +1,8 @@
 package com.colossus.order.interceptor;
 
+import com.colossus.auth.service.SSOService;
 import com.colossus.common.utils.AppConfig;
 import com.colossus.common.model.BaseResult;
-import com.colossus.auth.service.UserService;
 import com.colossus.common.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     private String CART_ORDER_INFO_PROFIX;
 
     @Autowired
-    private UserService userService;
+    private SSOService SSOService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
@@ -50,7 +50,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        BaseResult result = userService.token(cookieValue, "");
+        BaseResult result = SSOService.token(cookieValue, "");
 
         if (result.getStatus() != 200) {
             //跳转登录页面

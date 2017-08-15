@@ -14,8 +14,8 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 @FeignClient(value = "auth-permission-service",fallback = AuthPermissionServiceHystrix.class)
 public interface AuthPermissionService extends BaseService<AuthPermission,AuthPermissionExample> {
 
-    JSONArray getTreeByRoleId(Integer roleId);
+    JSONArray getTreeByRoleId(String  roleId);
 
-    JSONArray getTreeByUserId(Integer usereId, Byte type);
+    JSONArray getTreeByUserId(String  userId, Byte type);
 
 }

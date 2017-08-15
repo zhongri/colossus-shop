@@ -17,9 +17,9 @@ public interface AuthUserPermissionService extends BaseService<AuthUserPermissio
     /**
      * 用户权限
      * @param datas 权限数据
-     * @param id 用户id
+     * @param userId 用户id
      * @return
      */
-    int permission(JSONArray datas, int id);
+    int permission(JSONArray datas, String userId);
 
 }

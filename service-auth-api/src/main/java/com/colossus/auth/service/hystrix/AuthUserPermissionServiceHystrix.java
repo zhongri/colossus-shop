@@ -8,8 +8,9 @@ import com.colossus.common.service.hystrix.BaseServiceHystrix;
 import com.colossus.auth.service.AuthUserPermissionService;
 
 public class AuthUserPermissionServiceHystrix extends BaseServiceHystrix<AuthUserPermissionMapper,AuthUserPermission,AuthUserPermissionExample> implements AuthUserPermissionService {
+
     @Override
-    public int permission(JSONArray datas, int id) {
+    public int permission(JSONArray datas, String userId) {
         return 0;
     }
 }

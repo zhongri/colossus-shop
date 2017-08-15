@@ -1,12 +1,12 @@
 package com.colossus.auth.service.impl;
 
 import com.colossus.RedisService;
+import com.colossus.auth.service.SSOService;
 import com.colossus.common.dao.UserMapper;
 import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.User;
 import com.colossus.common.model.UserExample;
 import com.colossus.common.utils.FastJsonConvert;
-import com.colossus.auth.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,18 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 /**
- * 用户登录相关服务 Service 实现
+ * 用户单点登录相关服务 Service 实现
  *
- * @author xubin.
+ * @author Tlsy.
  * @create 2017-05-05
  */
-
-@Api(value = "API - UserServiceImpl", description = "sso 服务")
+@Api(value = "SSO-service", description = "sso 服务")
 @RestController
 @RefreshScope
-public class UserServiceImpl implements UserService {
+public class SSOServiceImpl implements SSOService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SSOServiceImpl.class);
     public static final String KEY = "success";
     public static final int ERROR = 1;
     public static final int SUCCESS = 0;

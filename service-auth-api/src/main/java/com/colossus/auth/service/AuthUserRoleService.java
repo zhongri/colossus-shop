@@ -16,9 +16,9 @@ public interface AuthUserRoleService extends BaseService<AuthUserRole,AuthUserRo
     /**
      * 用户角色
      * @param roleIds 角色ids
-     * @param id 用户id
+     * @param userId 用户id
      * @return
      */
-    int role(String[] roleIds, int id);
+    int role(String[] roleIds, String userId);
 
 }

@@ -2,7 +2,7 @@ package com.colossus.auth.service.hystrix;
 
 import com.colossus.common.model.User;
 import com.colossus.common.model.BaseResult;
-import com.colossus.auth.service.UserService;
+import com.colossus.auth.service.SSOService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserServiceHystrix implements UserService {
+public class SSOServiceHystrix implements SSOService {
 
     /**
      * 请求格式 POST

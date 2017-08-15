@@ -7,8 +7,9 @@ import com.colossus.common.service.hystrix.BaseServiceHystrix;
 import com.colossus.auth.service.AuthUserRoleService;
 
 public class AuthUserRoleServiceHystrix extends BaseServiceHystrix<AuthUserRoleMapper,AuthUserRole,AuthUserRoleExample> implements AuthUserRoleService {
+
     @Override
-    public int role(String[] roleIds, int id) {
+    public int role(String[] roleIds, String userId) {
         return 0;
     }
 }

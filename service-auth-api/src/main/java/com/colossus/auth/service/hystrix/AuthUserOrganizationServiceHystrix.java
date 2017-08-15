@@ -7,8 +7,9 @@ import com.colossus.common.service.hystrix.BaseServiceHystrix;
 import com.colossus.auth.service.AuthUserOrganizationService;
 
 public class AuthUserOrganizationServiceHystrix extends BaseServiceHystrix<AuthUserOrganizationMapper,AuthUserOrganization,AuthUserOrganizationExample> implements AuthUserOrganizationService{
+
     @Override
-    public int organization(String[] organizationIds, int id) {
+    public int organization(String[] organizationIds, String userId) {
         return 0;
     }
 }

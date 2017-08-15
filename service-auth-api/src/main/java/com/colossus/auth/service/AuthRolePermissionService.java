@@ -16,10 +16,10 @@ public interface AuthRolePermissionService  extends BaseService<AuthRolePermissi
 
     /**
      * 角色权限
-     * @param datas 权限数据
-     * @param id 角色id
+     * @param data 权限数据
+     * @param userId 角色id
      * @return
      */
-    int rolePermission(JSONArray datas, int id);
+    int rolePermission(JSONArray data, String userId);
 
 }

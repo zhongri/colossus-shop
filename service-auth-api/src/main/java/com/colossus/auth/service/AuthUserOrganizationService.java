@@ -16,9 +16,9 @@ public interface AuthUserOrganizationService extends BaseService<AuthUserOrganiz
     /**
      * 用户组织
      * @param organizationIds 组织ids
-     * @param id 用户id
+     * @param userId 用户id
      * @return
      */
-    int organization(String[] organizationIds, int id);
+    int organization(String[] organizationIds, String userId);
 
 }

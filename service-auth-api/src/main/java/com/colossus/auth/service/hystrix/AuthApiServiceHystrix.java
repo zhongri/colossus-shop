@@ -7,42 +7,42 @@ import java.util.List;
 
 public class AuthApiServiceHystrix implements AuthApiService {
     @Override
-    public List<AuthPermission> selectAuthPermissionByAuthUserId(Integer AuthUserId) {
+    public List<AuthPermission> selectAuthPermissionByAuthUserId(String authUserId) {
         return null;
     }
 
     @Override
-    public List<AuthPermission> selectAuthPermissionByAuthUserIdByCache(Integer AuthUserId) {
+    public List<AuthPermission> selectAuthPermissionByAuthUserIdByCache(String authUserId) {
         return null;
     }
 
     @Override
-    public List<AuthRole> selectAuthRoleByAuthUserId(Integer AuthUserId) {
+    public List<AuthRole> selectAuthRoleByAuthUserId(String authUserId) {
         return null;
     }
 
     @Override
-    public List<AuthRole> selectAuthRoleByAuthUserIdByCache(Integer AuthUserId) {
+    public List<AuthRole> selectAuthRoleByAuthUserIdByCache(String authUserId) {
         return null;
     }
 
     @Override
-    public List<AuthRolePermission> selectAuthRolePermisstionByAuthRoleId(Integer AuthRoleId) {
+    public List<AuthRolePermission> selectAuthRolePermissionByAuthRoleId(String authRoleId) {
         return null;
     }
 
     @Override
-    public List<AuthUserPermission> selectAuthUserPermissionByAuthUserId(Integer AuthUserId) {
+    public List<AuthUserPermission> selectAuthUserPermissionByAuthUserId(String authUserId) {
         return null;
     }
 
     @Override
-    public List<AuthSystem> selectAuthSystemByExample(AuthSystemExample AuthSystemExample) {
+    public List<AuthSystem> selectAuthSystemByExample(AuthSystemExample authSystemExample) {
         return null;
     }
 
     @Override
-    public List<AuthOrganization> selectAuthOrganizationByExample(AuthOrganizationExample AuthOrganizationExample) {
+    public List<AuthOrganization> selectAuthOrganizationByExample(AuthOrganizationExample authOrganizationExample) {
         return null;
     }
 
@@ -52,7 +52,7 @@ public class AuthApiServiceHystrix implements AuthApiService {
     }
 
     @Override
-    public int insertAuthLogSelective(AuthLog record) {
+    public int insertAuthLogSelective(AuthLog authLog) {
         return 0;
     }
 }

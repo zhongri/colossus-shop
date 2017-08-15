@@ -4,6 +4,8 @@ package com.colossus.auth.service;
 import com.colossus.common.model.*;
 import com.colossus.auth.service.hystrix.AuthApiServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -16,72 +18,82 @@ public interface AuthApiService {
 
     /**
      * 根据用户id获取所拥有的权限(用户和角色权限合集)
-     * @param AuthUserId
+     * @param authUserId
      * @return
      */
-    List<AuthPermission> selectAuthPermissionByAuthUserId(Integer AuthUserId);
+    @GetMapping("select-permission-by-userId")
+    List<AuthPermission> selectAuthPermissionByAuthUserId(String  authUserId);
 
     /**
      * 根据用户id获取所拥有的权限(用户和角色权限合集)
-     * @param AuthUserId
+     * @param authUserId
      * @return
      */
-    List<AuthPermission> selectAuthPermissionByAuthUserIdByCache(Integer AuthUserId);
+    @GetMapping("select-permission-by-cache-userId")
+    List<AuthPermission> selectAuthPermissionByAuthUserIdByCache(String  authUserId);
 
     /**
      * 根据用户id获取所属的角色
-     * @param AuthUserId
+     * @param authUserId
      * @return
      */
-    List<AuthRole> selectAuthRoleByAuthUserId(Integer AuthUserId);
+    @GetMapping("select-role-by-userId")
+    List<AuthRole> selectAuthRoleByAuthUserId(String authUserId);
 
     /**
      * 根据用户id获取所属的角色
-     * @param AuthUserId
+     * @param authUserId
      * @return
      */
-    List<AuthRole> selectAuthRoleByAuthUserIdByCache(Integer AuthUserId);
+    @GetMapping("select-role-by-cache-userId")
+    List<AuthRole> selectAuthRoleByAuthUserIdByCache(String  authUserId);
 
     /**
      * 根据角色id获取所拥有的权限
-     * @param AuthRoleId
+     * @param authRoleId
      * @return
      */
-    List<AuthRolePermission> selectAuthRolePermisstionByAuthRoleId(Integer AuthRoleId);
+    @GetMapping("select-rolePermission-by-roleId")
+    List<AuthRolePermission> selectAuthRolePermissionByAuthRoleId(String authRoleId);
 
     /**
      * 根据用户id获取所拥有的权限
-     * @param AuthUserId
+     * @param authUserId
      * @return
      */
-    List<AuthUserPermission> selectAuthUserPermissionByAuthUserId(Integer AuthUserId);
+    @GetMapping("select-userPermission-by-userId")
+    List<AuthUserPermission> selectAuthUserPermissionByAuthUserId(String authUserId);
 
     /**
      * 根据条件获取系统数据
-     * @param AuthSystemExample
+     * @param authSystemExample
      * @return
      */
-    List<AuthSystem> selectAuthSystemByExample(AuthSystemExample AuthSystemExample);
+    @GetMapping("select-system-by-example")
+    List<AuthSystem> selectAuthSystemByExample(AuthSystemExample authSystemExample);
 
     /**
      * 根据条件获取组织数据
-     * @param AuthOrganizationExample
+     * @param authOrganizationExample
      * @return
      */
-    List<AuthOrganization> selectAuthOrganizationByExample(AuthOrganizationExample AuthOrganizationExample);
+    @GetMapping("select-organization-by-example")
+    List<AuthOrganization> selectAuthOrganizationByExample(AuthOrganizationExample authOrganizationExample);
 
     /**
      * 根据username获取AuthUser
      * @param username
      * @return
      */
+    @GetMapping("select-user-by-userName")
     AuthUser selectAuthUserByUsername(String username);
 
     /**
      * 写入操作日志
-     * @param record
+     * @param authLog
      * @return
      */
-    int insertAuthLogSelective(AuthLog record);
+    @PostMapping("insert-authLog")
+    int insertAuthLogSelective(AuthLog authLog);
 
 }

@@ -2,7 +2,7 @@ package com.colossus.auth.service;
 
 import com.colossus.common.model.User;
 import com.colossus.common.model.BaseResult;
-import com.colossus.auth.service.hystrix.UserServiceHystrix;
+import com.colossus.auth.service.hystrix.SSOServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017-05-05
  */
 
-@FeignClient(value = "service-sso",fallback = UserServiceHystrix.class)
-public interface UserService {
+@FeignClient(value = "service-sso",fallback = SSOServiceHystrix.class)
+public interface SSOService {
 
     /**
      * 请求格式 POST

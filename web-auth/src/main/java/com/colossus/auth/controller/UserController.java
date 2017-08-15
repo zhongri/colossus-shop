@@ -4,7 +4,7 @@ import com.colossus.common.utils.AppConfig;
 import com.colossus.common.model.User;
 import com.colossus.notify.service.NotifyUserService;
 import com.colossus.common.model.BaseResult;
-import com.colossus.auth.service.UserService;
+import com.colossus.auth.service.SSOService;
 import com.colossus.common.utils.CookieUtils;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
@@ -32,7 +32,7 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private SSOService SSOService;
 
     @Autowired
     private NotifyUserService notifyUserService;
@@ -75,7 +75,7 @@ public class UserController {
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public @ResponseBody String login(User user, String returnUrl, HttpServletResponse response, HttpServletRequest request) {
 
-        BaseResult result = userService.login(user);
+        BaseResult result = SSOService.login(user);
 
         if (result.getStatus() == 200) {
 
@@ -121,7 +121,7 @@ public class UserController {
             @RequestParam(defaultValue = "")    String email,
             @RequestParam(defaultValue = "")    String phone) {
 
-        return userService.validateUser(isEngaged, regName, email, phone);
+        return SSOService.validateUser(isEngaged, regName, email, phone);
     }
 
     /**
@@ -132,7 +132,7 @@ public class UserController {
      */
     @RequestMapping("/validate/validateAuthCode")
     public @ResponseBody String validateUser(String authCode, String uuid) {
-        return userService.validateAuthCode(authCode, uuid);
+        return SSOService.validateAuthCode(authCode, uuid);
     }
 
     /**
@@ -161,7 +161,7 @@ public class UserController {
      */
     @RequestMapping("/register/regService")
     public @ResponseBody String regService(String regName, String pwd, String pwdRepeat, String phone, String mobileCode, String authCode, String uuid) {
-        return userService.register(regName, pwd, pwdRepeat, phone, mobileCode, uuid,authCode, "");
+        return SSOService.register(regName, pwd, pwdRepeat, phone, mobileCode, uuid,authCode, "");
     }
     /**
      * 请求格式 POST
@@ -179,7 +179,7 @@ public class UserController {
      */
     @RequestMapping("/register/sendRegEmail")
     public @ResponseBody String sendRegEmail(String regName, String pwdRepeat, String pwd, String phone, String mobileCode, String uuid, String authCode, String email) {
-        return userService.register(regName, pwd, pwdRepeat, phone, mobileCode, uuid, authCode, email);
+        return SSOService.register(regName, pwd, pwdRepeat, phone, mobileCode, uuid, authCode, email);
     }
 
 

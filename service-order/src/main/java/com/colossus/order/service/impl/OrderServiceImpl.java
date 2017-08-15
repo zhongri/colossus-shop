@@ -1,6 +1,7 @@
 package com.colossus.order.service.impl;
 
 import com.colossus.RedisService;
+import com.colossus.auth.service.SSOService;
 import com.colossus.common.dao.OrderItemMapper;
 import com.colossus.common.dao.OrderMapper;
 import com.colossus.common.model.*;
@@ -8,7 +9,6 @@ import com.colossus.common.utils.AppConfig;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.common.utils.IDUtils;
 import com.colossus.order.service.OrderService;
-import com.colossus.auth.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    private UserService userService;
+    private SSOService SSOService;
 
     @Autowired
     private RedisService redisService;
@@ -85,7 +85,7 @@ public class OrderServiceImpl implements OrderService {
     public BaseResult generateOrder(String userCookieValue, String cartCookieValue, String addrId, Integer noAnnoyance, Integer paymentType, String orderId, String shippingName) {
 
 
-        BaseResult result = userService.token(userCookieValue, "");
+        BaseResult result = SSOService.token(userCookieValue, "");
         if (result.getData() == null) {
             logger.error("用户没有登录!");
             return BaseResult.build(400, "系统错误!");
