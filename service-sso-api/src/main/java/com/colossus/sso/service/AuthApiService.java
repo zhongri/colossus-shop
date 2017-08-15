@@ -2,6 +2,8 @@ package com.colossus.sso.service;
 
 
 import com.colossus.common.model.*;
+import com.colossus.sso.service.hystrix.AuthApiServiceHystrix;
+import org.springframework.cloud.netflix.feign.FeignClient;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  * Auth系统接口
  * Created by shuzheng on 2017/2/11.
  */
+@FeignClient(value = "auth-api-service",fallback = AuthApiServiceHystrix.class)
 public interface AuthApiService {
 
     /**
