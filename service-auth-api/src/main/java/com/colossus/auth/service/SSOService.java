@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 用户登录相关服务
  *
- * @author xubin.
+ * @author Tlsy.
  * @create 2017-05-05
  */
 

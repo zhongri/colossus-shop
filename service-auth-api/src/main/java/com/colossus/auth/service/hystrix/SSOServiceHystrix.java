@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * 用户登录 熔断处理
  *
- * @author xubin.
+ * @author Tlsy.
  * @create 2017-05-05
  */
 

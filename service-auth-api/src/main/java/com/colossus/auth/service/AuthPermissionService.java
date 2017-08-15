@@ -8,8 +8,8 @@ import com.colossus.auth.service.hystrix.AuthPermissionServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
-* UpmsPermissionService接口
-* Created by shuzheng on 2017/3/20.
+* AuthPermissionService接口
+* Created by Tlsy on 2017/3/20.
 */
 @FeignClient(value = "auth-permission-service",fallback = AuthPermissionServiceHystrix.class)
 public interface AuthPermissionService extends BaseService<AuthPermission,AuthPermissionExample> {

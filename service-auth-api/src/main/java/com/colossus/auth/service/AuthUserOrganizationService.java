@@ -7,8 +7,8 @@ import com.colossus.auth.service.hystrix.AuthUserOrganizationServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
-* UpmsUserOrganizationService接口
-* Created by shuzheng on 2017/3/20.
+* AuthUserOrganizationService接口
+* Created by Tlsy on 2017/3/20.
 */
 @FeignClient(value = "auth-user-organization-service",fallback = AuthUserOrganizationServiceHystrix.class)
 public interface AuthUserOrganizationService extends BaseService<AuthUserOrganization,AuthUserOrganizationExample> {

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Auth系统接口
- * Created by shuzheng on 2017/2/11.
+ * Created by Tlsy on 2017/2/11.
  */
 @FeignClient(value = "auth-api-service",fallback = AuthApiServiceHystrix.class)
 public interface AuthApiService {

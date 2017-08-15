@@ -7,8 +7,8 @@ import com.colossus.auth.service.hystrix.AuthLogServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
-* UpmsLogService接口
-* Created by shuzheng on 2017/3/20.
+* AuthLogService接口
+* Created by Tlsy on 2017/3/20.
 */
 @FeignClient(value = "auth-log-service",fallback = AuthLogServiceHystrix.class)
 public interface AuthLogService extends BaseService<AuthLog,AuthLogExample> {

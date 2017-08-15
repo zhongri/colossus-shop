@@ -7,8 +7,8 @@ import com.colossus.auth.service.hystrix.AuthSystemServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
-* UpmsSystemService接口
-* Created by shuzheng on 2017/3/20.
+* AuthSystemService接口
+* Created by Tlsy on 2017/3/20.
 */
 @FeignClient(value = "auth-system-service",fallback = AuthSystemServiceHystrix.class)
 public interface AuthSystemService extends BaseService<AuthSystem,AuthSystemExample> {

@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
 * AuthUserRoleService接口
-* Created by shuzheng on 2017/3/20.
+* Created by Tlsy on 2017/3/20.
 */
 @FeignClient(value = "auth-user-role-service",fallback = AuthUserRoleServiceHystrix.class)
 public interface AuthUserRoleService extends BaseService<AuthUserRole,AuthUserRoleExample> {
