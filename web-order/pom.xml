@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.colossus</groupId>
-            <artifactId>service-sso-api</artifactId>
+            <artifactId>service-auth-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

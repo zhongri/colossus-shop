@@ -8,7 +8,7 @@ import com.colossus.common.utils.AppConfig;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.common.utils.IDUtils;
 import com.colossus.order.service.OrderService;
-import com.colossus.sso.service.UserService;
+import com.colossus.auth.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

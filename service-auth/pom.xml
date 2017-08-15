@@ -11,8 +11,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-
-    <artifactId>service-order</artifactId>
+    <artifactId>service-auth</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -22,16 +21,10 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysqlVersion}</version>
         </dependency>
-
         <dependency>
             <groupId>cn.binux</groupId>
             <artifactId>spring-boot-starter-druid</artifactId>
             <version>${springBootDruidVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.colossus</groupId>
-            <artifactId>service-order-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.colossus</groupId>

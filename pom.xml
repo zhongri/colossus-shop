@@ -26,8 +26,8 @@
         <module>service-portal-api</module>
         <module>service-search</module>
         <module>service-search-api</module>
-        <module>service-sso</module>
-        <module>service-sso-api</module>
+        <module>service-auth</module>
+        <module>service-auth-api</module>
         <module>cloud-sleuth</module>
         <module>cloud-turbine</module>
         <module>web-admin</module>
@@ -36,7 +36,7 @@
         <module>web-order</module>
         <module>web-portal</module>
         <module>web-search</module>
-        <module>web-sso</module>
+        <module>web-auth</module>
         <module>cloud-zuul</module>
         <module>service-redis</module>
         <module>service-redis-api</module>

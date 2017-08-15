@@ -2,7 +2,7 @@ package com.colossus.order.interceptor;
 
 import com.colossus.common.utils.AppConfig;
 import com.colossus.common.model.BaseResult;
-import com.colossus.sso.service.UserService;
+import com.colossus.auth.service.UserService;
 import com.colossus.common.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
