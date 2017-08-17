@@ -1,9 +1,9 @@
 package com.colossus.auth.service;
 
+import com.colossus.auth.service.hystrix.AuthUserRoleServiceHystrix;
 import com.colossus.common.model.AuthUserRole;
 import com.colossus.common.model.AuthUserRoleExample;
 import com.colossus.common.service.BaseService;
-import com.colossus.auth.service.hystrix.AuthUserRoleServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
@@ -19,6 +19,6 @@ public interface AuthUserRoleService extends BaseService<AuthUserRole,AuthUserRo
      * @param userId 用户id
      * @return
      */
-    int role(String[] roleIds, String userId);
+    int updateRoleForUser(String[] roleIds, String userId);
 
 }

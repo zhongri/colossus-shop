@@ -1,11 +1,12 @@
 package com.colossus.auth.service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.colossus.auth.service.hystrix.AuthRolePermissionServiceHystrix;
 import com.colossus.common.model.AuthRolePermission;
 import com.colossus.common.model.AuthRolePermissionExample;
 import com.colossus.common.service.BaseService;
-import com.colossus.auth.service.hystrix.AuthRolePermissionServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
 * AuthRolePermissionService接口
@@ -17,9 +18,10 @@ public interface AuthRolePermissionService  extends BaseService<AuthRolePermissi
     /**
      * 角色权限
      * @param data 权限数据
-     * @param userId 角色id
+     * @param roleId 角色id
      * @return
      */
-    int rolePermission(JSONArray data, String userId);
+    @GetMapping("update-permission-for-role")
+    int updatePermissionForRole(JSONArray data, String roleId);
 
 }

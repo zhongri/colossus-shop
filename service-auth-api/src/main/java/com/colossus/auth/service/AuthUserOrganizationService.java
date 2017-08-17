@@ -1,9 +1,9 @@
 package com.colossus.auth.service;
 
+import com.colossus.auth.service.hystrix.AuthUserOrganizationServiceHystrix;
 import com.colossus.common.model.AuthUserOrganization;
 import com.colossus.common.model.AuthUserOrganizationExample;
 import com.colossus.common.service.BaseService;
-import com.colossus.auth.service.hystrix.AuthUserOrganizationServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
@@ -19,6 +19,6 @@ public interface AuthUserOrganizationService extends BaseService<AuthUserOrganiz
      * @param userId 用户id
      * @return
      */
-    int organization(String[] organizationIds, String userId);
+    int updateOrganizationForUser(String[] organizationIds, String userId);
 
 }
