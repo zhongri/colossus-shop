@@ -1,11 +1,10 @@
 package com.colossus.auth.service;
 
 
-import com.colossus.common.model.*;
 import com.colossus.auth.service.hystrix.AuthApiServiceHystrix;
+import com.colossus.common.model.*;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -88,12 +87,6 @@ public interface AuthApiService {
     @GetMapping("select-user-by-userName")
     AuthUser selectAuthUserByUsername(String username);
 
-    /**
-     * 写入操作日志
-     * @param authLog
-     * @return
-     */
-    @PostMapping("insert-authLog")
-    int insertAuthLogSelective(AuthLog authLog);
+
 
 }

@@ -32,8 +32,6 @@ public class AuthApiServiceImpl implements AuthApiService {
     @Autowired
     private AuthOrganizationMapper authOrganizationMapper;
     @Autowired
-    private AuthLogMapper authLogMapper;
-    @Autowired
     private RedisService redisService;
     @Override
     public List<AuthPermission> selectAuthPermissionByAuthUserId(String  authUserId) {
@@ -112,8 +110,5 @@ public class AuthApiServiceImpl implements AuthApiService {
        return null;
     }
 
-    @Override
-    public int insertAuthLogSelective(AuthLog authLog) {
-        return authLogMapper.insertSelective(authLog);
-    }
+
 }
