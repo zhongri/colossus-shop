@@ -204,6 +204,24 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+    <select id="selectAuthPermissionByAuthUserId" resultType="com.colossus.common.model.AuthPermission">
+      SELECT * FROM auth_permission ap WHERE ap.status=1 and ap.id IN (select arp.permission_id from auth_role_permission arp where arp.role_id in (
+				select aur.role_id role_id from auth_user_role aur where aur.user_id=#{authUserId,jdbcType=STRING}
+			)
+			union
+			select permission_id from auth_user_permission aup where aup.user_id=#{authUserId,jdbcType=STRING} and aup.type=1
+		)
+		and ap.id not in (
+			select permission_id from auth_user_permission aup1 where aup1.user_id=#{authUserId,jdbcType=STRING} and aup1.type=-1
+		) order by ap.orders asc
+    </select>
+  <select id="selectAuthRoleByAuthUserId" resultType="com.colossus.common.model.AuthRole">
+    select
+    *
+    from auth_role ar where ar.id in (
+    select aur.role_id from auth_user_role aur where uur.user_id=#{authUserId,jdbcType=STRING}
+    )
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update auth_user
     <set>

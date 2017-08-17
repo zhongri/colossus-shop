@@ -1,9 +1,12 @@
 package com.colossus.common.dao;
 
+import com.colossus.common.model.AuthPermission;
+import com.colossus.common.model.AuthRole;
 import com.colossus.common.model.AuthUser;
 import com.colossus.common.model.AuthUserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AuthUserMapper {
     long countByExample(AuthUserExample example);
@@ -27,4 +30,8 @@ public interface AuthUserMapper {
     int updateByPrimaryKeySelective(AuthUser record);
 
     int updateByPrimaryKey(AuthUser record);
+
+    List<AuthPermission> selectAuthPermissionByAuthUserId(String authUserId);
+
+    List<AuthRole> selectAuthRoleByAuthUserId(String authUserId);
 }
