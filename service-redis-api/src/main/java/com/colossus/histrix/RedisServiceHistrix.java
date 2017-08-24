@@ -1,6 +1,7 @@
 package com.colossus.histrix;
 
 import com.colossus.RedisService;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -49,5 +50,10 @@ public class RedisServiceHistrix implements RedisService {
     @Override
     public long hdel(String hkey, String key) {
         return 0;
+    }
+
+    @Override
+    public CacheManager getCacheManager() {
+        return null;
     }
 }

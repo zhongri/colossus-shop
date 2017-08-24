@@ -2,6 +2,7 @@ package com.colossus;
 
 
 import com.colossus.histrix.RedisServiceHistrix;
+import org.springframework.cache.CacheManager;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,4 +36,7 @@ public interface RedisService {
 
     @PostMapping(value = "hdel")
     long hdel(String hkey, String key);
+
+    @GetMapping(value = "get-cacheManager")
+    CacheManager getCacheManager();
 }

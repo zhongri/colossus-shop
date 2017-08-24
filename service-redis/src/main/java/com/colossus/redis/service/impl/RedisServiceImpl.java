@@ -4,6 +4,7 @@ package com.colossus.redis.service.impl;
 import com.colossus.RedisService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.JedisCluster;
@@ -15,6 +16,8 @@ import redis.clients.jedis.JedisCluster;
 public class RedisServiceImpl implements RedisService {
     @Autowired
     private JedisCluster jedisCluster;
+    @Autowired
+    private CacheManager cacheManager;
 
     @Override
     public String get(String key) {
@@ -59,5 +62,9 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public long hdel(String hkey, String key) {
         return jedisCluster.hdel(hkey,key);
+    }
+
+    public CacheManager getCacheManager() {
+        return cacheManager;
     }
 }
