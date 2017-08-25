@@ -2,6 +2,7 @@ package com.colossus.common.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 import java.text.DecimalFormat;
@@ -13,6 +14,7 @@ import java.text.DecimalFormat;
  * @creater 2016-08-23 20:59
  */
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class SearchItem extends BaseModel {
 

@@ -1,10 +1,9 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.util.Date;
-
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class OrderItem extends BaseModel {
 

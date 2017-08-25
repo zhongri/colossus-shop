@@ -61,7 +61,8 @@
         <javaClientGenerator targetPackage="com.colossus.commone.dao" targetProject="C:/Users/Tlsy/IdeaProjects/colossus-shop/common/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-                                    <table tableName="auth_log" domainObjectName="AuthLog"></table>
+                                    <table tableName="auth_filter" domainObjectName="AuthFilter"></table>
+                                                <table tableName="auth_log" domainObjectName="AuthLog"></table>
                                                 <table tableName="auth_organization" domainObjectName="AuthOrganization"></table>
                                                 <table tableName="auth_permission" domainObjectName="AuthPermission"></table>
                                                 <table tableName="auth_role" domainObjectName="AuthRole"></table>

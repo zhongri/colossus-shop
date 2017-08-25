@@ -1,10 +1,9 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.util.Date;
-
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class ItemDesc extends BaseModel {
     private static final long serialVersionUID = -4834987119367783344L;

@@ -7,6 +7,8 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Set;
+
 @FeignClient(value = "service-redis",fallback = RedisServiceHistrix.class)
 public interface RedisService {
 
@@ -39,4 +41,10 @@ public interface RedisService {
 
     @GetMapping(value = "get-cacheManager")
     CacheManager getCacheManager();
+
+    @GetMapping(value = "get-keys")
+    Set<String> keys(String hkey);
+
+    @GetMapping(value = "hlen")
+    long hlen(String hkey);
 }

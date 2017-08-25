@@ -4,6 +4,8 @@ import com.colossus.RedisService;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 @Component
 public class RedisServiceHistrix implements RedisService {
 
@@ -55,5 +57,15 @@ public class RedisServiceHistrix implements RedisService {
     @Override
     public CacheManager getCacheManager() {
         return null;
+    }
+
+
+    @Override
+    public Set<String> keys(String hkey) {
+        return null;
+    }
+
+    public long hlen(String hkey){
+        return 0;
     }
 }

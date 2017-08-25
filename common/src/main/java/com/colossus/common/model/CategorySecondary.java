@@ -1,7 +1,9 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class CategorySecondary extends BaseModel {
 

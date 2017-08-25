@@ -1,13 +1,12 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class Category extends BaseModel {
     private static final long serialVersionUID = -8793792059624542982L;
-    private String id;
 
     /**
      * 名字
@@ -22,9 +21,5 @@ public class Category extends BaseModel {
      * @mbg.generated
      */
     private Integer sortOrder;
-
-    private Date createTime;
-
-    private Date updateTime;
 
 }

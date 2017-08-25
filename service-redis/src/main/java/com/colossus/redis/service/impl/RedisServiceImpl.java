@@ -9,6 +9,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.JedisCluster;
 
+import java.util.Set;
+
 
 @Api(value = "API - RedisServiceImpl", description = "redis 服务")
 @RestController
@@ -66,5 +68,14 @@ public class RedisServiceImpl implements RedisService {
 
     public CacheManager getCacheManager() {
         return cacheManager;
+    }
+
+    @Override
+    public Set<String> keys(String hkey) {
+        return jedisCluster.hkeys(hkey);
+    }
+
+    public long hlen(String hkey){
+        return jedisCluster.hlen(hkey);
     }
 }

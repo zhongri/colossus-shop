@@ -2,8 +2,10 @@ package com.colossus.common.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class CartInfo extends BaseModel {
     private static final long serialVersionUID = 5314476076440589573L;

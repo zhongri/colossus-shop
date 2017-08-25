@@ -1,9 +1,11 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class TransactionMessage extends BaseModel {
 

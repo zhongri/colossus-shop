@@ -1,9 +1,9 @@
 package com.colossus.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class HotWords extends BaseModel {
     private static final long serialVersionUID = 5327463665508727065L;
