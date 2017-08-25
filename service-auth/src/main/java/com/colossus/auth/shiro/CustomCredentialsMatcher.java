@@ -22,7 +22,7 @@ public abstract class CustomCredentialsMatcher extends HashedCredentialsMatcher 
     private AuthUserService authUserService;
 
 
-    protected void setTenantInfo(String username) throws AuthenticationException {
+    protected void saveUserInfo(String username) throws AuthenticationException {
 
         AuthUserExample example=new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(username);
