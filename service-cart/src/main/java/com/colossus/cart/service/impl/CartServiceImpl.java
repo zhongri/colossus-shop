@@ -1,6 +1,5 @@
 package com.colossus.cart.service.impl;
 
-import com.colossus.RedisService;
 import com.colossus.cart.service.CartService;
 import com.colossus.common.dao.ItemMapper;
 import com.colossus.common.model.BaseResult;
@@ -8,6 +7,7 @@ import com.colossus.common.model.CartInfo;
 import com.colossus.common.model.Item;
 import com.colossus.common.model.ItemExample;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

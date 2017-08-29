@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
 
 @EnableHystrix
 //@EnableApolloConfig
-@SpringBootApplication(exclude = RabbitAutoConfiguration.class)
+@SpringBootApplication(exclude = RabbitAutoConfiguration.class,scanBasePackages ={"com.colossus"})
 @EnableDiscoveryClient
 @MapperScan(basePackages = {"com.colossus.search.mapper","com.colossus.common.dao"})
 public class ServiceSearchApplication {

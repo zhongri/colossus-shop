@@ -1,11 +1,11 @@
 package com.colossus.auth.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.colossus.RedisService;
 import com.colossus.auth.service.AuthApiService;
 import com.colossus.common.dao.*;
 import com.colossus.common.model.*;
 import com.colossus.common.utils.StringUtil;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.Api;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;

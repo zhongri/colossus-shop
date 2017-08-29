@@ -1,11 +1,12 @@
 package com.colossus.portal.service.impl;
 
-import com.colossus.RedisService;
+
 import com.colossus.common.dao.ContentMapper;
 import com.colossus.common.model.Content;
 import com.colossus.common.model.ContentExample;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.portal.service.PortalContentService;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;

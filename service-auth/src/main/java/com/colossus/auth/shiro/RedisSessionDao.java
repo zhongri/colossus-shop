@@ -1,7 +1,7 @@
 package com.colossus.auth.shiro;
 
 import com.alibaba.fastjson.JSON;
-import com.colossus.RedisService;
+import com.colossus.redis.service.RedisService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class RedisSessionDao extends AbstractSessionDAO {
@@ -54,11 +53,8 @@ public class RedisSessionDao extends AbstractSessionDAO {
         Set<Session> sessions = new HashSet();
         Set<String> keys = this.redisService.keys(this.keyPrefix);
         if (keys != null && keys.size() > 0) {
-            Iterator<String> i$ = keys.iterator();
-
-            while(i$.hasNext()) {
-                String key = i$.next();
-                Session s = JSON.parseObject(this.redisService.hget(keyPrefix,key),Session.class);
+            for (String key : keys) {
+                Session s = JSON.parseObject(this.redisService.hget(keyPrefix, key), Session.class);
                 sessions.add(s);
             }
         }
@@ -78,8 +74,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
             logger.error("session id is null");
             return null;
         } else {
-            Session s = JSON.parseObject(this.redisService.hget(keyPrefix,(String)sessionId),Session.class);
-            return s;
+            return JSON.parseObject(this.redisService.hget(keyPrefix,(String)sessionId),Session.class);
         }
     }
 }

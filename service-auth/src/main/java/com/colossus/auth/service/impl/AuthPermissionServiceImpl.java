@@ -2,9 +2,9 @@ package com.colossus.auth.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.colossus.auth.service.AuthApiService;
 import com.colossus.auth.service.AuthPermissionService;
 import com.colossus.common.dao.AuthPermissionMapper;
+import com.colossus.common.dao.AuthRolePermissionMapper;
 import com.colossus.common.dao.AuthSystemMapper;
 import com.colossus.common.dao.AuthUserPermissionMapper;
 import com.colossus.common.model.*;
@@ -22,18 +22,20 @@ import java.util.List;
 public class AuthPermissionServiceImpl extends BaseServiceImpl<AuthPermissionMapper,AuthPermission,AuthPermissionExample> implements AuthPermissionService {
 
     @Autowired
-    private AuthApiService authApiService;
-    @Autowired
     private AuthSystemMapper authSystemMapper;
     @Autowired
     private AuthPermissionMapper authPermissionMapper;
     @Autowired
     private AuthUserPermissionMapper authUserPermissionMapper;
+    @Autowired
+    private AuthRolePermissionMapper authRolePermissionMapper;
 
     @Override
     public JSONArray getTreeByRoleId(String roleId) {
         // 角色已有权限
-        List<AuthRolePermission> rolePermissions = authApiService.selectAuthRolePermissionByAuthRoleId(roleId);
+        AuthRolePermissionExample example=new AuthRolePermissionExample();
+        example.createCriteria().andRoleIdEqualTo(roleId);
+        List<AuthRolePermission> rolePermissions=authRolePermissionMapper.selectByExample(example);
 
         JSONArray systems = new JSONArray();
         // 系统
@@ -135,7 +137,7 @@ public class AuthPermissionServiceImpl extends BaseServiceImpl<AuthPermissionMap
 
     @Override
     public JSONArray getTreeByUserId(String userId, Byte type) {
-        // 角色权限
+        // 用户权限
         AuthUserPermissionExample authUserPermissionExample = new AuthUserPermissionExample();
         authUserPermissionExample.createCriteria()
                 .andUserIdEqualTo(userId)

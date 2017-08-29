@@ -24,6 +24,9 @@ management:
   security:
     enabled: false
   context-path: /
+feign:
+  hystrix:
+    enable: true
 
 eureka:
   instance:
@@ -32,6 +35,7 @@ eureka:
     metadata-map:
       management.port: ${management.port:8517}
     home-page-url-path: ${management.context-path}
+    appname: service-redis
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:8501/eureka/

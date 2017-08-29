@@ -1,7 +1,8 @@
 package com.colossus.auth.controller;
 
-import com.colossus.RedisService;
+
 import com.colossus.auth.utils.VerifyCodeUtils;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

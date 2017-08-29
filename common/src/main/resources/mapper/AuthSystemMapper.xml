@@ -320,5 +320,4 @@
       orders = #{orders,jdbcType=BIGINT}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

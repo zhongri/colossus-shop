@@ -1,12 +1,12 @@
 package com.colossus.item.service.impl;
 
-import com.colossus.RedisService;
 import com.colossus.common.dao.ItemDescMapper;
 import com.colossus.common.dao.ItemMapper;
 import com.colossus.common.model.Item;
 import com.colossus.common.model.ItemDesc;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.item.service.ItemService;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

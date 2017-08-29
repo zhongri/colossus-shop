@@ -210,16 +210,6 @@
             </snapshots>
         </repository>
         <repository>
-            <id>elasticsearch-releases</id>
-            <url>https://artifacts.elastic.co/maven</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>spring-milestone</id>
             <name>Spring Milestone Repository</name>
             <url>http://repo.spring.io/milestone</url>

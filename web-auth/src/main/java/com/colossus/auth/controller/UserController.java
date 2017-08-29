@@ -1,11 +1,11 @@
 package com.colossus.auth.controller;
 
-import com.colossus.common.utils.AppConfig;
-import com.colossus.common.model.User;
-import com.colossus.notify.service.NotifyUserService;
-import com.colossus.common.model.BaseResult;
 import com.colossus.auth.service.SSOService;
+import com.colossus.common.model.BaseResult;
+import com.colossus.common.model.User;
+import com.colossus.common.utils.AppConfig;
 import com.colossus.common.utils.CookieUtils;
+import com.colossus.notify.service.NotifyUserService;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,7 +76,7 @@ public class UserController {
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public @ResponseBody String login(User user, String returnUrl, HttpServletResponse response, HttpServletRequest request) {
 
-        BaseResult result = SSOService.login(user);
+        BaseResult result = SSOService.login(request);
 
         if (result.getStatus() == 200) {
 
@@ -99,6 +100,14 @@ public class UserController {
 
         return PASSWORD_ERROR;
 
+    }
+
+    @RequestMapping("/")
+    public String index(ModelMap map) {
+        // 加入一个属性，用来在模板中读取
+        map.addAttribute("host", "http://blog.didispace.com");
+        // return模板文件的名称，对应src/main/resources/templates/index.html
+        return "index";
     }
 
     @RequestMapping(value = "/loginservice")

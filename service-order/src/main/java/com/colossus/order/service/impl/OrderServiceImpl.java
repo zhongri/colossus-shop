@@ -1,6 +1,5 @@
 package com.colossus.order.service.impl;
 
-import com.colossus.RedisService;
 import com.colossus.auth.service.SSOService;
 import com.colossus.common.dao.OrderItemMapper;
 import com.colossus.common.dao.OrderMapper;
@@ -9,6 +8,7 @@ import com.colossus.common.utils.AppConfig;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.common.utils.IDUtils;
 import com.colossus.order.service.OrderService;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

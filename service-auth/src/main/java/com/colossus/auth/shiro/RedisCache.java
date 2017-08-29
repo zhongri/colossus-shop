@@ -1,7 +1,7 @@
 package com.colossus.auth.shiro;
 
 import com.alibaba.fastjson.JSON;
-import com.colossus.RedisService;
+import com.colossus.redis.service.RedisService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.shiro.cache.Cache;

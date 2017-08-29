@@ -17,14 +17,8 @@
     <dependencies>
         <dependency>
             <groupId>com.colossus</groupId>
-            <artifactId>service-cart-api</artifactId>
+            <artifactId>service-cart-client</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysqlVersion}</version>
         </dependency>
 
         <dependency>
@@ -34,13 +28,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.9</version>
-        </dependency>
-        <dependency>
             <groupId>com.colossus</groupId>
-            <artifactId>service-redis-api</artifactId>
+            <artifactId>service-redis-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -1,9 +1,9 @@
 package com.colossus.search.service.impl;
 
+import com.colossus.common.dao.SearchMapper;
+import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.SearchItem;
 import com.colossus.common.model.SearchResult;
-import com.colossus.common.model.BaseResult;
-import com.colossus.common.dao.SearchMapper;
 import com.colossus.search.mapper.ItemMapper;
 import com.colossus.search.model.Item;
 import com.colossus.search.service.SearchService;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Solr Service 实现类
+ *  Service 实现类
  *
  * @author xubin.
  * @create 2017-05-03

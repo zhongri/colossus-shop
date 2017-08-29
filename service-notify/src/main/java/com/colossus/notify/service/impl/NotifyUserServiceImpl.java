@@ -1,8 +1,9 @@
 package com.colossus.notify.service.impl;
 
-import com.colossus.RedisService;
-import com.colossus.notify.service.NotifyUserService;
+
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.notify.service.NotifyUserService;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

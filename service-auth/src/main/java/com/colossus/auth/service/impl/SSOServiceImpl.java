@@ -1,23 +1,29 @@
 package com.colossus.auth.service.impl;
 
-import com.colossus.RedisService;
+
 import com.colossus.auth.service.SSOService;
+import com.colossus.auth.shiro.CustomFormAuthenticationFilter;
+import com.colossus.auth.shiro.CustomPrincipal;
 import com.colossus.common.dao.UserMapper;
 import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.User;
 import com.colossus.common.model.UserExample;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.redis.service.RedisService;
+import com.google.common.collect.Maps;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -42,10 +48,10 @@ public class SSOServiceImpl implements SSOService {
     @Autowired
     private RedisService redisService;
 
-    @Value("${redisKey.prefix.user_session}")
+    @Value("${redisKey.shiro.prefix.user_cache}")
     private String USER_SESSION;
 
-    @Value("${redisKey.expire_time}")
+    @Value("${redisKey.shiro.expire_time}")
     private Integer EXPIRE_TIME;
     
     @Value("${login.validation.ispinengaged}")
@@ -60,20 +66,20 @@ public class SSOServiceImpl implements SSOService {
     @Value("${login.random_number}")
     private Integer RANDOM_NUMBER;
 
-    @Value("${redisKey.prefix.verifycode}")
+    @Value("${redisKey.shiro.prefix.verifycode}")
     private String VERIFYCODE;
 
-    @Value("${redisKey.prefix.mobile_login_code}")
+    @Value("${redisKey.shiro.prefix.mobile_login_code}")
     private String MOBILE_LOGIN_CODE;
 
     @Value("${login.success_url}")
     private String SUCCESS_URL;
 
+
+
     /**
      * 请求格式 POST
      * 用户登录
-     *
-     * @param user Tbuser POJO Json
      * @return {
      *          status: 200 //200 成功 400 登录失败 500 系统异常
      *          msg: "OK" //错误 用户名或密码错误,请检查后重试.
@@ -96,44 +102,32 @@ public class SSOServiceImpl implements SSOService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public BaseResult login(@RequestBody User user) {
+    public BaseResult login(HttpServletRequest request){
+        CustomPrincipal principal = (CustomPrincipal) SecurityUtils.getSubject().getPrincipal();
 
-        if (user == null) {
-            return BaseResult.build(400, "error", "数据为空");
+        // 如果已经登录或者登录成功，则跳转到首页
+        if(principal != null){
+            return BaseResult.ok();
         }
 
-        UserExample example = new UserExample();
+        Map<String,Object> data= Maps.newHashMap();
+        String username = WebUtils.getCleanParam(request, CustomFormAuthenticationFilter.DEFAULT_USERNAME_PARAM);
+        boolean rememberMe = WebUtils.isTrue(request, CustomFormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
+        boolean mobile = WebUtils.isTrue(request, CustomFormAuthenticationFilter.DEFAULT_MOBILE_PARAM);
+        String exception = (String)request.getAttribute(CustomFormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+        String message = (String)request.getAttribute(CustomFormAuthenticationFilter.DEFAULT_MESSAGE_PARAM);
 
-        UserExample.Criteria criteria = example.createCriteria();
-
-        criteria.andUsernameEqualTo(user.getUsername());
-        //criteria.andPasswordEqualTo(DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes()));
-
-        List<User> list = userMapper.selectByExample(example);
-
-        if (list == null || list.size() == 0) {
-            return BaseResult.build(400, "用户名不存在");
+        if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")){
+            message = "用户或密码错误, 请重试.";
         }
 
-        User check = list.get(0);
+        data.put(CustomFormAuthenticationFilter.DEFAULT_USERNAME_PARAM, username);
+        data.put(CustomFormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM, rememberMe);
+        data.put(CustomFormAuthenticationFilter.DEFAULT_MOBILE_PARAM, mobile);
+        data.put(CustomFormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME, exception);
+        data.put(CustomFormAuthenticationFilter.DEFAULT_MESSAGE_PARAM, message);
 
-        if (!check.getPassword().equals(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()))) {
-            return BaseResult.build(401, "用户名或密码错误");
-        }
-
-        User result = new User();
-
-        result.setUsername(check.getUsername());
-        result.setId(check.getId());
-
-        String token = UUID.randomUUID().toString().replaceAll("-","");
-
-        String key = USER_SESSION + token;
-        redisService.set(key, FastJsonConvert.convertObjectToJSON(result));
-
-        redisService.expire(key, EXPIRE_TIME);
-
-        return BaseResult.ok(token);
+        return BaseResult.build(403,message,data);
     }
 
     /**

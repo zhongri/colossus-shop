@@ -12,24 +12,18 @@
         <module>cloud-admin</module>
         <module>cloud-config</module>
         <module>cloud-eureka</module>
-        <module>service-admin</module>
-        <module>service-admin-api</module>
-        <module>service-cart</module>
-        <module>service-cart-api</module>
-        <module>service-item</module>
-        <module>service-item-api</module>
-        <module>service-notify</module>
-        <module>service-notify-api</module>
-        <module>service-order</module>
-        <module>service-order-api</module>
-        <module>service-portal</module>
-        <module>service-portal-api</module>
-        <module>service-search</module>
-        <module>service-search-api</module>
-        <module>service-auth</module>
-        <module>service-auth-api</module>
         <module>cloud-sleuth</module>
         <module>cloud-turbine</module>
+        <module>cloud-zuul</module>
+        <module>service-admin</module>
+        <module>service-cart</module>
+        <module>service-item</module>
+        <module>service-notify</module>
+        <module>service-order</module>
+        <module>service-portal</module>
+        <module>service-search</module>
+        <module>service-auth</module>
+        <module>service-redis</module>
         <module>web-admin</module>
         <module>web-cart</module>
         <module>web-item</module>
@@ -37,13 +31,17 @@
         <module>web-portal</module>
         <module>web-search</module>
         <module>web-auth</module>
-        <module>cloud-zuul</module>
-        <module>service-redis</module>
-        <module>service-redis-api</module>
+        <module>service-admin-client</module>
+        <module>service-auth-client</module>
+        <module>service-cart-client</module>
+        <module>service-item-client</module>
+        <module>service-notify-client</module>
+        <module>service-order-client</module>
+        <module>service-redis-client</module>
+        <module>service-search-client</module>
+        <module>service-portal-client</module>
     </modules>
     <name>colossus-shop</name>
     <version>1.0-SNAPSHOT</version>
-
-
 
 </project>

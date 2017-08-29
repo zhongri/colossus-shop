@@ -1,13 +1,14 @@
 package com.colossus.cart.controller;
 
-import com.colossus.RedisService;
+
 import com.colossus.cart.service.CartService;
-import com.colossus.common.utils.AppConfig;
+import com.colossus.common.model.BaseResult;
 import com.colossus.common.model.CartInfo;
 import com.colossus.common.model.User;
-import com.colossus.common.model.BaseResult;
+import com.colossus.common.utils.AppConfig;
 import com.colossus.common.utils.CookieUtils;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

@@ -11,6 +11,9 @@ management:
   security:
     enabled: false
   context-path: /
+feign:
+  hystrix:
+    enabled: true
 
 eureka:
   instance:

@@ -1,23 +1,26 @@
 package com.colossus.auth.shiro;
 
-import com.colossus.RedisService;
 import com.colossus.common.dao.AuthFilterMapper;
 import com.colossus.common.model.AuthFilter;
 import com.colossus.common.model.AuthFilterExample;
+import com.colossus.redis.service.RedisService;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,19 +28,8 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
-    private RedisService redisService;
-    @Autowired
-    private AuthFilterMapper authFilterMapper;
-
-    @Value("${redisKey.prefix.shiro_session}")
-    private String SHIRO_SESSION;
-
-    @Value("${redisKey.expire_time}")
-    private Integer EXPIRE_TIME;
-
     @Bean
-    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager,AuthFilterMapper authFilterMapper) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
         // 必须设置 SecurityManager
@@ -61,6 +53,9 @@ public class ShiroConfig {
             filterChainDefinitionMap.put(authFilter.getUrl(),
                     authFilter.getFilter());
         }
+        Map<String,Filter> filters=Maps.newHashMap();
+        filters.put("authc",new CustomFormAuthenticationFilter());
+        shiroFilterFactoryBean.setFilters(filters);
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);
         System.out.println("Shiro拦截器工厂类注入成功");
@@ -90,8 +85,8 @@ public class ShiroConfig {
     }
 
     @Bean
-    public RedisCache cache(){
-        return new RedisCache("shiro_redis",redisService);
+    public RedisCache cache( RedisService redisService){
+        return new RedisCache("shiro_redis_session",redisService);
     }
 
     /**
@@ -110,13 +105,32 @@ public class ShiroConfig {
         return result;
     }
 
+    @Bean
+    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor attributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        attributeSourceAdvisor.setSecurityManager(securityManager);
+        return new AuthorizationAttributeSourceAdvisor();
+    }
+
+    @Bean
+    public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
+    }
 
     /**
      * RedisSessionDAO shiro sessionDao层的实现 通过redis
      */
     @Bean
-    public RedisSessionDao redisSessionDAO() {
-        return new RedisSessionDao(redisService,SHIRO_SESSION,EXPIRE_TIME);
+    public RedisSessionDao redisSessionDAO(RedisService redisService) {
+        return new RedisSessionDao(redisService,"shiro_redis_session",1800);
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.colossus.redis.service.impl;
 
 
-import com.colossus.RedisService;
+import com.colossus.redis.service.RedisService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;

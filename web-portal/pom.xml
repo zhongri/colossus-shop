@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.colossus</groupId>
-            <artifactId>service-portal-api</artifactId>
+            <artifactId>service-portal-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
