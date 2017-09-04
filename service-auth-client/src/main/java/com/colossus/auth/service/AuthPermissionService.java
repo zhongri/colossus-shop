@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 * AuthPermissionService接口
 * Created by Tlsy on 2017/3/20.
 */
-@FeignClient(value = "auth-permission-service",fallback = AuthPermissionServiceHystrix.class)
+@FeignClient(value = "service-auth",fallback = AuthPermissionServiceHystrix.class)
 public interface AuthPermissionService extends BaseService<AuthPermission,AuthPermissionExample> {
 
     @GetMapping("get-tree-by-roleId")

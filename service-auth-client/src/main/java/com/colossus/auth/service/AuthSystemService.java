@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 * AuthSystemService接口
 * Created by Tlsy on 2017/3/20.
 */
-@FeignClient(value = "auth-system-service",fallback = AuthSystemServiceHystrix.class)
+@FeignClient(value = "service-auth",fallback = AuthSystemServiceHystrix.class)
 public interface AuthSystemService extends BaseService<AuthSystem,AuthSystemExample> {
 
 }

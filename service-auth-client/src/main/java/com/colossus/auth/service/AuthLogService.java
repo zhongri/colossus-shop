@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 * AuthLogService接口
 * Created by Tlsy on 2017/3/20.
 */
-@FeignClient(value = "auth-log-service",fallback = AuthLogServiceHystrix.class)
+@FeignClient(value = "service-auth",fallback = AuthLogServiceHystrix.class)
 public interface AuthLogService extends BaseService<AuthLog,AuthLogExample> {
 
     /**

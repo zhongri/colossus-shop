@@ -43,16 +43,18 @@ swagger2.package: com.colossus.auth.service
 
 # Redis
 redisKey:
+  # 验证码Redis前缀
+  verifycode: 'verify_code_'
+  # 号码code
+  mobile_login_code: 'mobile_login_code_'
   # 缓存时间 默认半小时
+  expire_time: 1800
   shiro:
-    expire_time: 1800
-    prefix:
     # 用户登录信息前缀
-      user_cache: 'user_'
-    # 验证码Redis前缀
-      verifycode: 'verify_code_'
-    # 号码code
-      mobile_login_code: 'mobile_login_code_'
+     user_cache: 'shiro_user_'
+     session_cache: 'shiro_session_'
+
+
 
 login:
   # 验证名

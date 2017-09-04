@@ -86,7 +86,7 @@ public class ShiroConfig {
 
     @Bean
     public RedisCache cache( RedisService redisService){
-        return new RedisCache("shiro_redis_session",redisService);
+        return new RedisCache("shiro_session_",redisService);
     }
 
     /**
@@ -130,7 +130,7 @@ public class ShiroConfig {
      */
     @Bean
     public RedisSessionDao redisSessionDAO(RedisService redisService) {
-        return new RedisSessionDao(redisService,"shiro_redis_session",1800);
+        return new RedisSessionDao(redisService,"shiro_session_",1800);
     }
 
     /**

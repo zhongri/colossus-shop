@@ -1,6 +1,6 @@
 spring:
   application:
-    name: web-sso
+    name: web-auth
 
 security.basic.enabled: false
 

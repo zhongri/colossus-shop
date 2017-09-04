@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
@@ -46,7 +47,8 @@
                 <input type="hidden" name="new" value="new_person_reg"/>
                 <input type="hidden" id="localmisc" name="localmisc" value=""/>
                 <input type="hidden" name="regType" id="regType" value="person"/>
-                <input type="hidden" name="uuid" id="uuid" value="${uid}"/>
+                <!--/*@thymesVar id="uid" type="templates"*/-->
+                <input type="hidden" name="uuid" id="uuid" value="${uid}" th:value="${uid}"/>
                 <input type="hidden" name="verifymc" id="verifymc" value=""/>
                 <input type="hidden" name="emailMg" id="emailMg"/>
                 <input type="hidden" name="authcodeMg" id="authcodeMg"/>
@@ -97,7 +99,7 @@
                     <div class="form-item">
                         <label>邮 箱 验 证</label>
                         <input type="text" name="email" id="form-email" class="field ignore" autocomplete="off"
-                               placeholder="建议使用常用邮箱" id="email-input"
+                               placeholder="建议使用常用邮箱"
                                default='<i class="i-def"></i>完成验证后，你可以用该邮箱登录和找回密码'/>
                         <i class="i-status"></i>
                     </div>
@@ -125,7 +127,7 @@
                            class="field form-authcode"
                            placeholder="请输入验证码" default='<i class="i-def"></i>看不清？点击图片更换验证码'/>
                     <img class="img-code" title="换一换" id="imgAuthCode"
-                         onclick="this.src='http://localhost:8104/verify/image?uid=${uid}&amp;yys='+new Date().getTime()"
+                         onclick="this.src='http://localhost:8106/verify/image?uid=${uid}'" th:onclick="|this.src='http://localhost:8106/verify/image?uid=${uid}'|"
                          ver_colorofnoisepoint="#888888"/>
                 </div>
                 <div class="input-tip">
@@ -390,15 +392,26 @@ normal"><span style="line-height:150%;">（<span>2</span>）您的位置信息�
             ></span></span>
             </p>
 
-            <p class="MsoNormal" style="line-height:150%"><b style="mso-bidi-font-weight:
-normal"><span style="line-height:150%;">（<span>3</span>）您的设备信息。</span></b><span style="line-height:
-150%;>XBin可能会读取您访问XBin或使用XBin服务时所使用的终端设备的信息，包括但不限于设备型号、设备识别码、操作系统、分辨率、电信运营商等。<span lang=" EN-US">
+            <p class="MsoNormal" style="line-height:150%">
+                <b style="mso-bidi-font-weight:
+normal"><span style="line-height:150%;">（<span>3</span>）您的设备信息。</span></b>
+                <span style="line-height:150%;">
+                    XBin可能会读取您访问XBin或使用XBin服务时所使用的终端设备的信息，包括但不限于设备型号、设备识别码、操作系统、分辨率、电信运营商等。
+                    <span lang=" EN-US">
 
-                </span></span></p>
+                    </span>
+                </span>
+            </p>
 
-            <p class="MsoNormal" style="line-height:150%"><b style="mso-bidi-font-weight:
-normal"><span style="line-height:150%;">（<span>4</span>）您的行为或交易信息。</span></b><span style=";
-line-height:150%;">XBin可能会记录您访问XBin或使用XBin服务时所进行的操作以及您在XBin网站上进行交易的相关信息。<span></span></span></p>
+            <p class="MsoNormal" style="line-height:150%"><b style="mso-bidi-font-weight:normal">
+                <span style="line-height:150%;">
+                （<span>4</span>）您的行为或交易信息。
+                </span>
+            </b>
+                <span style="line-height:150%;">
+                    XBin可能会记录您访问XBin或使用XBin服务时所进行的操作以及您在XBin网站上进行交易的相关信息。
+                </span>
+            </p>
 
             <p class="MsoNormal" style="line-height:150%"><span style=";
 line-height:150%;">除上述信息外，我们还可能为了提供服务及改进服务质量的合理需要而获得的您的其他信息，包括您与我们的客服团队联系时您提供的相关信息，您参与问卷调查时向我们发送的问卷答复信息，以及您与XBin的关联方、XBin合作伙伴之间互动时我们获得的相关信息。<span

@@ -4,10 +4,11 @@ package com.colossus.auth.service.impl;
 import com.colossus.auth.service.SSOService;
 import com.colossus.auth.shiro.CustomFormAuthenticationFilter;
 import com.colossus.auth.shiro.CustomPrincipal;
-import com.colossus.common.dao.UserMapper;
+import com.colossus.common.dao.AuthUserMapper;
+import com.colossus.common.model.AuthUser;
+import com.colossus.common.model.AuthUserExample;
 import com.colossus.common.model.BaseResult;
-import com.colossus.common.model.User;
-import com.colossus.common.model.UserExample;
+import com.colossus.common.utils.AppUtil;
 import com.colossus.common.utils.FastJsonConvert;
 import com.colossus.redis.service.RedisService;
 import com.google.common.collect.Maps;
@@ -20,7 +21,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,15 +43,15 @@ public class SSOServiceImpl implements SSOService {
     public static final int SUCCESS = 0;
 
     @Autowired
-    private UserMapper userMapper;
+    private AuthUserMapper userMapper;
 
     @Autowired
     private RedisService redisService;
 
-    @Value("${redisKey.shiro.prefix.user_cache}")
-    private String USER_SESSION;
+    @Value("${redisKey.shiro.user_cache}")
+    private String USER_CACHE;
 
-    @Value("${redisKey.shiro.expire_time}")
+    @Value("${redisKey.expire_time}")
     private Integer EXPIRE_TIME;
     
     @Value("${login.validation.ispinengaged}")
@@ -66,10 +66,10 @@ public class SSOServiceImpl implements SSOService {
     @Value("${login.random_number}")
     private Integer RANDOM_NUMBER;
 
-    @Value("${redisKey.shiro.prefix.verifycode}")
-    private String VERIFYCODE;
+    @Value("${redisKey.verifycode}")
+    private String VERIFY_CODE;
 
-    @Value("${redisKey.shiro.prefix.mobile_login_code}")
+    @Value("${redisKey.mobile_login_code}")
     private String MOBILE_LOGIN_CODE;
 
     @Value("${login.success_url}")
@@ -166,7 +166,7 @@ public class SSOServiceImpl implements SSOService {
         }
 
         try {
-            String user = redisService.get(USER_SESSION + token);
+            String user = redisService.get(USER_CACHE + token);
 
             if (StringUtils.isNotBlank(user)) {
 
@@ -218,7 +218,7 @@ public class SSOServiceImpl implements SSOService {
         }
 
         try {
-            redisService.del(USER_SESSION + token);
+            redisService.del(USER_CACHE + token);
         } catch (Exception e) {
             logger.error("没有登录", e);
 
@@ -263,9 +263,9 @@ public class SSOServiceImpl implements SSOService {
 
         HashMap<String, Object> map = new HashMap<>();
 
-        UserExample example = new UserExample();
+        AuthUserExample example = new AuthUserExample();
 
-        UserExample.Criteria criteria = example.createCriteria();
+        AuthUserExample.Criteria criteria = example.createCriteria();
 
         if (StringUtils.isNotBlank(isEngaged)) {
 
@@ -273,7 +273,7 @@ public class SSOServiceImpl implements SSOService {
 
                 criteria.andUsernameEqualTo(regName);
 
-                List<User> users = userMapper.selectByExample(example);
+                List<AuthUser> users = userMapper.selectByExample(example);
 
                 if (users == null || users.size() == 0) {
                     //用户名 可用
@@ -298,7 +298,7 @@ public class SSOServiceImpl implements SSOService {
 
                     criteria.andEmailEqualTo(email);
 
-                    List<User> users = userMapper.selectByExample(example);
+                    List<AuthUser> users = userMapper.selectByExample(example);
 
                     if (users == null || users.size() == 0) {
                         //email 可用
@@ -316,7 +316,7 @@ public class SSOServiceImpl implements SSOService {
 
                     criteria.andPhoneEqualTo(phone);
 
-                    List<User> users = userMapper.selectByExample(example);
+                    List<AuthUser> users = userMapper.selectByExample(example);
 
                     if (users == null || users.size() == 0) {
                         //phone 可用
@@ -373,7 +373,7 @@ public class SSOServiceImpl implements SSOService {
         HashMap<String, Integer> map = new HashMap<>();
 
         try {
-            String redisAuthCode = redisService.get(VERIFYCODE + uuid);
+            String redisAuthCode = redisService.get(VERIFY_CODE + uuid);
 
             if (StringUtils.isBlank(redisAuthCode)) {
 
@@ -509,9 +509,9 @@ public class SSOServiceImpl implements SSOService {
 
         if (StringUtils.isNotBlank(regName)) {
 
-            User user = new User();
+            AuthUser user = new AuthUser();
             user.setUsername(regName);
-            user.setPassword(DigestUtils.md5DigestAsHex(pwd.getBytes()));
+            user.setPassword(AppUtil.entryptPassword(pwd));
             user.setPhone(phone);
 
             user.setCreateTime(new Date());

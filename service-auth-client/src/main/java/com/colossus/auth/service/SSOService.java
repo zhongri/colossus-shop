@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @create 2017-05-05
  */
 
-@FeignClient(value = "service-sso",fallback = SSOServiceHystrix.class)
+@FeignClient(value = "service-auth",fallback = SSOServiceHystrix.class)
 public interface SSOService {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)

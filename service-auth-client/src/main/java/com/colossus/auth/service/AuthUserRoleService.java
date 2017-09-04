@@ -5,12 +5,13 @@ import com.colossus.common.model.AuthUserRole;
 import com.colossus.common.model.AuthUserRoleExample;
 import com.colossus.common.service.BaseService;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
 * AuthUserRoleService接口
 * Created by Tlsy on 2017/3/20.
 */
-@FeignClient(value = "auth-user-role-service",fallback = AuthUserRoleServiceHystrix.class)
+@FeignClient(value = "service-auth",fallback = AuthUserRoleServiceHystrix.class)
 public interface AuthUserRoleService extends BaseService<AuthUserRole,AuthUserRoleExample> {
 
     /**
@@ -19,6 +20,7 @@ public interface AuthUserRoleService extends BaseService<AuthUserRole,AuthUserRo
      * @param userId 用户id
      * @return
      */
+    @PostMapping("update-role-for-user")
     int updateRoleForUser(String[] roleIds, String userId);
 
 }

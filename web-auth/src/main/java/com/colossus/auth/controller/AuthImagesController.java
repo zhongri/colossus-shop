@@ -35,8 +35,8 @@ public class AuthImagesController {
     @Autowired
     private RedisService redisService;
 
-    @Value("${redisKey.prefix.verifycode}")
-    private String VERIFYCODE;
+    @Value("${redisKey.verify_code}")
+    private String VERIFY_CODE;
 
     @Value("${redisKey.expire_time}")
     private Integer EXPIRE_TIME;
@@ -54,7 +54,7 @@ public class AuthImagesController {
         String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
         //存入Redis
 
-        String key = VERIFYCODE + uid;
+        String key = VERIFY_CODE + uid;
         redisService.set(key, verifyCode);
 
         redisService.expire(key, EXPIRE_TIME);
