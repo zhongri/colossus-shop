@@ -461,7 +461,7 @@ public class SSOServiceImpl implements SSOService {
 
             String code = "";
             try {
-                code = redisService.get(VERIFYCODE + uuid);
+                code = redisService.get(VERIFY_CODE + uuid);
             } catch (Exception e) {
 
                 logger.error("Redis服务出错", e);
