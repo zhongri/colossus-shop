@@ -17,14 +17,12 @@ public class CustomPrincipal implements Serializable {
     private String id; // 编号
     private String phone; //手机
     private String userName; // 姓名
-    private boolean mobileLogin; // 是否手机登录
 
 
-    public CustomPrincipal(AuthUser user, boolean mobileLogin) {
+    public CustomPrincipal(AuthUser user) {
         this.id = user.getId();
         this.phone = user.getPhone();
         this.userName = user.getUsername();
-        this.mobileLogin = mobileLogin;
     }
 
     public String getId() {
@@ -40,9 +38,6 @@ public class CustomPrincipal implements Serializable {
     }
 
 
-    public void setMobileLogin(boolean mobileLogin) {
-        this.mobileLogin = mobileLogin;
-    }
 
     public String getUserName() {
         return userName;
@@ -50,10 +45,6 @@ public class CustomPrincipal implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public boolean isMobileLogin() {
-        return mobileLogin;
     }
 
     /**

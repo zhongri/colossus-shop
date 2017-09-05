@@ -20,8 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 @FeignClient(value = "service-auth",fallback = SSOServiceHystrix.class)
 public interface SSOService {
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    BaseResult login(HttpServletRequest request);
+    @RequestMapping(value = "/login")
+    BaseResult login(@RequestParam("username") String username,
+                     @RequestParam("password") String password,
+                     @RequestParam("rememberMe") boolean rememberMe,
+                     @RequestParam("request") HttpServletRequest request);
 
     /**
      * 请求格式 GET
@@ -38,8 +41,7 @@ public interface SSOService {
     @RequestMapping(value = "/token",method = RequestMethod.POST)
     BaseResult token(
             @RequestParam("token")      String token,
-            @RequestParam("callback")   String callback
-    );
+            @RequestParam("callback")   String callback);
 
     /**
      * 请求格式 GET
@@ -56,8 +58,7 @@ public interface SSOService {
     @RequestMapping(value = "/logout",method = RequestMethod.POST)
     BaseResult logout(
             @RequestParam("token")      String token,
-            @RequestParam("callback")   String callback
-    );
+            @RequestParam("callback")   String callback);
 
     /**
      * 请求格式 POST
@@ -74,8 +75,7 @@ public interface SSOService {
             @RequestParam("isEngaged")  String isEngaged,
             @RequestParam("regName")    String regName,
             @RequestParam("email")      String email,
-            @RequestParam("phone")      String phone
-    );
+            @RequestParam("phone")      String phone);
 
     /**
      * 请求格式 POST

@@ -92,7 +92,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         String data = (String) result.getData();
-        User user = FastJsonConvert.convertJSONToObject(data, User.class);
+        AuthUser user = FastJsonConvert.convertJSONToObject(data, AuthUser.class);
 
         String userId = user.getId() + "";
         userId = "0000" + userId;

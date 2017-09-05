@@ -35,9 +35,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
         }
         boolean rememberMe = isRememberMe(request);
         String host = StringUtil.getRemoteAddr((HttpServletRequest)request);
-        String captcha = getCaptcha(request);
-        boolean mobile = isMobileLogin(request);
-        return new CustomUsernamePasswordToken(phone, password.toCharArray(), rememberMe, host, captcha, mobile);
+        return new CustomUsernamePasswordToken(phone, password.toCharArray(), rememberMe, host);
     }
 
     public String getCaptchaParam() {

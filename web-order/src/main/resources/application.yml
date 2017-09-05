@@ -24,4 +24,4 @@ redisKey:
 
 
 #SSO 系统登录页面
-sso_login_page: 'http://localhost:8104/login.html'
+sso_login_page: 'http://localhost:8106/login.html'

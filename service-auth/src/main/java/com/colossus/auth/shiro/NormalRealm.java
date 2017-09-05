@@ -86,6 +86,6 @@ public class NormalRealm extends AuthorizingRealm {
         //todo 验证码
         byte[] salt = StringUtil.decodeHex(user.getPassword().substring(0,16));
 
-        return new SimpleAuthenticationInfo(new CustomPrincipal(user,usernamePasswordToken.isMobileLogin()),user.getPassword().substring(16), ByteSource.Util.bytes(salt),getName());
+        return new SimpleAuthenticationInfo(new CustomPrincipal(user),user.getPassword().substring(16), ByteSource.Util.bytes(salt),getName());
     }
 }

@@ -1,21 +1,25 @@
 package com.colossus.auth.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
 import com.colossus.auth.service.SSOService;
-import com.colossus.auth.shiro.CustomFormAuthenticationFilter;
-import com.colossus.auth.shiro.CustomPrincipal;
+import com.colossus.auth.shiro.CustomUsernamePasswordToken;
 import com.colossus.common.dao.AuthUserMapper;
 import com.colossus.common.model.AuthUser;
 import com.colossus.common.model.AuthUserExample;
 import com.colossus.common.model.BaseResult;
 import com.colossus.common.utils.AppUtil;
 import com.colossus.common.utils.FastJsonConvert;
+import com.colossus.common.utils.StringUtil;
 import com.colossus.redis.service.RedisService;
-import com.google.common.collect.Maps;
 import io.swagger.annotations.*;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.web.util.WebUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +54,9 @@ public class SSOServiceImpl implements SSOService {
 
     @Value("${redisKey.shiro.user_cache}")
     private String USER_CACHE;
+
+    @Value("${redisKey.shiro.session_cache}")
+    private String SESSION_CACHE;
 
     @Value("${redisKey.expire_time}")
     private Integer EXPIRE_TIME;
@@ -102,32 +109,44 @@ public class SSOServiceImpl implements SSOService {
                     @ApiResponse(code = 500, message = "服务器不能完成请求")
             }
     )
-    public BaseResult login(HttpServletRequest request){
-        CustomPrincipal principal = (CustomPrincipal) SecurityUtils.getSubject().getPrincipal();
+    public BaseResult login(String username,String password,boolean rememberMe,HttpServletRequest request){
 
-        // 如果已经登录或者登录成功，则跳转到首页
-        if(principal != null){
-            return BaseResult.ok();
+
+        if (org.apache.commons.lang.StringUtils.isBlank(username)) {
+            return BaseResult.build(400, "帐号不能为空！");
         }
-
-        Map<String,Object> data= Maps.newHashMap();
-        String username = WebUtils.getCleanParam(request, CustomFormAuthenticationFilter.DEFAULT_USERNAME_PARAM);
-        boolean rememberMe = WebUtils.isTrue(request, CustomFormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
-        boolean mobile = WebUtils.isTrue(request, CustomFormAuthenticationFilter.DEFAULT_MOBILE_PARAM);
-        String exception = (String)request.getAttribute(CustomFormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-        String message = (String)request.getAttribute(CustomFormAuthenticationFilter.DEFAULT_MESSAGE_PARAM);
-
-        if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")){
-            message = "用户或密码错误, 请重试.";
+        if (org.apache.commons.lang.StringUtils.isBlank(password)) {
+            return BaseResult.build(400, "密码不能为空！");
         }
+        Subject subject = SecurityUtils.getSubject();
 
-        data.put(CustomFormAuthenticationFilter.DEFAULT_USERNAME_PARAM, username);
-        data.put(CustomFormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM, rememberMe);
-        data.put(CustomFormAuthenticationFilter.DEFAULT_MOBILE_PARAM, mobile);
-        data.put(CustomFormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME, exception);
-        data.put(CustomFormAuthenticationFilter.DEFAULT_MESSAGE_PARAM, message);
+        // 使用shiro认证
+        String host = StringUtil.getRemoteAddr(request);
+        CustomUsernamePasswordToken usernamePasswordToken=new CustomUsernamePasswordToken(username,password.toCharArray(),rememberMe,host);
+        try {
+            subject.login(usernamePasswordToken);
+        } catch (UnknownAccountException e) {
+            return BaseResult.build(403, "帐号不存在！");
+        } catch (IncorrectCredentialsException e) {
+            return  BaseResult.build(403, "密码错误！");
+        } catch (LockedAccountException e) {
+            return BaseResult.build(403, "帐号已锁定！");
+        }
+        AuthUserExample example=new AuthUserExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        if(CollectionUtils.isEmpty(userMapper.selectByExample(example))){
+            return BaseResult.build(403, "帐号不存在！");
+        }
+        AuthUser user=userMapper.selectByExample(example).get(0);
+        // 默认验证帐号密码正确，创建token
+        String token = AppUtil.getUUID();
+        // 全局会话的code
+        redisService.set(USER_CACHE+token, JSON.toJSONString(user));
 
-        return BaseResult.build(403,message,data);
+        return BaseResult.build(200,"success",token);
+
+        //跳登录前地址
+
     }
 
     /**
@@ -496,12 +515,12 @@ public class SSOServiceImpl implements SSOService {
                 logger.error("Redis服务出错");
             }
 
-            if (StringUtils.isBlank(phonecode) || !phonecode.equals(mobileCode)) {
-
-                String info = "短信验证码不正确或已过期,请重新获取";
-                return "({'info':'" + info + "'})";
-
-            }
+//            if (StringUtils.isBlank(phonecode) || !phonecode.equals(mobileCode)) {
+//
+//                String info = "短信验证码不正确或已过期,请重新获取";
+//                return "({'info':'" + info + "'})";
+//
+//            }
         } else {
             String info = "手机号码不能为空";
             return "({'info':'" + info + "'})";
@@ -510,6 +529,7 @@ public class SSOServiceImpl implements SSOService {
         if (StringUtils.isNotBlank(regName)) {
 
             AuthUser user = new AuthUser();
+            user.setId(AppUtil.getUUID());
             user.setUsername(regName);
             user.setPassword(AppUtil.entryptPassword(pwd));
             user.setPhone(phone);
