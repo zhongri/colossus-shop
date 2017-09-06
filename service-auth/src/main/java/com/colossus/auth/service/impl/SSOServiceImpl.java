@@ -120,6 +120,7 @@ public class SSOServiceImpl implements SSOService {
         }
         Subject subject = SecurityUtils.getSubject();
 
+
         // 使用shiro认证
         String host = StringUtil.getRemoteAddr(request);
         CustomUsernamePasswordToken usernamePasswordToken=new CustomUsernamePasswordToken(username,password.toCharArray(),rememberMe,host);

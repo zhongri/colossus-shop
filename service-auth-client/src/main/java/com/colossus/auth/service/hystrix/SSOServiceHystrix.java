@@ -26,7 +26,7 @@ public class SSOServiceHystrix implements SSOService {
      * }
      */
     @Override
-    public BaseResult login(HttpServletRequest request) {
+    public BaseResult login(String username, String password, boolean rememberMe, HttpServletRequest request) {
         return null;
     }
 

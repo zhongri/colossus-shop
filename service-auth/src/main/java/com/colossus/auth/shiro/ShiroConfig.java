@@ -1,6 +1,7 @@
 package com.colossus.auth.shiro;
 
 import com.colossus.common.dao.AuthFilterMapper;
+import com.colossus.common.dao.AuthUserMapper;
 import com.colossus.common.model.AuthFilter;
 import com.colossus.common.model.AuthFilterExample;
 import com.colossus.redis.service.RedisService;
@@ -11,6 +12,7 @@ import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.mgt.SimpleSessionFactory;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -95,13 +97,13 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public List<AuthorizingRealm> normalRealm(CacheManager cacheManager) {
+    public List<AuthorizingRealm> normalRealm(CacheManager cacheManager, AuthUserMapper authUserMapper) {
         List<AuthorizingRealm> result= Lists.newArrayList();
-        NormalRealm normalRealm=new NormalRealm();
+        NormalRealm normalRealm=new NormalRealm(authUserMapper);
         normalRealm.setCacheManager(cacheManager);
         normalRealm.setCredentialsMatcher(new NormalCredentialsMather(cacheManager,"SHA-1",1024));
         normalRealm.setCachingEnabled(true);
-        result.add(new NormalRealm());
+        result.add(normalRealm);
         return result;
     }
 
@@ -133,13 +135,21 @@ public class ShiroConfig {
         return new RedisSessionDao(redisService,"shiro_session_",1800);
     }
 
+    @Bean
+    public SimpleSessionFactory simpleSessionFactory(){
+        return new SimpleSessionFactory();
+    }
     /**
      * shiro session的管理
      */
     @Bean
-    public DefaultWebSessionManager SessionManager(RedisSessionDao redisSessionDao) {
+    public DefaultWebSessionManager SessionManager(CacheManager cacheManager,RedisSessionDao redisSessionDao,SimpleSessionFactory simpleSessionFactory) {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(redisSessionDao);
+        sessionManager.setCacheManager(cacheManager);
+        sessionManager.setGlobalSessionTimeout(1800);
+        sessionManager.setDeleteInvalidSessions(true);
+        sessionManager.setSessionFactory(simpleSessionFactory);
         return sessionManager;
     }
 }

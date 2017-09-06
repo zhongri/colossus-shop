@@ -68,4 +68,4 @@ login:
   # 推荐登录名后缀随机数取值范围
   random_number: 50000
   # 登录成功页面
-  success_url: http://localhost:8104/success
+  success_url: http://localhost:8106/success

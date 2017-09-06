@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
@@ -54,7 +55,8 @@
                     <div class="mc">
                         <div class="form">
                             <form id="formlogin" method="post" action="/user/login">
-                                <input id="returnUrl" type="hidden" name="returnUrl" value="${returnUrl}"/>
+                                <!--/*@thymesVar id="returnUrl" type="templates"*/-->
+                                <input id="returnUrl" type="hidden" name="returnUrl" value="" th:value="${returnUrl}"/>
                                 <div class="item item-fore1">
                                     <label for="loginname" class="login-label name-label"></label>
                                     <input id="loginname" type="text" class="itxt" name="username" tabindex="1"
@@ -212,7 +214,7 @@
             </a>
             |
             <a rel="nofollow" target="_blank" href="//app.jd.com/">
-                手机XBin
+                手机Colossus
             </a>
             |
             <a target="_blank" href="/links.vm/club.jd.com/links.aspx">
@@ -224,17 +226,17 @@
             </a>
             |
             <a href="//club.jd.com/" target="_blank">
-                XBin社区
+                Colossus社区
             </a>
             |
             <a href="//gongyi.jd.com" target="_blank">
-                XBin公益
+                Colossus公益
             </a>
             |
             <a target="_blank" href="//en.jd.com/" clstag="pageclick|keycount|20150112ABD|9">English Site</a>
         </div>
         <div class="copyright">
-            Copyright&nbsp;&copy;&nbsp;2004-2017&nbsp;&nbsp;XBinJD.com&nbsp;版权所有
+            Copyright&nbsp;&copy;&nbsp;2004-2017&nbsp;&nbsp;Colossus.shop&nbsp;版权所有
         </div>
     </div>
 </div>

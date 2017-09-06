@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @FeignClient(value = "service-auth",fallback = SSOServiceHystrix.class)
 public interface SSOService {
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     BaseResult login(@RequestParam("username") String username,
                      @RequestParam("password") String password,
                      @RequestParam("rememberMe") boolean rememberMe,

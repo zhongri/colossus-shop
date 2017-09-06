@@ -69,5 +69,5 @@ public class AuthUser extends BaseModel {
      *
      * @mbg.generated
      */
-    private Byte locked;
+    private Byte locked=0;
 }

@@ -42,7 +42,7 @@ public class AuthApiServiceImpl implements AuthApiService {
         }
         List<AuthPermission> authPermissions=authUserMapper.selectAuthPermissionByAuthUserId(authUserId);
         redisService.hset("auth","selectAuthPermissionByAuthUserId_"+authUserId, JSON.toJSONString(authPermissions));
-        return authUserMapper.selectAuthPermissionByAuthUserId(authUserId);
+        return authPermissions;
     }
 
     @Override

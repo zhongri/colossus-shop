@@ -1,6 +1,6 @@
 package com.colossus.auth.shiro;
 
-import com.alibaba.fastjson.JSON;
+import com.colossus.auth.utils.SerializableUtil;
 import com.colossus.redis.service.RedisService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
@@ -32,8 +32,8 @@ public class RedisSessionDao extends AbstractSessionDAO {
     private void saveSession(Session session) throws UnknownSessionException {
         if (session != null && session.getId() != null) {
             String key = (String)session.getId();
-            String value = JSON.toJSONString(session);
             session.setTimeout((expireTime * 1000));
+            String value = SerializableUtil.serialize(session);
             this.redisService.hset(keyPrefix,key, value);
             redisService.expire(keyPrefix,expireTime);
         } else {
@@ -43,7 +43,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
 
     public void delete(Session session) {
         if (session != null && session.getId() != null) {
-            this.redisService.hdel(keyPrefix, (String) session.getId());
+            this.redisService.hdel(keyPrefix,(String)session.getId());
         } else {
             logger.error("session or session id is null");
         }
@@ -54,7 +54,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
         Set<String> keys = this.redisService.keys(this.keyPrefix);
         if (keys != null && keys.size() > 0) {
             for (String key : keys) {
-                Session s = JSON.parseObject(this.redisService.hget(keyPrefix, key), Session.class);
+                Session s = SerializableUtil.deserialize(this.redisService.hget(keyPrefix,key));
                 sessions.add(s);
             }
         }
@@ -74,7 +74,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
             logger.error("session id is null");
             return null;
         } else {
-            return JSON.parseObject(this.redisService.hget(keyPrefix,(String)sessionId),Session.class);
+            return SerializableUtil.deserialize(this.redisService.hget(keyPrefix,(String)sessionId));
         }
     }
 }

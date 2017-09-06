@@ -55,7 +55,7 @@ public class NormalCredentialsMather extends CustomCredentialsMatcher {
         boolean pass=this.equals(tokenHashedCredentials, accountCredentials);
         if(pass){
             retryCountCache.remove(username);
-            saveUserInfo(username);
+            //saveUserInfo(username);
             return pass;
         }
 

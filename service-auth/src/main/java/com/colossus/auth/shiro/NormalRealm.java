@@ -1,7 +1,6 @@
 package com.colossus.auth.shiro;
 
-import com.colossus.auth.service.AuthApiService;
-import com.colossus.auth.service.AuthUserService;
+import com.colossus.common.dao.AuthUserMapper;
 import com.colossus.common.model.AuthPermission;
 import com.colossus.common.model.AuthRole;
 import com.colossus.common.model.AuthUser;
@@ -19,7 +18,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.shiro.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -31,10 +30,16 @@ import java.util.Set;
  */
 public class NormalRealm extends AuthorizingRealm {
 
-    @Autowired
-    private AuthUserService authUserService;
-    @Autowired
-    private AuthApiService authApiService;
+
+   private AuthUserMapper authUserMapper;
+
+    public NormalRealm(){
+
+    }
+
+    public NormalRealm(AuthUserMapper authUserMapper){
+       this.authUserMapper=authUserMapper;
+    }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -44,8 +49,8 @@ public class NormalRealm extends AuthorizingRealm {
         if(user != null){
             Set<String> roles = Sets.newHashSet();
             Set<String> permissions = Sets.newHashSet();
-            List<AuthRole> roleList = authApiService.selectAuthRoleByAuthUserId(user.getId());
-            List<AuthPermission> permissionList=authApiService.selectAuthPermissionByAuthUserId(user.getId());
+            List<AuthRole> roleList = authUserMapper.selectAuthRoleByAuthUserId(user.getId());
+            List<AuthPermission> permissionList=authUserMapper.selectAuthPermissionByAuthUserId(user.getId());
             for (AuthRole role : roleList) {
                 roles.add(role.getName());
                 //todo 暂时没有权限资源
@@ -73,12 +78,13 @@ public class NormalRealm extends AuthorizingRealm {
 
         AuthUserExample example=new AuthUserExample();
         example.createCriteria().andUsernameEqualTo(username);
-        AuthUser user=authUserService.selectFirstByExample(example);
+        List<AuthUser> users=authUserMapper.selectByExample(example);
 
-        if(user == null){
+        if(CollectionUtils.isEmpty(users)){
             throw new AuthenticationException("用户"+username+"不存在");
         }
 
+        AuthUser user=users.get(0);
         if(user.getLocked()== 1){
             throw new AuthenticationException("用户:"+user.getUsername()+"已被禁用");
         }
